@@ -1,0 +1,2440 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>MYSTIC TAROT — Bói Bài Tarot Phương Tây</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,400&family=Roboto+Slab:wght@300;400;500;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-card: #1a1a2e;
+  --bg-glass: rgba(26,26,46,0.85);
+  --accent-gold: #d4af37;
+  --accent-gold-light: #f0d878;
+  --accent-purple: #7b2cbf;
+  --accent-purple-light: #9d4edd;
+  --accent-rose: #c9184a;
+  --accent-cyan: #00b4d8;
+  --text-primary: #e8e6f0;
+  --text-secondary: #a09cb0;
+  --text-muted: #6b6578;
+  --border: rgba(212,175,55,0.2);
+  --shadow-gold: 0 0 30px rgba(212,175,55,0.15);
+  --shadow-purple: 0 0 40px rgba(123,44,191,0.2);
+  --font-display: "Cinzel", "Georgia", serif;
+  --font-body: "Cormorant Garamond", "Georgia", serif;
+  --radius: 16px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== PARTICLES BG ===== */
+#particles-canvas {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events: none; z-index: 0; opacity: 0.4;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 2px; }
+
+/* ===== APP CONTAINER ===== */
+.app-container { position: relative; z-index: 1; min-height: 100vh; }
+
+/* ===== HEADER ===== */
+.app-header {
+  position: fixed; top:0; left:0; right:0; z-index: 100;
+  background: linear-gradient(180deg, rgba(10,10,15,0.95) 0%, rgba(10,10,15,0.7) 60%, transparent 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 12px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.app-header .logo {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 600;
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.app-header .logo span { font-weight: 300; font-size: 11px; display: block; letter-spacing: 5px; opacity: 0.7; margin-top: -2px; }
+.header-btns { display: flex; gap: 8px; }
+.header-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--bg-glass); border: 1px solid var(--border);
+  color: var(--accent-gold); display: flex; align-items: center; justify-content: center;
+  font-size: 16px; cursor: pointer; transition: all 0.3s;
+}
+.header-btn:hover { background: var(--accent-gold); color: var(--bg-primary); box-shadow: var(--shadow-gold); }
+
+/* ===== MAIN CONTENT ===== */
+.main-content { padding-top: 70px; padding-bottom: 100px; }
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+  text-align: center; padding: 40px 24px 30px;
+  position: relative; overflow: hidden;
+}
+.hero-section::before {
+  content: "✦"; position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+  font-size: 24px; color: var(--accent-gold); opacity: 0.3; animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:0.3;transform:translateX(-50%) scale(1);} 50%{opacity:0.8;transform:translateX(-50%) scale(1.2);} }
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: 32px; font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light), #fff);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  letter-spacing: 4px; margin-bottom: 8px; line-height: 1.2;
+}
+.hero-subtitle {
+  font-size: 16px; color: var(--text-secondary); font-style: italic;
+  letter-spacing: 2px; margin-bottom: 24px;
+}
+.hero-quote {
+  font-size: 14px; color: var(--text-muted); max-width: 320px; margin: 0 auto;
+  border-left: 2px solid var(--accent-gold); padding-left: 16px; text-align: left;
+  font-style: italic;
+}
+
+/* ===== SECTION TITLE ===== */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 14px; font-weight: 600; letter-spacing: 4px;
+  color: var(--accent-gold); text-transform: uppercase;
+  text-align: center; margin: 32px 0 16px;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+}
+.section-title::before, .section-title::after {
+  content: ""; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+}
+
+/* ===== SPREAD SELECTOR ===== */
+.spread-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+  padding: 0 16px; max-width: 500px; margin: 0 auto;
+}
+.spread-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px 16px;
+  text-align: center; cursor: pointer; transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+  position: relative; overflow: hidden;
+}
+.spread-card::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(212,175,55,0.05), transparent);
+  opacity: 0; transition: opacity 0.4s;
+}
+.spread-card:hover::before { opacity: 1; }
+.spread-card:hover {
+  border-color: var(--accent-gold); transform: translateY(-4px);
+  box-shadow: var(--shadow-gold);
+}
+.spread-card.active {
+  border-color: var(--accent-gold); background: rgba(212,175,55,0.08);
+  box-shadow: 0 0 20px rgba(212,175,55,0.15);
+}
+.spread-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+.spread-name {
+  font-family: var(--font-display); font-size: 13px; font-weight: 600;
+  color: var(--text-primary); letter-spacing: 1px;
+}
+.spread-desc {
+  font-size: 12px; color: var(--text-muted); margin-top: 4px;
+}
+.spread-card .card-count {
+  position: absolute; top: 8px; right: 10px;
+  font-size: 10px; color: var(--accent-gold); opacity: 0.6;
+  font-family: var(--font-display);
+}
+
+/* ===== TOPIC SELECTOR ===== */
+.topic-selector {
+  display: flex; gap: 8px; padding: 0 16px;
+  overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+  max-width: 600px; margin: 0 auto 20px;
+}
+.topic-selector::-webkit-scrollbar { display: none; }
+.topic-chip {
+  flex-shrink: 0; padding: 8px 18px; border-radius: 20px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-secondary); font-size: 13px; cursor: pointer;
+  transition: all 0.3s; font-family: var(--font-body); white-space: nowrap;
+}
+.topic-chip:hover { border-color: var(--accent-purple-light); color: var(--text-primary); }
+.topic-chip.active {
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-light));
+  border-color: transparent; color: #fff; box-shadow: var(--shadow-purple);
+}
+
+/* ===== QUESTION INPUT ===== */
+.question-box {
+  padding: 0 16px; max-width: 500px; margin: 0 auto 24px;
+}
+.question-input {
+  width: 100%; padding: 14px 18px; border-radius: var(--radius);
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-primary); font-family: var(--font-body); font-size: 15px;
+  outline: none; transition: all 0.3s;
+}
+.question-input:focus { border-color: var(--accent-gold); box-shadow: 0 0 15px rgba(212,175,55,0.1); }
+.question-input::placeholder { color: var(--text-muted); font-style: italic; }
+
+/* ===== DRAW BUTTON ===== */
+.draw-btn-container { text-align: center; padding: 0 16px; margin-bottom: 32px; }
+.draw-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 48px; border-radius: 50px;
+  background: linear-gradient(135deg, var(--accent-gold), #b8941f);
+  color: var(--bg-primary); font-family: var(--font-display);
+  font-size: 15px; font-weight: 600; letter-spacing: 2px;
+  border: none; cursor: pointer; text-transform: uppercase;
+  box-shadow: 0 4px 30px rgba(212,175,55,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  transition: all 0.4s; position: relative; overflow: hidden;
+}
+.draw-btn::after {
+  content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: rotate(45deg); transition: all 0.6s;
+}
+.draw-btn:hover::after { left: 100%; }
+.draw-btn:hover {
+  transform: translateY(-2px); box-shadow: 0 8px 40px rgba(212,175,55,0.4);
+}
+.draw-btn:active { transform: translateY(0); }
+.draw-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* ===== SHUFFLE ANIMATION ===== */
+.shuffle-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(10,10,15,0.95); backdrop-filter: blur(10px);
+  display: none; flex-direction: column; align-items: center; justify-content: center;
+}
+.shuffle-overlay.active { display: flex; }
+.shuffle-cards {
+  position: relative; width: 120px; height: 200px; margin-bottom: 30px;
+}
+.shuffle-card {
+  position: absolute; width: 80px; height: 130px;
+  background: linear-gradient(135deg, #1a1a2e, #0f0f1a);
+  border: 1px solid var(--accent-gold); border-radius: 8px;
+  backface-visibility: hidden;
+}
+.shuffle-card:nth-child(1) { animation: shuffle1 1s ease-in-out infinite; }
+.shuffle-card:nth-child(2) { animation: shuffle2 1s ease-in-out infinite 0.1s; }
+.shuffle-card:nth-child(3) { animation: shuffle3 1s ease-in-out infinite 0.2s; }
+@keyframes shuffle1 {
+  0%,100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-30px) rotate(-10deg); }
+  50% { transform: translateX(20px) rotate(5deg); }
+  75% { transform: translateX(-10px) rotate(-3deg); }
+}
+@keyframes shuffle2 {
+  0%,100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(25px) rotate(8deg); }
+  50% { transform: translateX(-20px) rotate(-6deg); }
+  75% { transform: translateX(15px) rotate(4deg); }
+}
+@keyframes shuffle3 {
+  0%,100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-15px) rotate(-5deg); }
+  50% { transform: translateX(30px) rotate(10deg); }
+  75% { transform: translateX(-25px) rotate(-8deg); }
+}
+.shuffle-text {
+  font-family: var(--font-display); font-size: 14px; color: var(--accent-gold);
+  letter-spacing: 4px; animation: shimmer 2s ease-in-out infinite;
+}
+@keyframes shimmer { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
+
+/* ===== READING AREA ===== */
+.reading-area { padding: 0 16px; max-width: 700px; margin: 0 auto; display: none; }
+.reading-area.active { display: block; }
+
+.reading-header {
+  text-align: center; margin-bottom: 24px;
+}
+.reading-title {
+  font-family: var(--font-display); font-size: 18px; color: var(--accent-gold);
+  letter-spacing: 3px; margin-bottom: 4px;
+}
+.reading-topic {
+  font-size: 14px; color: var(--text-secondary); font-style: italic;
+}
+.reading-question {
+  font-size: 13px; color: var(--text-muted); margin-top: 6px;
+  padding: 8px 16px; background: var(--bg-card); border-radius: 20px;
+  display: inline-block; border: 1px solid var(--border);
+}
+
+/* ===== SPREAD LAYOUTS ===== */
+.spread-layout {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
+  margin-bottom: 32px; position: relative;
+}
+
+/* Card slot */
+.card-slot {
+  display: flex; flex-direction: column; align-items: center;
+  position: relative;
+}
+.slot-label {
+  font-size: 10px; color: var(--accent-gold); opacity: 0.7;
+  font-family: var(--font-display); letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 6px; text-align: center;
+  max-width: 90px;
+}
+
+/* Tarot Card */
+.tarot-card {
+  width: 140px; height: 238px; perspective: 1000px; cursor: pointer;
+  position: relative; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.tarot-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  filter: drop-shadow(0 8px 24px rgba(212,175,55,0.25));
+}
+.tarot-card-inner {
+  width: 100%; height: 100%; position: relative;
+  transform-style: preserve-3d; transition: transform 0.9s cubic-bezier(0.4,0,0.2,1);
+  border-radius: 14px;
+}
+.tarot-card.flipped .tarot-card-inner { transform: rotateY(180deg); }
+.tarot-card-front, .tarot-card-back {
+  position: absolute; inset: 0; backface-visibility: hidden;
+  border-radius: 14px; overflow: hidden;
+}
+.tarot-card-back {
+  background: linear-gradient(145deg, #0a0a14, #1a1a2e);
+  border: 2px solid var(--accent-gold);
+  display: flex; align-items: center; justify-content: center;
+  transform: rotateY(0deg);
+  box-shadow: inset 0 0 40px rgba(212,175,55,0.08);
+}
+.tarot-card-back::before {
+  content: "✦"; font-size: 42px; color: var(--accent-gold); opacity: 0.35;
+  text-shadow: 0 0 30px rgba(212,175,55,0.4);
+}
+.tarot-card-back::after {
+  content: ""; position: absolute; inset: 12px;
+  border: 1.5px solid rgba(212,175,55,0.2); border-radius: 10px;
+}
+.tarot-card-back .card-pattern {
+  position: absolute; inset: 0;
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(212,175,55,0.02) 8px, rgba(212,175,55,0.02) 16px),
+    repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(212,175,55,0.02) 8px, rgba(212,175,55,0.02) 16px);
+}
+.tarot-card-back .card-pattern {
+  position: absolute; inset: 0;
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(212,175,55,0.03) 10px, rgba(212,175,55,0.03) 20px),
+    repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(212,175,55,0.03) 10px, rgba(212,175,55,0.03) 20px);
+}
+.tarot-card-front {
+  background: linear-gradient(145deg, #16162a, #0f0f1f);
+  border: 1.5px solid rgba(212,175,55,0.3);
+  transform: rotateY(180deg); display: flex; flex-direction: column;
+  padding: 6px; box-shadow: inset 0 0 20px rgba(212,175,55,0.05);
+}
+.card-image-area {
+  flex: 1; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.5);
+}
+.card-image-area img {
+  width: 100%; height: 100%; object-fit: cover; border-radius: 8px;
+  transition: transform 0.4s ease;
+}
+.tarot-card:hover .card-image-area img {
+  transform: scale(1.03);
+}
+.card-name-area {
+  padding-top: 4px; text-align: center;
+}
+.card-name-area .cn-name {
+  font-family: var(--font-display); font-size: 8.5px; color: var(--accent-gold);
+  letter-spacing: 0.5px; line-height: 1.2;
+}
+.card-name-area .cn-name-vi {
+  font-size: 7px; color: var(--text-muted); margin-top: 1px;
+}
+.card-reversed-badge {
+  position: absolute; top: 6px; right: 6px;
+  background: linear-gradient(135deg, var(--accent-rose), #8b1538); color: #fff;
+  font-size: 7px; padding: 2px 6px; border-radius: 4px;
+  font-family: var(--font-display); letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(201,24,74,0.4);
+  z-index: 5;
+}
+
+/* Celtic Cross specific layout */
+.celtic-cross-layout {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, auto);
+  gap: 12px; max-width: 500px; margin: 0 auto;
+  position: relative;
+}
+.celtic-cross-layout .card-slot:nth-child(1) { grid-column: 2; grid-row: 2; }
+.celtic-cross-layout .card-slot:nth-child(2) { grid-column: 2; grid-row: 2; transform: rotate(90deg) translateX(10px); z-index: 2; }
+.celtic-cross-layout .card-slot:nth-child(3) { grid-column: 1; grid-row: 2; }
+.celtic-cross-layout .card-slot:nth-child(4) { grid-column: 3; grid-row: 2; }
+.celtic-cross-layout .card-slot:nth-child(5) { grid-column: 2; grid-row: 1; }
+.celtic-cross-layout .card-slot:nth-child(6) { grid-column: 2; grid-row: 3; }
+.celtic-cross-layout .card-slot:nth-child(7) { grid-column: 4; grid-row: 1; }
+.celtic-cross-layout .card-slot:nth-child(8) { grid-column: 4; grid-row: 2; }
+.celtic-cross-layout .card-slot:nth-child(9) { grid-column: 4; grid-row: 3; }
+.celtic-cross-layout .card-slot:nth-child(10) { grid-column: 4; grid-row: 4; }
+
+/* Horseshoe layout */
+.horseshoe-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px; max-width: 400px; margin: 0 auto;
+}
+.horseshoe-layout .card-slot:nth-child(1) { grid-column: 1; }
+.horseshoe-layout .card-slot:nth-child(2) { grid-column: 2; }
+.horseshoe-layout .card-slot:nth-child(3) { grid-column: 3; }
+.horseshoe-layout .card-slot:nth-child(4) { grid-column: 3; }
+.horseshoe-layout .card-slot:nth-child(5) { grid-column: 2; }
+.horseshoe-layout .card-slot:nth-child(6) { grid-column: 1; }
+.horseshoe-layout .card-slot:nth-child(7) { grid-column: 1; }
+
+/* Relationship layout */
+.relationship-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px; max-width: 400px; margin: 0 auto;
+}
+.relationship-layout .card-slot:nth-child(1) { grid-column: 1; }
+.relationship-layout .card-slot:nth-child(2) { grid-column: 3; }
+.relationship-layout .card-slot:nth-child(3) { grid-column: 2; }
+.relationship-layout .card-slot:nth-child(4) { grid-column: 1; }
+.relationship-layout .card-slot:nth-child(5) { grid-column: 3; }
+
+/* Career layout */
+.career-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px; max-width: 400px; margin: 0 auto;
+}
+
+/* ===== CARD DETAIL MODAL ===== */
+.card-detail-modal {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(10,10,15,0.95); backdrop-filter: blur(20px);
+  display: none; flex-direction: column;
+  animation: fadeIn 0.3s ease;
+}
+.card-detail-modal.active { display: flex; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border-bottom: 1px solid var(--border);
+}
+.modal-header h2 {
+  font-family: var(--font-display); font-size: 16px; color: var(--accent-gold);
+  letter-spacing: 2px;
+}
+.modal-close {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-primary); font-size: 20px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-body { flex: 1; overflow-y: auto; padding: 20px; }
+
+.detail-card-visual {
+  width: 220px; height: 385px; margin: 0 auto 28px;
+  border-radius: 16px; overflow: hidden;
+  border: 2px solid var(--accent-gold);
+  box-shadow: 0 8px 32px rgba(212,175,55,0.25), 0 0 60px rgba(212,175,55,0.08);
+  background: linear-gradient(145deg, #16162a, #0f0f1f);
+}
+.detail-card-visual img, .detail-card-visual svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.detail-section { margin-bottom: 20px; }
+.detail-section-title {
+  font-family: var(--font-display); font-size: 12px;
+  color: var(--accent-gold); letter-spacing: 3px;
+  text-transform: uppercase; margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.detail-section-title::before {
+  content: "◆"; font-size: 8px;
+}
+.detail-text {
+  font-size: 15px; color: var(--text-secondary); line-height: 1.7;
+  padding-left: 16px; border-left: 2px solid rgba(212,175,55,0.2);
+}
+.detail-text b { color: var(--text-primary); font-weight: 600; }
+
+.detail-tags {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;
+}
+.detail-tag {
+  padding: 4px 12px; border-radius: 12px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  font-size: 11px; color: var(--text-secondary);
+}
+
+/* ===== INTERPRETATION SECTION ===== */
+.interpretation-section {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px; margin-bottom: 20px;
+}
+.interpretation-title {
+  font-family: var(--font-display); font-size: 14px;
+  color: var(--accent-gold); letter-spacing: 2px;
+  text-align: center; margin-bottom: 16px;
+}
+.interpretation-content {
+  font-size: 15px; color: var(--text-secondary); line-height: 1.8;
+  text-align: justify;
+}
+.interpretation-content p { margin-bottom: 12px; }
+
+/* ===== HISTORY & FAVORITES ===== */
+.history-list, .favorites-list {
+  padding: 0 16px; max-width: 600px; margin: 0 auto;
+}
+.history-item, .favorite-item {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 12px; cursor: pointer;
+  transition: all 0.3s;
+}
+.history-item:hover, .favorite-item:hover {
+  border-color: var(--accent-gold); transform: translateX(4px);
+}
+.history-item-icon, .favorite-item-icon {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(212,175,55,0.1); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.history-item-info, .favorite-item-info { flex: 1; }
+.history-item-title, .favorite-item-title {
+  font-family: var(--font-display); font-size: 13px; color: var(--text-primary);
+}
+.history-item-meta, .favorite-item-meta {
+  font-size: 11px; color: var(--text-muted); margin-top: 2px;
+}
+.history-item-action, .favorite-item-action {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: transparent; border: 1px solid var(--border);
+  color: var(--text-muted); cursor: pointer; display: flex;
+  align-items: center; justify-content: center; font-size: 14px;
+}
+.history-item-action:hover, .favorite-item-action:hover {
+  color: var(--accent-rose); border-color: var(--accent-rose);
+}
+
+/* ===== BOTTOM NAV ===== */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  background: linear-gradient(0deg, rgba(10,10,15,0.98) 0%, rgba(10,10,15,0.85) 70%, transparent 100%);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  display: flex; justify-content: space-around; padding: 8px 0 24px;
+  border-top: 1px solid rgba(212,175,55,0.1);
+}
+.nav-item {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 6px 16px; cursor: pointer; transition: all 0.3s;
+  color: var(--text-muted); text-decoration: none;
+}
+.nav-item.active { color: var(--accent-gold); }
+.nav-item .nav-icon { font-size: 20px; }
+.nav-item .nav-label { font-size: 10px; font-family: var(--font-display); letter-spacing: 1px; }
+
+/* ===== DECK BROWSER ===== */
+.deck-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  padding: 0 16px; max-width: 500px; margin: 0 auto;
+}
+.deck-card {
+  aspect-ratio: 2/3.5; border-radius: 12px;
+  background: linear-gradient(145deg, #16162a, #0f0f1f);
+  border: 1.5px solid var(--border);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 8px; cursor: pointer; transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  position: relative; overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.deck-card:hover { 
+  border-color: var(--accent-gold); 
+  transform: scale(1.08) translateY(-4px); 
+  box-shadow: 0 8px 24px rgba(212,175,55,0.2);
+}
+.deck-card::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(212,175,55,0.03), transparent 60%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.deck-card:hover::before { opacity: 1; }
+.deck-card img, .deck-card svg { width: 100%; height: 58%; object-fit: cover; border-radius: 6px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+.deck-card-name {
+  font-family: var(--font-display); font-size: 8px; color: var(--accent-gold);
+  text-align: center; margin-top: 6px; letter-spacing: 0.5px; line-height: 1.3;
+}
+.deck-card-name-vi {
+  font-size: 7px; color: var(--text-muted); text-align: center; margin-top: 2px;
+}
+
+/* ===== SETTINGS ===== */
+.settings-section {
+  padding: 0 16px; max-width: 500px; margin: 0 auto;
+}
+.settings-item {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px; margin-bottom: 12px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.settings-item-label {
+  font-size: 14px; color: var(--text-primary);
+}
+.settings-item-value {
+  font-size: 13px; color: var(--accent-gold); font-family: var(--font-display);
+}
+
+/* ===== MOBILE FIX: Prevent card overflow ===== */
+@media (max-width: 540px) {
+  .tarot-card { width: 100px; height: 170px; }
+  .tarot-card:hover { transform: none; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4)); }
+  .spread-layout { gap: 8px; }
+
+  /* Celtic Cross: switch to flex-wrap on small screens */
+  .celtic-cross-layout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+  }
+  .celtic-cross-layout .card-slot {
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+  .celtic-cross-layout .card-slot:nth-child(2) {
+    transform: rotate(90deg) scale(0.9) !important;
+  }
+
+  /* 3-column layouts become 2 columns on mobile */
+  .horseshoe-layout,
+  .relationship-layout,
+  .career-layout {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
+  }
+
+  .reading-area { padding: 0 12px; }
+  .card-slot { max-width: 100px; }
+  .slot-label { font-size: 9px; max-width: 80px; }
+}
+
+@media (max-width: 360px) {
+  .tarot-card { width: 88px; height: 150px; }
+  .card-name-area .cn-name { font-size: 7.5px; }
+  .card-name-area .cn-name-vi { font-size: 6.5px; }
+}
+
+/* ===== RESPONSIVE ===== *//* ===== RESPONSIVE ===== */
+@media (min-width: 768px) {
+  .spread-grid { grid-template-columns: repeat(3, 1fr); max-width: 700px; }
+  .deck-grid { grid-template-columns: repeat(4, 1fr); max-width: 600px; }
+  .tarot-card { width: 160px; height: 272px; }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-in { animation: fadeInUp 0.6s ease forwards; }
+
+@keyframes glow {
+  0%,100% { box-shadow: 0 0 20px rgba(212,175,55,0.2); }
+  50% { box-shadow: 0 0 40px rgba(212,175,55,0.4); }
+}
+.glow { animation: glow 3s ease-in-out infinite; }
+
+
+/* Image loading */
+.card-image-area img {
+  opacity: 0;
+  animation: imgFadeIn 0.5s ease forwards;
+}
+@keyframes imgFadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== HIDDEN ===== */
+.hidden { display: none !important; }
+
+/* ===== SVG CARD STYLES ===== */
+.card-svg { width: 100%; height: 100%; }
+
+/* ===== THEME SYSTEM (ADDON) ===== */
+[data-theme="ocean"] {
+  --bg-primary: #030f1a; --bg-secondary: #061827; --bg-card: #0c2233; --bg-glass: rgba(12,34,51,0.85);
+  --accent-gold: #00d4ff; --accent-gold-light: #80e8ff; --accent-purple: #0055ff; --accent-purple-light: #4488ff;
+  --accent-rose: #ff3366; --accent-cyan: #00ffff;
+  --text-primary: #e0f0ff; --text-secondary: #8aa8c8; --text-muted: #4a6a88;
+  --border: rgba(0,212,255,0.2); --shadow-gold: 0 0 30px rgba(0,212,255,0.15); --shadow-purple: 0 0 40px rgba(0,85,255,0.2);
+}
+[data-theme="rose"] {
+  --bg-primary: #1a0a12; --bg-secondary: #221018; --bg-card: #2e1822; --bg-glass: rgba(46,24,34,0.85);
+  --accent-gold: #ff6b9d; --accent-gold-light: #ffb3c6; --accent-purple: #c9184a; --accent-purple-light: #ff4d6d;
+  --accent-rose: #ff006e; --accent-cyan: #ff85a1;
+  --text-primary: #ffe0ec; --text-secondary: #c49aa8; --text-muted: #8a5a6a;
+  --border: rgba(255,107,157,0.2); --shadow-gold: 0 0 30px rgba(255,107,157,0.15); --shadow-purple: 0 0 40px rgba(201,24,74,0.2);
+}
+[data-theme="emerald"] {
+  --bg-primary: #05140a; --bg-secondary: #0a1f12; --bg-card: #0f2e1a; --bg-glass: rgba(15,46,26,0.85);
+  --accent-gold: #39ff14; --accent-gold-light: #8aff5c; --accent-purple: #00c853; --accent-purple-light: #69f0ae;
+  --accent-rose: #ff3d00; --accent-cyan: #00e676;
+  --text-primary: #e0ffe8; --text-secondary: #8ac49a; --text-muted: #4a8a5a;
+  --border: rgba(57,255,20,0.2); --shadow-gold: 0 0 30px rgba(57,255,20,0.15); --shadow-purple: 0 0 40px rgba(0,200,83,0.2);
+}
+[data-theme="light"] {
+  --bg-primary: #f5f0e8; --bg-secondary: #ebe5db; --bg-card: #ffffff; --bg-glass: rgba(255,255,255,0.85);
+  --accent-gold: #b8860b; --accent-gold-light: #daa520; --accent-purple: #6b3fa0; --accent-purple-light: #8b5cf6;
+  --accent-rose: #c2185b; --accent-cyan: #00838f;
+  --text-primary: #2c1810; --text-secondary: #5a4a3a; --text-muted: #8a7a6a;
+  --border: rgba(184,134,11,0.2); --shadow-gold: 0 0 30px rgba(184,134,11,0.15); --shadow-purple: 0 0 40px rgba(107,63,160,0.15);
+}
+[data-theme="blood"] {
+  --bg-primary: #0f0202; --bg-secondary: #1a0505; --bg-card: #260808; --bg-glass: rgba(38,8,8,0.85);
+  --accent-gold: #ff1a1a; --accent-gold-light: #ff6666; --accent-purple: #8b0000; --accent-purple-light: #cc0000;
+  --accent-rose: #ff4444; --accent-cyan: #ff6b6b;
+  --text-primary: #ffe0e0; --text-secondary: #c48888; --text-muted: #8a4a4a;
+  --border: rgba(255,26,26,0.2); --shadow-gold: 0 0 30px rgba(255,26,26,0.15); --shadow-purple: 0 0 40px rgba(139,0,0,0.2);
+}
+[data-theme="void"] {
+  --bg-primary: #0a0014; --bg-secondary: #120020; --bg-card: #1a0030; --bg-glass: rgba(26,0,48,0.85);
+  --accent-gold: #bf00ff; --accent-gold-light: #e580ff; --accent-purple: #7b00cc; --accent-purple-light: #aa44ff;
+  --accent-rose: #ff00aa; --accent-cyan: #d580ff;
+  --text-primary: #f0e0ff; --text-secondary: #b090d0; --text-muted: #705090;
+  --border: rgba(191,0,255,0.2); --shadow-gold: 0 0 30px rgba(191,0,255,0.15); --shadow-purple: 0 0 40px rgba(123,0,204,0.2);
+}
+body { transition: background 0.5s ease, color 0.5s ease; }
+.app-container { zoom: var(--font-zoom, 1); }
+
+/* ===== CUSTOMIZATION UI ===== */
+.custom-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
+.custom-panel-title { font-family: var(--font-display); font-size: 12px; color: var(--accent-gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; text-align: center; }
+.custom-row { margin-bottom: 16px; } .custom-row:last-child { margin-bottom: 0; }
+.custom-label { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; display: block; }
+.theme-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.theme-option { padding: 10px 4px; border-radius: 10px; border: 2px solid transparent; cursor: pointer; text-align: center; font-size: 11px; font-family: var(--font-display); transition: all 0.3s; }
+.theme-option:hover { transform: scale(1.05); }
+.theme-option.active { border-color: var(--accent-gold); box-shadow: 0 0 10px rgba(212,175,55,0.3); }
+.theme-gold { background: linear-gradient(135deg, #1a1a2e, #0f0f1a); color: #d4af37; border: 1px solid rgba(212,175,55,0.3); }
+.theme-ocean { background: linear-gradient(135deg, #0c2233, #061827); color: #00d4ff; border: 1px solid rgba(0,212,255,0.3); }
+.theme-rose { background: linear-gradient(135deg, #2e1822, #1a0a12); color: #ff6b9d; border: 1px solid rgba(255,107,157,0.3); }
+.theme-emerald { background: linear-gradient(135deg, #0f2e1a, #05140a); color: #39ff14; border: 1px solid rgba(57,255,20,0.3); }
+.theme-light { background: linear-gradient(135deg, #ffffff, #f5f0e8); color: #b8860b; border: 1px solid rgba(184,134,11,0.3); }
+.theme-blood { background: linear-gradient(135deg, #260808, #0f0202); color: #ff1a1a; border: 1px solid rgba(255,26,26,0.3); }
+.theme-void { background: linear-gradient(135deg, #1a0030, #0a0014); color: #bf00ff; border: 1px solid rgba(191,0,255,0.3); }
+.font-select { width: 100%; padding: 10px 14px; border-radius: 10px; background: var(--bg-secondary); border: 1px solid var(--border); color: var(--text-primary); font-family: var(--font-body); font-size: 14px; outline: none; cursor: pointer; }
+.font-select:focus { border-color: var(--accent-gold); }
+.slider-wrap { display: flex; align-items: center; gap: 12px; }
+.custom-slider { flex: 1; -webkit-appearance: none; appearance: none; height: 4px; border-radius: 2px; background: var(--bg-secondary); outline: none; }
+.custom-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--accent-gold); cursor: pointer; box-shadow: 0 0 10px rgba(212,175,55,0.3); }
+.custom-slider::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--accent-gold); cursor: pointer; border: none; }
+.slider-value { min-width: 40px; text-align: right; font-family: var(--font-display); font-size: 13px; color: var(--accent-gold); }
+@media (min-width: 768px) { .theme-grid { grid-template-columns: repeat(4, 1fr); } }
+
+</style>
+</head>
+<body>
+<canvas id="particles-canvas"></canvas>
+
+<div class="app-container">
+  <header class="app-header">
+    <div class="logo">MYSTIC TAROT<span>RIDER-WAITE-SMITH</span></div>
+    <div class="header-btns">
+      <button class="header-btn" onclick="showSettings()" title="Cài đặt">⚙</button>
+    </div>
+  </header>
+
+  <main class="main-content" id="mainContent">
+    <!-- HOME VIEW -->
+    <div id="homeView">
+      <section class="hero-section">
+        <h1 class="hero-title">MYSTIC TAROT</h1>
+        <p class="hero-subtitle">Bói Bài Tarot Phương Tây</p>
+        <p class="hero-quote">"The true Tarot is symbolism; it speaks no other language and offers no other signs."<br>— Arthur Edward Waite</p>
+      </section>
+
+      <div class="section-title">Chọn Kiểu Trải Bài</div>
+      <div class="spread-grid" id="spreadGrid">
+        <div class="spread-card active" data-spread="one" onclick="selectSpread(this)">
+          <span class="card-count">1</span>
+          <span class="spread-icon">🌟</span>
+          <div class="spread-name">Một Lá</div>
+          <div class="spread-desc">Trả lời nhanh</div>
+        </div>
+        <div class="spread-card" data-spread="three" onclick="selectSpread(this)">
+          <span class="card-count">3</span>
+          <span class="spread-icon">🔮</span>
+          <div class="spread-name">Ba Lá</div>
+          <div class="spread-desc">Quá khứ · Hiện tại · Tương lai</div>
+        </div>
+        <div class="spread-card" data-spread="celtic" onclick="selectSpread(this)">
+          <span class="card-count">10</span>
+          <span class="spread-icon">✦</span>
+          <div class="spread-name">Celtic Cross</div>
+          <div class="spread-desc">Trải bài cổ điển</div>
+        </div>
+        <div class="spread-card" data-spread="relationship" onclick="selectSpread(this)">
+          <span class="card-count">5</span>
+          <span class="spread-icon">💕</span>
+          <div class="spread-name">Tình Yêu</div>
+          <div class="spread-desc">Mối quan hệ sâu</div>
+        </div>
+        <div class="spread-card" data-spread="career" onclick="selectSpread(this)">
+          <span class="card-count">5</span>
+          <span class="spread-icon">⚔</span>
+          <div class="spread-name">Sự Nghiệp</div>
+          <div class="spread-desc">Con đường công danh</div>
+        </div>
+        <div class="spread-card" data-spread="horseshoe" onclick="selectSpread(this)">
+          <span class="card-count">7</span>
+          <span class="spread-icon">🧲</span>
+          <div class="spread-name">Horseshoe</div>
+          <div class="spread-desc">Vận mệnh 7 bước</div>
+        </div>
+      </div>
+
+      <div class="section-title">Chọn Chủ Đề</div>
+      <div class="topic-selector" id="topicSelector">
+        <div class="topic-chip active" data-topic="general" onclick="selectTopic(this)">Tổng Quan</div>
+        <div class="topic-chip" data-topic="love" onclick="selectTopic(this)">Tình Yêu</div>
+        <div class="topic-chip" data-topic="career" onclick="selectTopic(this)">Sự Nghiệp</div>
+        <div class="topic-chip" data-topic="finance" onclick="selectTopic(this)">Tài Chính</div>
+        <div class="topic-chip" data-topic="health" onclick="selectTopic(this)">Sức Khỏe</div>
+        <div class="topic-chip" data-topic="spirituality" onclick="selectTopic(this)">Tâm Linh</div>
+      </div>
+
+      <div class="question-box">
+        <input type="text" class="question-input" id="questionInput" placeholder="Nhập câu hỏi của bạn (không bắt buộc)..." maxlength="200">
+      </div>
+
+      <div class="draw-btn-container">
+        <button class="draw-btn" id="drawBtn" onclick="startReading()">
+          <span>✦</span> RÚT BÀI <span>✦</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- READING VIEW -->
+    <div class="reading-area" id="readingView">
+      <div class="reading-header">
+        <div class="reading-title" id="readingTitle">TRẢI BÀI</div>
+        <div class="reading-topic" id="readingTopic"></div>
+        <div class="reading-question" id="readingQuestion"></div>
+      </div>
+      <div class="spread-layout" id="spreadLayout"></div>
+      <div class="interpretation-section" id="interpretationSection">
+        <div class="interpretation-title">LUẬN GIẢI</div>
+        <div class="interpretation-content" id="interpretationContent"></div>
+      </div>
+      <div style="text-align:center; margin-bottom: 40px;">
+        <button class="draw-btn" onclick="saveReading()" style="margin-right:10px;">💾 Lưu</button>
+        <button class="draw-btn" onclick="shareReading()" style="margin-right:10px;">📤 Chia sẻ</button>
+        <button class="draw-btn" onclick="resetReading()" style="background:linear-gradient(135deg,#444,#222);">🔄 Làm mới</button>
+      </div>
+    </div>
+
+    <!-- HISTORY VIEW -->
+    <div id="historyView" class="hidden">
+      <div class="section-title">Lịch Sử</div>
+      <div class="history-list" id="historyList"></div>
+    </div>
+
+    <!-- FAVORITES VIEW -->
+    <div id="favoritesView" class="hidden">
+      <div class="section-title">Yêu Thích</div>
+      <div class="favorites-list" id="favoritesList"></div>
+    </div>
+
+    <!-- DECK VIEW -->
+    <div id="deckView" class="hidden">
+      <div class="section-title">Bộ Bài 78 Lá</div>
+      <div class="deck-grid" id="deckGrid"></div>
+    </div>
+
+    <!-- SETTINGS VIEW -->
+    <div id="settingsView" class="hidden">
+      <div class="section-title">Cài Đặt</div>
+      <div class="settings-section">
+        <div class="settings-item">
+          <span class="settings-item-label">Ngôn ngữ</span>
+          <span class="settings-item-value">Tiếng Việt / English</span>
+        </div>
+        <div class="settings-item">
+          <span class="settings-item-label">Hiệu ứng hạt</span>
+          <span class="settings-item-value" onclick="toggleParticles()" id="particleToggle">Bật</span>
+        </div>
+        <div class="settings-item">
+          <span class="settings-item-label">Xóa lịch sử</span>
+          <span class="settings-item-value" onclick="clearHistory()" style="color:var(--accent-rose);cursor:pointer;">Xóa</span>
+        </div>
+      </div>
+    </div>
+
+      <div class="section-title">Tùy Chỉnh Giao Diện</div>
+      <div class="settings-section">
+        <div class="custom-panel">
+          <div class="custom-panel-title">Chọn Chủ Đề Màu</div>
+          <div class="theme-grid">
+            <div class="theme-option theme-gold active" data-theme="gold" onclick="setTheme('gold', this)">Vàng Tím</div>
+            <div class="theme-option theme-ocean" data-theme="ocean" onclick="setTheme('ocean', this)">Xanh Biển</div>
+            <div class="theme-option theme-rose" data-theme="rose" onclick="setTheme('rose', this)">Hồng Ảo</div>
+            <div class="theme-option theme-emerald" data-theme="emerald" onclick="setTheme('emerald', this)">Ngọc Lục</div>
+            <div class="theme-option theme-light" data-theme="light" onclick="setTheme('light', this)">Trắng Vàng</div>
+            <div class="theme-option theme-blood" data-theme="blood" onclick="setTheme('blood', this)">Đỏ Huyết</div>
+            <div class="theme-option theme-void" data-theme="void" onclick="setTheme('void', this)">Hư Vô</div>
+          </div>
+        </div>
+        <div class="custom-panel">
+          <div class="custom-panel-title">Phông Chữ</div>
+          <div class="custom-row">
+            <label class="custom-label">Phông Tiêu Đề</label>
+            <select class="font-select" id="fontDisplaySelect" onchange="updateFont()">
+              <option value="Cinzel">Cinzel (Cổ điển)</option>
+              <option value="Playfair Display">Playfair Display (Sang trọng)</option>
+              <option value="Montserrat">Montserrat (Hiện đại)</option>
+              <option value="Roboto Slab">Roboto Slab (Trực quan)</option>
+              <option value="Merriweather">Merriweather (Truyền thống)</option>
+              <option value="Noto Serif">Noto Serif (Đa ngôn ngữ)</option>
+            </select>
+          </div>
+          <div class="custom-row">
+            <label class="custom-label">Phông Nội Dung</label>
+            <select class="font-select" id="fontBodySelect" onchange="updateFont()">
+              <option value="Cormorant Garamond">Cormorant Garamond (Cổ điển)</option>
+              <option value="Lora">Lora (Sang trọng)</option>
+              <option value="Open Sans">Open Sans (Hiện đại)</option>
+              <option value="Roboto">Roboto (Trực quan)</option>
+              <option value="Merriweather">Merriweather (Truyền thống)</option>
+              <option value="Noto Serif">Noto Serif (Đa ngôn ngữ)</option>
+            </select>
+          </div>
+        </div>
+        <div class="custom-panel">
+          <div class="custom-panel-title">Cỡ Chữ</div>
+          <div class="custom-row">
+            <label class="custom-label">Cỡ chữ cơ bản</label>
+            <div class="slider-wrap">
+              <input type="range" class="custom-slider" id="fontSizeSlider" min="12" max="22" value="16" step="1" oninput="updateFontSize(this.value)">
+              <span class="slider-value" id="fontSizeValue">16px</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </main>
+
+  <!-- SHUFFLE OVERLAY -->
+  <div class="shuffle-overlay" id="shuffleOverlay">
+    <div class="shuffle-cards">
+      <div class="shuffle-card"></div>
+      <div class="shuffle-card"></div>
+      <div class="shuffle-card"></div>
+    </div>
+    <div class="shuffle-text">ĐANG XÀO BÀI...</div>
+  </div>
+
+  <!-- CARD DETAIL MODAL -->
+  <div class="card-detail-modal" id="cardDetailModal">
+    <div class="modal-header">
+      <h2 id="modalTitle">CHI TIẾT LÁ BÀI</h2>
+      <button class="modal-close" onclick="closeCardDetail()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <div class="nav-item active" onclick="showView('home')">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Trang chủ</span>
+    </div>
+    <div class="nav-item" onclick="showView('deck')">
+      <span class="nav-icon">🃏</span>
+      <span class="nav-label">Bộ bài</span>
+    </div>
+    <div class="nav-item" onclick="showView('history')">
+      <span class="nav-icon">📜</span>
+      <span class="nav-label">Lịch sử</span>
+    </div>
+    <div class="nav-item" onclick="showView('favorites')">
+      <span class="nav-icon">⭐</span>
+      <span class="nav-label">Yêu thích</span>
+    </div>
+  </nav>
+</div>
+
+<script>
+
+  const TAROT_DECK = [
+{id:0,name:"The Fool",name_vi:"Kẻ Khờ",number:0,arcana:"major",keywords:"Khởi đầu, vô tư, tiềm năng, phiêu lưu",element:"Air",planet:"Uranus",
+   upright:{general:"Một khởi đầu mới đầy tiềm năng, hãy bước đi với niềm tin. Đây là thời điểm của sự tự do và phiêu lưu.",love:"Tình yêu mới bắt đầu, hãy để trái tim dẫn lối. Có thể gặp người đặc biệt bất ngờ.",career:"Cơ hội nghề nghiệp mới, hãy dám thử sức. Có thể chuyển hướng hoàn toàn.",finance:"Đầu tư mới, cơ hội tài chính bất ngờ. Hãy cân nhắc kỹ trước khi nhảy vọt.",health:"Năng lượng dồi dào, tinh thần lạc quan. Chú ý tai nạn do bất cẩn.",spirituality:"Hành trình tâm linh mới bắt đầu, hãy tin vào vũ trụ. Thiền về sự tự do."},
+   reversed:{general:"Hành động bốc đồng, thiếu suy nghĩ, liều lĩnh. Cần cẩn trọng hơn.",love:"Tình yêu bốc đồng, thiếu cam kết. Có thể bị tổn thương.",career:"Quyết định nghề nghiệp thiếu suy nghĩ, nghỉ việc đột ngột. Cần kế hoạch.",finance:"Chi tiêu liều lĩnh, đầu tư mù quáng. Cần kiểm soát.",health:"Tai nạn do bất cẩn, chấn thương nhẹ. Cần chú ý.",spirituality:"Tâm linh bốc đồng, theo đuổi ảo tưởng. Cần định hướng."},
+   symbol:"Một chàng trai vui vẻ bước đến mép vực, mang theo túi nhỏ, có chó đuổi theo, núi tuyết phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/9/90/RWS_Tarot_00_Fool.jpg"},
+
+  {id:1,name:"The Magician",name_vi:"Nhà Ảo Thuật",number:1,arcana:"major",keywords:"Sáng tạo, quyền năng, hành động, tập trung",element:"Air",planet:"Mercury",
+   upright:{general:"Bạn có mọi công cụ cần thiết để thành công. Hãy hành động với sự tập trung cao độ. Đây là thời điểm biến ý tưởng thành hiện thực.",love:"Tình yêu đầy sáng tạo, bạn có khả năng thu hút đối phương. Hãy chủ động.",career:"Dự án thành công nhờ kỹ năng và sự tập trung. Có thể được thăng tiến.",finance:"Tài chính cải thiện nhờ quyết đoán. Có thể ký kết hợp đồng lớn.",health:"Sức khỏe cải thiện nhờ ý chí mạnh mẽ. Chú ý hệ thần kinh.",spirituality:"Năng lượng tâm linh mạnh mẽ, có khả năng biến đổi. Thiền về sáng tạo."},
+   reversed:{general:"Lừa dối, thao túng, thiếu tập trung. Cần trung thực với bản thân.",love:"Thao túng trong tình yêu, không chân thành. Cần thành thật.",career:"Thiếu kỹ năng, dự án thất bại do không tập trung. Cần học hỏi.",finance:"Lừa đảo tài chính, mất tiền do thiếu cảnh giác. Cần kiểm tra.",health:"Sức khỏe giảm do căng thẳng. Chú ý hệ thần kinh.",spirituality:"Thao túng tâm linh, lạm dụng năng lượng. Cần tỉnh táo."},
+   symbol:"Một người đàn ông đứng trước bàn thờ với bốn biểu tượng nguyên tố, tay chỉ lên trời và xuống đất, vòng nguyệt quế trên đầu.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/d/de/RWS_Tarot_01_Magician.jpg"},
+
+  {id:2,name:"The High Priestess",name_vi:"Nữ Tư Tế",number:2,arcana:"major",keywords:"Trực giác, bí ẩn, tiềm thức, kiên nhẫn",element:"Water",planet:"Moon",
+   upright:{general:"Hãy lắng nghe trực giác và tiềm thức. Có những điều bí ẩn sắp được hé lộ. Đây là thời điểm của sự im lặng và chiêm nghiệm.",love:"Tình yêu bí ẩn, cần lắng nghe trái tim. Có thể có bí mật trong mối quan hệ.",career:"Công việc đòi hỏi sự khôn ngoan và kiên nhẫn. Có thể cần nghiên cứu sâu.",finance:"Tài chính ổn định nhờ quyết định khôn ngoan. Có thể có nguồn thu bí mật.",health:"Sức khỏe tốt nhờ lắng nghe cơ thể. Chú ý chu kỳ và hormone.",spirituality:"Trực giác tâm linh mở rộng, kết nối với nữ thần. Thiền về mặt trăng."},
+   reversed:{general:"Bí mật bị che giấu, trực giác bị bỏ qua. Cần đối mặt với sự thật.",love:"Bí mật trong tình yêu bị phát hiện, lừa dối. Cần thành thật.",career:"Thiếu thông tin, quyết định sai lầm. Cần điều tra kỹ.",finance:"Thiếu minh bạch tài chính, bị lừa. Cần kiểm tra.",health:"Rối loạn nội tiết, cần khám bác sĩ. Chú ý chu kỳ.",spirituality:"Trực giác bị che khuất, ảo giác. Cần thanh lọc."},
+   symbol:"Một người phụ nữ ngồi giữa hai trụ cột đen trắng, tay cầm cuốn sách, mặt trăng lưỡi liềm trên đầu, màn che phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/8/88/RWS_Tarot_02_High_Priestess.jpg"},
+
+  {id:3,name:"The Empress",name_vi:"Nữ Hoàng",number:3,arcana:"major",keywords:"Sinh sản, phồn vinh, tình yêu, sáng tạo",element:"Earth",planet:"Venus",
+   upright:{general:"Sự phồn vinh và sinh sôi, tình yêu thương bao la. Đây là thời điểm của sự sáng tạo và nuôi dưỡng.",love:"Tình yêu viên mãn, có thể có con hoặc kết hôn. Được yêu thương đầy đủ.",career:"Sự nghiệp phát triển, dự án sinh lợi. Có thể được thăng tiến.",finance:"Tài chính phồn vinh, đầu tư sinh lợi. Có thể nhận quà lớn.",health:"Sức khỏe tốt, cơ thể tràn đầy sức sống. Chú ý sinh sản.",spirituality:"Kết nối với Đại Nữ Thần, năng lượng sáng tạo dồi dào. Thiền trong thiên nhiên."},
+   reversed:{general:"Thiếu sáng tạo, phụ thuộc, bám víu. Cần độc lập hơn.",love:"Tình yêu phụ thuộc, kiểm soát. Cần không gian riêng.",career:"Dự án chậm tiến độ, thiếu sáng tạo. Cần cảm hứng mới.",finance:"Tiêu xài phung phí, thiếu kế hoạch. Cần tiết kiệm.",health:"Vấn đề sinh sản, cần khám bác sĩ. Chú ý dinh dưỡng.",spirituality:"Mất kết nối với thiên nhiên, năng lượng bị chặn. Cần hòa mình vào đất."},
+   symbol:"Một người phụ nữ ngồi trên ngai giữa đồng lúa, mặc váy hoa, cầm quyền trượng, biểu tượng Venus trên ngai.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/d/d2/RWS_Tarot_03_Empress.jpg"},
+
+  {id:4,name:"The Emperor",name_vi:"Hoàng Đế",number:4,arcana:"major",keywords:"Quyền lực, cấu trúc, ổn định, cha",element:"Fire",planet:"Aries",
+   upright:{general:"Sự ổn định và cấu trúc, quyền lực được thiết lập. Đây là thời điểm của kỷ luật và trách nhiệm.",love:"Tình yêu ổn định, đối phương đáng tin cậy. Có thể gặp người trưởng thành.",career:"Thăng tiến nhờ kỷ luật, được công nhận. Có thể lên vị trí quản lý.",finance:"Tài chính ổn định, đầu tư an toàn. Có thể mua nhà, đất.",health:"Sức khỏe tốt nhờ kỷ luật. Chú ý tim, huyết áp.",spirituality:"Kỷ luật tâm linh, tu tập có cấu trúc. Thiền về trật tự."},
+   reversed:{general:"Độc đoán, cứng nhắc, thiếu linh hoạt. Cần mềm mỏng hơn.",love:"Độc đoán trong tình yêu, kiểm soát. Cần lắng nghe.",career:"Quản lý độc đoán, nhân viên bỏ việc. Cần thay đổi.",finance:"Đầu tư cứng nhắc, mất tiền do không linh hoạt. Cần điều chỉnh.",health:"Huyết áp cao, stress do căng thẳng. Cần thư giãn.",spirituality:"Tu tập cứng nhắc, thiếu linh hoạt. Cần mở lòng."},
+   symbol:"Một người đàn ông ngồi trên ngai đá, mặc giáp, cầm quyền trượng và quả cầu, núi non phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/c/c3/RWS_Tarot_04_Emperor.jpg"},
+
+  {id:5,name:"The Hierophant",name_vi:"Giáo Hoàng",number:5,arcana:"major",keywords:"Truyền thống, tín ngưỡng, giáo dục, hướng dẫn",element:"Earth",planet:"Taurus",
+   upright:{general:"Theo đuổi truyền thống và giáo dục, tìm kiếm sự hướng dẫn. Đây là thời điểm của sự tuân thủ và học hỏi.",love:"Tình yêu truyền thống, hôn nhân được gia đình ủng hộ. Có thể làm lễ cưới.",career:"Công việc ổn định, được cố vấn. Có thể thăng tiến theo cấp bậc.",finance:"Tài chính ổn định nhờ tuân thủ kế hoạch. Có thể nhận tài trợ.",health:"Sức khỏe ổn định nhờ phương pháp truyền thống. Chú ý cổ họng.",spirituality:"Theo truyền thống tâm linh, tìm thầy hướng dẫn. Thiền theo nghi thức."},
+   reversed:{general:"Phá vỡ truyền thống, nổi loạn, tự do tư tưởng. Cần dũng cảm.",love:"Tình yêu không được gia đình chấp nhận, phá vỡ quy tắc. Cần kiên định.",career:"Phá vỡ quy tắc nơi làm việc, khởi nghiệp. Cần dũng cảm.",finance:"Phá vỡ khuôn mẫu đầu tư, rủi ro cao. Cần cân nhắc.",health:"Thử phương pháp điều trị mới, bác bỏ y học cổ truyền. Cần cân nhắc.",spirituality:"Rời bỏ giáo phái, tìm con đường riêng. Cần dũng cảm."},
+   symbol:"Một người đàn ông ngồi trên ngai giữa hai trụ cột, tay chỉ lên trời, hai tín đồ quỳ dưới chân, chìa khóa vàng.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/8/8d/RWS_Tarot_05_Hierophant.jpg"},
+
+  {id:6,name:"The Lovers",name_vi:"Người Yêu",number:6,arcana:"major",keywords:"Tình yêu, hòa hợp, lựa chọn, giá trị",element:"Air",planet:"Gemini",
+   upright:{general:"Tình yêu đích thực, sự hòa hợp tuyệt vời. Có thể phải đưa ra lựa chọn quan trọng. Đây là thời điểm của kết nối tâm hồn.",love:"Tình yêu sâu sắc, kết nối tâm hồn. Có thể kết hôn hoặc cam kết.",career:"Hợp tác kinh doanh tốt, đối tác lý tưởng. Cần trân trọng.",finance:"Tài chính ổn định nhờ hợp tác. Có thể đầu tư chung.",health:"Sức khỏe tốt nhờ tình yêu. Chú ý phổi, hô hấp.",spirituality:"Kết nối tâm linh với đối tác, hòa hợp Âm Dương. Thiền về tình yêu."},
+   reversed:{general:"Mất hòa hợp, lựa chọn sai lầm, xung đột giá trị. Cần đánh giá lại.",love:"Mối quan hệ rạn nứt, không còn kết nối. Có thể chia tay.",career:"Mâu thuẫn đối tác, hợp đồng bị hủy. Cần đàm phán.",finance:"Mất tiền do tranh chấp đối tác. Cần luật sư.",health:"Sức khỏe giảm do căng thẳng tình cảm. Cần thư giãn.",spirituality:"Mất kết nối tâm linh với đối tác. Cần tìm lại."},
+   symbol:"Một người đàn ông đứng giữa hai người phụ nữ, thiên thần phía trên, cây táo tri thức và cây lửa.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_06_Lovers.jpg"},
+
+  {id:7,name:"The Chariot",name_vi:"Chiến Xa",number:7,arcana:"major",keywords:"Chiến thắng, ý chí, quyết tâm, kiểm soát",element:"Water",planet:"Cancer",
+   upright:{general:"Chiến thắng nhờ ý chí sắt đá, kiểm soát hoàn cảnh. Đây là thời điểm của sự quyết tâm và hành động.",love:"Tình yêu chiến thắng mọi thử thách, đối phương quyết tâm. Cần kiên trì.",career:"Thăng tiến nhờ quyết tâm, dự án thành công. Có thể được công nhận.",finance:"Tài chính cải thiện nhờ quyết đoán. Có thể thắng kiện.",health:"Sức khỏe cải thiện nhờ ý chí. Chú ý dạ dày, ngực.",spirituality:"Chiến thắng tâm linh, vượt qua thử thách. Thiền về ý chí."},
+   reversed:{general:"Thiếu kiểm soát, bị cuốn theo cảm xúc, thất bại. Cần bình tĩnh.",love:"Mất kiểm soát trong tình yêu, cãi vã. Cần dừng lại.",career:"Dự án thất bại do thiếu kiểm soát, bị sa thải. Cần đánh giá.",finance:"Mất tiền do thiếu kiểm soát, đầu tư liều lĩnh. Cần thận trọng.",health:"Sức khỏe giảm do căng thẳng. Chú ý dạ dày.",spirituality:"Mất kiểm soát tâm linh, bị cảm xúc chi phối. Cần định tâm."},
+   symbol:"Một chiến binh đứng trên chiến xa kéo bởi hai con ngựa đen trắng, cầm quyền trượng, thành phố phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/9/9b/RWS_Tarot_07_Chariot.jpg"},
+
+  {id:8,name:"Strength",name_vi:"Sức Mạnh",number:8,arcana:"major",keywords:"Can đảm, kiên nhẫn, nội lực, kiểm soát",element:"Fire",planet:"Leo",
+   upright:{general:"Sức mạnh nội tâm, can đảm và kiên nhẫn. Đây là thời điểm của sự dịu dàng nhưng kiên định.",love:"Tình yêu bền vững nhờ kiên nhẫn, dịu dàng chinh phục. Cần kiên trì.",career:"Thành công nhờ kiên nhẫn, xử lý khó khăn khéo léo. Được công nhận.",finance:"Tài chính ổn định nhờ kiên nhẫn. Có thể đầu tư dài hạn.",health:"Sức khỏe tốt nhờ kiên nhẫn điều trị. Chú ý tim, cột sống.",spirituality:"Sức mạnh tâm linh nội tại, chinh phục bản ngã. Thiền về can đảm."},
+   reversed:{general:"Thiếu can đảm, nghi ngờ bản thân, kiệt sức. Cần tìm lại nội lực.",love:"Thiếu tự tin trong tình yêu, bỏ cuộc. Cần động viên.",career:"Thiếu kiên nhẫn, bỏ dở công việc. Cần cố gắng.",finance:"Thiếu kiên nhẫn đầu tư, rút vốn sớm. Cần kiên trì.",health:"Kiệt sức, cần nghỉ ngơi. Chú ý tim.",spirituality:"Mất niềm tin, nghi ngờ con đường. Cần tìm lại động lực."},
+   symbol:"Một người phụ nữ dịu dàng khép hàm sư tử, vòng hoa hồng trên đầu, vô cực trên đỉnh đầu.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/f/f5/RWS_Tarot_08_Strength.jpg"},
+
+  {id:9,name:"The Hermit",name_vi:"Ẩn Sĩ",number:9,arcana:"major",keywords:"Cô đơn, chiêm nghiệm, tìm kiếm, ánh sáng trong bóng tối",element:"Earth",planet:"Virgo",
+   upright:{general:"Rút lui để chiêm nghiệm, tìm kiếm chân lý bên trong. Đây là thời điểm của sự cô đơn có ích.",love:"Tạm rút lui để suy nghĩ, tình yêu cần không gian. Có thể FA có ích.",career:"Làm việc độc lập, nghiên cứu sâu. Có thể làm việc từ xa.",finance:"Tiết kiệm, không chi tiêu. Cần kế hoạch dài hạn.",health:"Sức khỏe cải thiện nhờ nghỉ ngơi. Chú ý ruột, tiêu hóa.",spirituality:"Tu tập cô độc, tìm chân lý bên trong. Thiền một mình."},
+   reversed:{general:"Cô đơn quá mức, rút lui không cần thiết, cô lập. Cần kết nối.",love:"Cô đơn quá lâu, khép kín. Cần mở lòng.",career:"Làm việc cô lập, thiếu hợp tác. Cần giao tiếp.",finance:"Keo kiệt quá mức, không đầu tư. Cần linh hoạt.",health:"Trầm cảm do cô đơn. Cần tìm người trò chuyện.",spirituality:"Tu tập cô lập quá mức, mất kết nối. Cần cộng đồng."},
+   symbol:"Một người già cầm đèn lồng trên đỉnh núi tuyết, cây gậy, ánh sáng chiếu xuống.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/4/4d/RWS_Tarot_09_Hermit.jpg"},
+
+  {id:10,name:"Wheel of Fortune",name_vi:"Bánh Xe Vận Mệnh",number:10,arcana:"major",keywords:"Vận may, chu kỳ, số phận, thay đổi",element:"Fire",planet:"Jupiter",
+   upright:{general:"Vận may đến, chu kỳ mới bắt đầu. Đây là thời điểm của sự thay đổi tích cực.",love:"Tình yêu may mắn, gặp đúng người đúng thời. Cần nắm bắt.",career:"Cơ hội bất ngờ, thăng tiến may mắn. Có thể đổi công việc.",finance:"Tài chính may mắn, trúng số hoặc thừa kế. Cần quản lý tốt.",health:"Sức khỏe cải thiện bất ngờ. Chú ý gan, hô hấp.",spirituality:"Chu kỳ tâm linh mới, vận may tâm linh. Thiền về số phận."},
+   reversed:{general:"Vận xui, chu kỳ xấu, thay đổi bất lợi. Cần kiên nhẫn chờ đợi.",love:"Tình yêu không may, gặp người không đúng lúc. Cần kiên nhẫn.",career:"Cơ hội bị bỏ lỡ, thăng tiến trì hoãn. Cần cố gắng.",finance:"Mất tiền bất ngờ, đầu tư thua lỗ. Cần tiết kiệm.",health:"Sức khỏe giảm đột ngột. Cần khám bác sĩ.",spirituality:"Chu kỳ tâm linh xấu, cần kiên nhẫn. Tránh nản lòng."},
+   symbol:"Bánh xe lớn với các biểu tượng cung hoàng đạo, sphinx trên đỉnh, anubis và rắn hai bên.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/3/3c/RWS_Tarot_10_Wheel_of_Fortune.jpg"},
+
+  {id:11,name:"Justice",name_vi:"Công Lý",number:11,arcana:"major",keywords:"Công bằng, chân lý, trách nhiệm, luật pháp",element:"Air",planet:"Libra",
+   upright:{general:"Công lý được thực thi, chân lý được phơi bày. Đây là thời điểm của sự công bằng.",love:"Công bằng trong tình yêu, mối quan hệ cân bằng. Có thể kết hôn.",career:"Thắng kiện, được công nhận công bằng. Có thể làm luật sư.",finance:"Tài chính công bằng, đầu tư minh bạch. Có thể thắng kiện.",health:"Sức khỏe cân bằng, điều trị hiệu quả. Chú ý thận, da.",spirituality:"Công lý tâm linh, nghiệp quả được đền đáp. Thiền về chân lý."},
+   reversed:{general:"Bất công, dối trá, trốn tránh trách nhiệm. Cần đối mặt.",love:"Bất công trong tình yêu, lừa dối. Cần thành thật.",career:"Thua kiện, bị đối xử bất công. Cần luật sư.",finance:"Lừa đảo, đầu tư bất công. Cần kiểm tra.",health:"Mất cân bằng sức khỏe. Cần điều chỉnh.",spirituality:"Bất công tâm linh, trốn tránh nghiệp. Cần sám hối."},
+   symbol:"Một người phụ nữ ngồi trên ngai giữa hai trụ cột, cầm cân và kiếm, vải che mắt.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/e/e0/RWS_Tarot_11_Justice.jpg"},
+
+  {id:12,name:"The Hanged Man",name_vi:"Người Treo Cổ",number:12,arcana:"major",keywords:"Hy sinh, nhượng bộ, quan điểm mới, chờ đợi",element:"Water",planet:"Neptune",
+   upright:{general:"Hy sinh để đạt được điều lớn lao, nhìn từ góc độ mới. Đây là thời điểm của sự chờ đợi có ý nghĩa.",love:"Hy sinh cho tình yêu, nhìn nhận mối quan hệ khác đi. Cần kiên nhẫn.",career:"Tạm dừng dự án, nhìn lại từ góc độ mới. Có thể cần hy sinh.",finance:"Tạm đóng băng đầu tư, chờ thời cơ. Cần kiên nhẫn.",health:"Sức khỏe cần thời gian hồi phục. Chú ý chân, máu.",spirituality:"Tu tập hy sinh, nhìn thế giới đảo ngược. Thiền treo ngược."},
+   reversed:{general:"Không chịu hy sinh, bám víu, chờ đợi vô ích. Cần hành động.",love:"Không chịu nhượng bộ, mối quan hệ bế tắc. Cần thay đổi.",career:"Không chịu thay đổi, dự án đình trệ. Cần quyết đoán.",finance:"Không chịu cắt lỗ, mất thêm tiền. Cần quyết đoán.",health:"Không chịu điều trị, bệnh kéo dài. Cần tuân thủ.",spirituality:"Không chịu buông bỏ, bám víu ảo tưởng. Cần tỉnh táo."},
+   symbol:"Một người treo ngược bằng một chân trên cây thập tự, tay sau lưng, hào quang quanh đầu, mặt bình thản.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/2/2b/RWS_Tarot_12_Hanged_Man.jpg"},
+
+  {id:13,name:"Death",name_vi:"Cái Chết",number:13,arcana:"major",keywords:"Kết thúc, chuyển đổi, tái sinh, buông bỏ",element:"Water",planet:"Scorpio",
+   upright:{general:"Một giai đoạn kết thúc để giai đoạn mới bắt đầu. Đây là thời điểm của sự chuyển đổi mạnh mẽ.",love:"Mối quan hệ cũ kết thúc, tình yêu mới sắp đến. Cần buông bỏ.",career:"Công việc cũ kết thúc, cơ hội mới mở ra. Cần dũng cảm.",finance:"Kết thúc một khoản đầu tư, tái cấu trúc tài chính. Cần quyết đoán.",health:"Hồi phục sau bệnh nặng, thay đổi lối sống. Chú ý sinh dục.",spirituality:"Tái sinh tâm linh, buông bỏ bản ngã cũ. Thiền về sự chết."},
+   reversed:{general:"Không chịu kết thúc, bám víu quá khứ, sợ thay đổi. Cần buông bỏ.",love:"Không chịu chia tay dù mối quan hệ đã chết. Cần dũng cảm.",career:"Không chịu thay đổi công việc, bám víu. Cần quyết đoán.",finance:"Không chịu cắt lỗ, mất thêm tiền. Cần quyết đoán.",health:"Bệnh kéo dài do không chịu thay đổi. Cần quyết tâm.",spirituality:"Sợ thay đổi tâm linh, bám víu giáo phái cũ. Cần buông bỏ."},
+   symbol:"Một bộ xương mặc giáp cưỡi ngựa trắng, cầm cờ đen, vua và giáo sĩ nằm dưới chân, mặt trời mọc phía xa.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/d/d7/RWS_Tarot_13_Death.jpg"},
+
+  {id:14,name:"Temperance",name_vi:"Tiết Chế",number:14,arcana:"major",keywords:"Cân bằng, hòa hợp, kiên nhẫn, trung gian",element:"Fire",planet:"Sagittarius",
+   upright:{general:"Cân bằng mọi khía cạnh, hòa hợp Âm Dương. Đây là thời điểm của sự kiên nhẫn và điều độ.",love:"Tình yêu cân bằng, hòa hợp. Có thể hòa giải sau xung đột.",career:"Cân bằng công việc và cuộc sống, hợp tác tốt. Cần kiên nhẫn.",finance:"Tài chính cân bằng, đầu tư điều độ. Cần kiên nhẫn.",health:"Sức khỏe cân bằng, điều trị hiệu quả. Chú ý gan, đùi.",spirituality:"Cân bằng tâm linh, hòa hợp các truyền thống. Thiền về sự hòa hợp."},
+   reversed:{general:"Mất cân bằng, thiếu kiên nhẫn, cực đoan. Cần điều chỉnh.",love:"Mất cân bằng tình cảm, một bên cho quá nhiều. Cần công bằng.",career:"Mất cân bằng công việc, quá tải. Cần sắp xếp.",finance:"Mất cân bằng tài chính, đầu tư cực đoan. Cần điều chỉnh.",health:"Mất cân bằng sức khỏe, ăn uống không điều độ. Cần điều chỉnh.",spirituality:"Mất cân bằng tâm linh, theo đuổi cực đoan. Cần điều độ."},
+   symbol:"Một thiên thần đổ nước giữa hai cốc, một chân trên đất một chân trên nước, mặt trời phía sau, hoa bách hợp.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/f/f8/RWS_Tarot_14_Temperance.jpg"},
+
+  {id:15,name:"The Devil",name_vi:"Ác Quỷ",number:15,arcana:"major",keywords:"Ràng buộc, cám dỗ, vật chất, bóng tối",element:"Earth",planet:"Capricorn",
+   upright:{general:"Bị ràng buộc bởi cám dỗ, vật chất hoặc thói quen xấu. Nhưng ràng buộc là tự nguyện, có thể buông bỏ.",love:"Tình yêu nghiện ngập, cám dỗ. Có thể ngoại tình hoặc toxic.",career:"Công việc ràng buộc, làm việc vì tiền không vì đam mê. Cần thay đổi.",finance:"Nghiện tiêu xài, nợ nần. Cần kiểm soát.",health:"Nghiện ngập, thói quen xấu. Cần cai nghiện.",spirituality:"Bị ràng buộc bởi vật chất, mất kết nối tâm linh. Cần thanh lọc."},
+   reversed:{general:"Giải thoát khỏi ràng buộc, buông bỏ cám dỗ. Cần dũng cảm.",love:"Giải thoát khỏi mối quan hệ toxic, tự do. Cần dũng cảm.",career:"Thoát khỏi công việc ràng buộc, tìm đam mê. Cần quyết đoán.",finance:"Trả nợ, thoát khỏi nghiện tiêu xài. Cần kỷ luật.",health:"Cai nghiện thành công, hồi phục. Cần kiên trì.",spirituality:"Giải thoát khỏi vật chất, tìm lại tâm linh. Cần thanh lọc."},
+   symbol:"Một con quỷ có sừng và cánh dơi đứng trên bục, nam nữ bị xích nhưng có thể tự cởi, ngọn lửa phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/5/55/RWS_Tarot_15_Devil.jpg"},
+
+  {id:16,name:"The Tower",name_vi:"Tháp Đổ",number:16,arcana:"major",keywords:"Đổ vỡ, giải phóng, sự thật, biến động",element:"Fire",planet:"Mars",
+   upright:{general:"Sự đổ vỡ bất ngờ, nhưng cần thiết để xây dựng lại vững chắc hơn. Đây là thời điểm của sự thật phũ phàng.",love:"Mối quan hệ đổ vỡ, sự thật lộ ra. Cần chấp nhận.",career:"Dự án sụp đổ, công ty phá sản. Cần xây dựng lại.",finance:"Mất tiền đột ngột, đầu tư sụp đổ. Cần tái cấu trúc.",health:"Bệnh đột ngột, tai nạn. Cần khám ngay.",spirituality:"Giáo phái sụp đổ, niềm tin bị thử thách. Cần xây dựng lại."},
+   reversed:{general:"Tránh né sự thật, kháng cự thay đổi. Cần đối mặt.",love:"Không chịu chấp nhận chia tay, bám víu. Cần buông bỏ.",career:"Không chịu thay đổi sau thất bại. Cần đối mặt.",finance:"Không chịu cắt lỗ, mất thêm tiền. Cần quyết đoán.",health:"Không chịu điều trị, bệnh nặng thêm. Cần tin tưởng.",spirituality:"Không chịu thay đổi niềm tin. Cần đối mặt sự thật."},
+   symbol:"Một tháp cao bị sét đánh, người rơi xuống, lửa cháy, vương miện rơi.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg"},
+
+  {id:17,name:"The Star",name_vi:"Ngôi Sao",number:17,arcana:"major",keywords:"Hy vọng, cảm hứng, sự tin tưởng, tái sinh",element:"Air",planet:"Aquarius",
+   upright:{general:"Hy vọng được thắp sáng, cảm hứng dâng trào. Đây là thời điểm của sự chữa lành và tin tưởng.",love:"Tình yêu đầy hy vọng, chữa lành vết thương. Có thể gặp người mang lại ánh sáng.",career:"Cảm hứng công việc trở lại, dự án mới đầy hứa hẹn. Cần tin tưởng.",finance:"Tài chính cải thiện, hy vọng trở lại. Có thể nhận trợ cấp.",health:"Sức khỏe hồi phục, tinh thần lạc quan. Chú ý mắt, chân.",spirituality:"Giác ngộ, kết nối với vũ trụ. Thiền dưới ánh sao."},
+   reversed:{general:"Mất hy vọng, thiếu cảm hứng, nghi ngờ. Cần tìm lại niềm tin.",love:"Mất hy vọng trong tình yêu, thiếu tin tưởng. Cần chữa lành.",career:"Mất cảm hứng, dự án bế tắc. Cần tìm lại động lực.",finance:"Mất hy vọng tài chính, nợ nần. Cần kiên trì.",health:"Sức khỏe giảm, tinh thần xuống. Cần tìm sự giúp đỡ.",spirituality:"Mất kết nối vũ trụ, nghi ngờ. Cần tìm lại niềm tin."},
+   symbol:"Một người phụ nữ quỳ bên bờ suối, đổ nước từ hai cốc xuống đất và biển, ngôi sao lớn phía trên, bảy ngôi sao nhỏ xung quanh.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_17_Star.jpg"},
+{id:18,name:"The Moon",name_vi:"Mặt Trăng",number:18,arcana:"major",keywords:"Ảo ảnh, sợ hãi, tiềm thức, bí ẩn, trực giác",element:"Water",planet:"Pisces",
+   upright:{general:"Những điều ẩn giấu sắp lộ ra, trực giác mạnh mẽ. Cần lắng nghe tiềm thức, đừng tin vào vẻ bề ngoài. Đây là thời điểm của bí ẩn và sự sâu sắc.",love:"Tình yêu bí ẩn, cảm xúc sâu sắc. Có thể có bí mật trong mối quan hệ. Tình yêu không rõ ràng nhưng đầy cảm xúc.",career:"Công việc liên quan đến sáng tạo, nghệ thuật. Cần tin vào trực giác. Có thể có âm mưu phía sau.",finance:"Tiền bạc đến từ nguồn bí ẩn. Cần cẩn thận với giao dịch trong bóng tối. Tránh cho vay không giấy tờ.",health:"Vấn đề sức khỏe chưa rõ ràng, cần khám kỹ. Chú ý giấc ngủ và mơ. Chú ý chân, bàn chân.",spirituality:"Trực giác mở rộng, khả năng nhìn thấy linh hồn. Hãy tin vào giấc mơ. Thiền về mặt trăng."},
+   reversed:{general:"Bí mật bị phơi bày, ảo tưởng tan vỡ. Có thể đang tự lừa dối. Cần đối mặt với sự thật.",love:"Bí mật trong mối quan hệ bị phát hiện, lừa dối. Cần thành thật. Có thể bị phản bội.",career:"Thông tin bị che giấu, đồng nghiệp không thành thật. Cần điều tra. Tránh tin vào lờị hứa.",finance:"Lừa đảo tài chính, đầu tư mù quáng. Cần minh bạch. Tránh giao dịch trong bóng tối.",health:"Bệnh tâm lý, ảo giác, mất ngủ. Cần điều trị chuyên sâu. Chú ý tâm thần.",spirituality:"Bị ảo giác tâm linh, tin vào những điều không có thật. Cần tỉnh táo. Tránh bóng tối tâm linh."},
+   symbol:"Mặt trăng lưỡi liềm với khuôn mặt, hai con chó và sói tru, một con tôm bò ra từ nước, hai tháp đá hai bên.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/7/7f/RWS_Tarot_18_Moon.jpg"},
+
+  {id:19,name:"The Sun",name_vi:"Mặt Trời",number:19,arcana:"major",keywords:"Hạnh phúc, thành công, sự thật, vui vẻ, năng lượng",element:"Fire",planet:"Sun",
+   upright:{general:"Thởi điểm tuyệt vờI nhất, mọi thứ đều rực rỡ. Thành công, hạnh phúc, sự thật được phơi bày. Đây là lá bài tích cực nhất.",love:"Tình yêu rực rỡ, hôn nhân hạnh phúc, có con. Mọi thứ đều tươi sáng. Tình yêu trong sáng.",career:"Thành công vang dội, được công nhận. Sự nghiệp đạt đỉnh cao. Có thể được thăng chức.",finance:"Tài chính thịnh vượng, đầu tư sinh lợi lớn. Hãy tận hưởng. Có thể trúng số, thừa kế.",health:"Sức khỏe tuyệt vờI, năng lượng dồi dào. Cơ thể tràn đầy sức sống. Chú ý tim, mắt.",spirituality:"Giác ngộ, ánh sáng tâm linh chiếu rọi. Kết nối với năng lượng Mặt Trời. Thiền dưới ánh nắng."},
+   reversed:{general:"Thành công bị che khuất, hạnh phúc giả tạo, quá tự tin. Cần khiêm tốn. Đừng để bị ảo tưởng.",love:"Mối quan hệ có vẻ hạnh phúc nhưng thực chất rỗng tuếch. Cần chân thật. Có thể bị phản bội.",career:"Thành công tạm thời, có thể sụp đổ. Cần chuẩn bị dự phòng. Đừng ngủ quên.",finance:"Mất tiền do quá tự tin, đầu tư liều lĩnh. Cần thận trọng. Tránh khoe khoang.",health:"Sức khỏe giảm sút do quá sức, kiệt sức. Cần nghỉ ngơi. Chú ý tim, mắt.",spirituality:"Tự cao tự đại tâm linh, cho mình là giác ngộ. Cần khiêm tốn. Tránh kiêu ngạo."},
+   symbol:"Mặt trởi lớn với khuôn mặt tươi cườI, một đứa trẻ cưỡi ngựa trắng, hoa hướng dương, bức tường thành.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/1/17/RWS_Tarot_19_Sun.jpg"},
+
+  {id:20,name:"Judgement",name_vi:"Phán Xét",number:20,arcana:"major",keywords:"Tái sinh, thức tỉnh, phán xét, tha thứ, kêu gọi",element:"Fire",planet:"Pluto",
+   upright:{general:"Thức tỉnh, tái sinh, đối mặt với quá khứ để tiến về phía trước. LờI kêu gọi từ sâu thẳm. Đây là thời điểm của sự giải thoát.",love:"Hòa giải, tha thứ, mối quan hệ được hồi sinh. Có thể gặp lại người cũ. Tình yêu thức tỉnh.",career:"Thức tỉnh nghề nghiệp, tìm lại đam mê. Được công nhận sau thời gian dài. Có thể thay đổi nghề.",finance:"Nhận lại tiền bị mất, đầu tư được đền đáp. Công lý tài chính. Có thể thắng kiện.",health:"Hồi phục kỳ diệu, chữa lành từ bên trong. Thay đổi lối sống. Chú ý hệ miễn dịch.",spirituality:"Giác ngộ, thức tỉnh tâm linh. Nghe thấy tiếng gọi từ vũ trụ. Thiền về sự tái sinh."},
+   reversed:{general:"Không chịu thức tỉnh, bám víu quá khứ, tự phán xét khắc nghiệt. Cần buông bỏ. Đừng tự trừng phạt.",love:"Không tha thứ, oán hận kéo dài. Mối quan hệ không thể hàn gắn. Cần buông bỏ.",career:"Bỏ lỡ cơ hội do do dự, không dám thay đổi. Cần quyết đoán. Có thể bị đuổi việc.",finance:"Mất tiền do không chịu thay đổi, đầu tư cũ thua lỗ. Cần cắt lỗ. Tranh chấp thua kiện.",health:"Bệnh kéo dài do không chịu thay đổi lối sống. Cần quyết tâm. Chú ý hệ miễn dịch.",spirituality:"Từ chối giác ngộ, bám víu vào ảo tưởng. Cần đối mặt sự thật. Tránh tự lừa dối."},
+   symbol:"Một thiên thần thổi kèn trên mây, người chết sống lại từ quan tài, giơ tay lên trởi.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/d/dd/RWS_Tarot_20_Judgement.jpg"},
+
+  {id:21,name:"The World",name_vi:"Thế Giới",number:21,arcana:"major",keywords:"Hoàn thành, tích hợp, thành tựu, du lịch, hài hòa",element:"Earth",planet:"Saturn",
+   upright:{general:"Hoàn thành một chu kỳ, đạt được mục tiêu. Sự hài hòa và tích hợp mọi khía cạnh. Đây là sự viên mãn.",love:"Mối quan hệ viên mãn, kết hôn, có gia đình. Tình yêu trọn vẹn. Có thể du lịch cùng nhau.",career:"Thành công hoàn hảo, dự án kết thúc tốt đẹp. Sự nghiệp đạt đỉnh. Có thể được công nhận quốc tế.",finance:"Tài chính viên mãn, đầu tư thành công. Tự do tài chính. Có thể mua nhà, xe.",health:"Sức khỏe hoàn hảo, cơ thể cân bằng. Hãy duy trì. Chú ý xương khớp.",spirituality:"Giác ngộ hoàn toàn, hòa nhập với vũ trụ. Đạt đến giải thoát. Thiền về sự toàn vẹn."},
+   reversed:{general:"Chưa hoàn thành, thiếu kết nối, cảm thấy trống rỗng. Cần cố gắng thêm. Đừng bỏ cuộc.",love:"Mối quan hệ chưa trọn vẹn, thiếu cam kết. Cần nỗ lực hơn. Có thể bị trì hoãn hôn nhân.",career:"Dự án dang dở, chưa đạt mục tiêu. Cần kiên trì. Có thể bị trì hoãn thăng tiến.",finance:"Tài chính chưa ổn định, đầu tư chưa sinh lợi. Cần kiên nhẫn. Tránh vay nợ.",health:"Sức khỏe chưa hoàn toàn hồi phục. Cần tiếp tục điều trị. Chú ý xương khớp.",spirituality:"Chưa đạt giác ngộ, còn vướng mắc. Cần tiếp tục tu tập. Tránh nản lòng."},
+   symbol:"Một người phụ nữ nhảy múa trong vòng nguyệt quế, cầm hai gậy, 4 sinh vật ở 4 góc: sư tử, bò, người, đại bàng.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/f/ff/RWS_Tarot_21_World.jpg"},
+
+  // WANDS (Fire) - 14 cards
+  {id:22,name:"Ace of Wands",name_vi:"Át Đũa",number:1,suit:"wands",arcana:"minor",keywords:"Sáng tạo, cảm hứng, tiềm năng, khởi đầu",element:"Fire",planet:"",
+   upright:{general:"Nguồn năng lượng sáng tạo bùng nổ, ý tưởng mới đầy hứa hẹn. Đây là tia lửa khởi đầu mọi điều vĩ đại.",love:"Tình yêu mới đầy đam mê, sự hấp dẫn mãnh liệt. Có thể gặp người kích thích sự sáng tạo.",career:"Dự án mới đầy tiềm năng, cơ hội khởi nghiệp. Hãy hành động ngay.",finance:"Cơ hội đầu tư mới, tiền bạc đến từ sáng tạo. Hãy nắm bắt.",health:"Năng lượng dồi dào, sức sống mới. Thích hợp bắt đầu tập luyện.",spirituality:"Năng lượng tâm linh bùng nổ, khai mở luân xa. Hãy sáng tạo trong thiền định."},
+   reversed:{general:"Sáng tạo bị kìm hãm, ý tưởng không thực hiện được. Cần kiên nhẫn.",love:"Đam mê nguội lạnh, mất hứng thú. Cần làm mới mối quan hệ.",career:"Dự án bị trì hoãn, thiếu động lực. Cần tìm lại cảm hứng.",finance:"Cơ hội bị bỏ lỡ, đầu tư chậm. Cần hành động quyết đoán.",health:"Mệt mỏi, thiếu năng lượng. Cần nghỉ ngơi.",spirituality:"Năng lượng tâm linh bị chặn. Cần thanh lọc luân xa."},
+   symbol:"Một bàn tay từ đám mây cầm cây đũa nảy lửa, lá nguyệt quế và lá dương xỉ bao quanh.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/1/11/Wands01.jpg"},
+
+  {id:23,name:"2 of Wands",name_vi:"2 Đũa",number:2,suit:"wands",arcana:"minor",keywords:"Kế hoạch, quyết định, khám phá, tầm nhìn",element:"Fire",planet:"Mars",
+   upright:{general:"Lập kế hoạch dài hạn, đứng trước ngưỡng cửa quyết định. Cần nhìn xa trông rộng.",love:"Đánh giá mối quan hệ, lựa chọn tương lai. Có thể yêu xa.",career:"Lập chiến lược mới, mở rộng thị trường. Cần tầm nhìn.",finance:"Đầu tư dài hạn, lập kế hoạch tài chính. Cần kiên nhẫn.",health:"Lập kế hoạch sức khỏe dài hạn. Cần kiên trì.",spirituality:"Tìm kiếm con đường tâm linh, đặt mục tiêu giác ngộ."},
+   reversed:{general:"Sợ hãi thay đổi, bám víu an toàn. Cần dũng cảm.",love:"Không dám cam kết, sợ tương lai. Cần quyết đoán.",career:"Thiếu tầm nhìn, bỏ lỡ cơ hội. Cần mở rộng.",finance:"Thiếu kế hoạch, chi tiêu ngắn hạn. Cần tư duy dài hạn.",health:"Không kiên trì điều trị. Cần kỷ luật.",spirituality:"Sợ thay đổi tâm linh. Cần dũng cảm."},
+   symbol:"Một người đàn ông đứng trên lâu đài cầm địa cầu, nhìn ra biển cả.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/0/0f/Wands02.jpg"},
+
+  {id:24,name:"3 of Wands",name_vi:"3 Đũa",number:3,suit:"wands",arcana:"minor",keywords:"Mở rộng, tiền đồ, hợp tác, chờ đợi",element:"Fire",planet:"Sun",
+   upright:{general:"Kế hoạch đang đơm hoa kết trái, cơ hội mở rộng. Cần kiên nhẫn chờ đợi.",love:"Mối quan hệ phát triển, có tương lai sáng. Có thể hẹn hò xa.",career:"Dự án thành công, mở rộng kinh doanh. Có thể hợp tác quốc tế.",finance:"Đầu tư sinh lợi, tài chính tăng trưởng. Cần kiên nhẫn.",health:"Sức khỏe cải thiện, cần duy trì. Chú ý mắt.",spirituality:"Tâm linh mở rộng, kết nối với nhiều truyền thống."},
+   reversed:{general:"Thiếu kiên nhẫn, kế hoạch bị trì hoãn. Cần bình tĩnh.",love:"Mối quan hệ phát triển chậm, thiếu kiên nhẫn. Cần chờ đợi.",career:"Dự án chậm tiến độ, đối tác không đáng tin. Cần cẩn thận.",finance:"Đầu tư chậm sinh lợi, cần kiên nhẫn. Tránh rút vốn sớm.",health:"Hồi phục chậm, cần kiên trì. Chú ý mắt.",spirituality:"Tâm linh phát triển chậm. Cần kiên nhẫn tu tập."},
+   symbol:"Một người đàn ông đứng trên vách đá nhìn ra biển, ba cây đũa cắm sau lưng.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/f/ff/Wands03.jpg"},
+
+  {id:25,name:"4 of Wands",name_vi:"4 Đũa",number:4,suit:"wands",arcana:"minor",keywords:"Lễ kỷ niệm, hòa hợp, ổn định, cộng đồng",element:"Fire",planet:"Venus",
+   upright:{general:"Thành tựu được công nhận, lễ kỷ niệm, sự ổn định. Đây là thời điểm vui vẻ.",love:"Hôn nhân, đính hôn, lễ kỷ niệm. Mối quan hệ viên mãn.",career:"Dự án hoàn thành, được khen thưởng. Môi trường làm việc hòa đồng.",finance:"Tài chính ổn định, có thể mua nhà. Hãy tận hưởng.",health:"Sức khỏe tốt, cơ thể cân bằng. Chú ý gan.",spirituality:"Kết nối cộng đồng tâm linh, lễ hội. Hòa hợp."},
+   reversed:{general:"Thiếu ổn định, gia đình xung đột. Cần hòa giải.",love:"Hôn nhân rạn nứt, gia đình không hòa thuận. Cần đối thoại.",career:"Môi trường làm việc căng thẳng, đồng nghiệp xung đột. Cần hòa giải.",finance:"Bất ổn tài chính, chi tiêu cho lễ hội quá mức. Cần tiết kiệm.",health:"Sức khỏe giảm do căng thẳng gia đình. Cần thư giãn.",spirituality:"Xung đột trong cộng đồng tâm linh. Cần bao dung."},
+   symbol:"Hai người đang nhảy múa dưới bốn cây đũa với vòng hoa, lâu đài phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/a/a4/Wands04.jpg"},
+
+  {id:26,name:"5 of Wands",name_vi:"5 Đũa",number:5,suit:"wands",arcana:"minor",keywords:"Xung đột, cạnh tranh, thử thách, đa dạng",element:"Fire",planet:"Saturn",
+   upright:{general:"Xung đột, cạnh tranh, thử thách. Cần đối mặt và vượt qua. Đây là sự cọ xát cần thiết.",love:"Tranh cãi trong mối quan hệ, cạnh tranh tình cảm. Cần hòa giải.",career:"Cạnh tranh gay gắt, xung đột đồng nghiệp. Cần khéo léo.",finance:"Cạnh tranh tài chính, tranh chấp. Cần luật sư.",health:"Căng thẳng cao, đau đầu. Cần giảm stress.",spirituality:"Xung đột quan điểm tâm linh. Cần bao dung."},
+   reversed:{general:"Tránh xung đột, hòa giải, kết thúc tranh chấp. Cần nhượng bộ.",love:"Hòa giải sau tranh cãi, mối quan hệ êm đẹp. Cần tha thứ.",career:"Kết thúc cạnh tranh, hòa bình nơi làm. Cần hợp tác.",finance:"Giải quyết tranh chấp tài chính. Cần thỏa hiệp.",health:"Giảm căng thẳng, sức khỏe cải thiện. Cần thư giãn.",spirituality:"Hòa giải quan điểm tâm linh. Cần khiêm tốn."},
+   symbol:"Năm người đang vung đũa tranh đấu, trang phục nhiều màu sắc.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/9/9d/Wands05.jpg"},
+
+  {id:27,name:"6 of Wands",name_vi:"6 Đũa",number:6,suit:"wands",arcana:"minor",keywords:"Chiến thắng, công nhận, tự tin, tin tức tốt",element:"Fire",planet:"Jupiter",
+   upright:{general:"Chiến thắng, được công nhận, tự tin. Đây là thời điểm của vinh quang.",love:"Mối quan hệ được công nhận, tình yêu chiến thắng. Có thể công khai.",career:"Thăng tiến, được khen thưởng. Sự nghiệp thành công.",finance:"Tài chính thịnh vượng, đầu tư thắng lớn. Hãy tận hưởng.",health:"Sức khỏe tốt, tinh thần lạc quan. Chú ý tim.",spirituality:"Thành tựu tâm linh được công nhận. Hãy khiêm tốn."},
+   reversed:{general:"Thất bại tạm thời, không được công nhận. Cần kiên trì.",love:"Mối quan hệ không được chấp nhận, tình yêu bí mật. Cần kiên nhẫn.",career:"Không được thăng tiến, dự án thất bại. Cần cố gắng.",finance:"Mất tiền do tự tin thái quá. Cần thận trọng.",health:"Sức khỏe giảm do căng thẳng. Cần nghỉ ngơi.",spirituality:"Thất bại tâm linh tạm thời. Cần kiên trì."},
+   symbol:"Một người cưỡi ngựa trắng cầm đũa với vòng nguyệt quế, đám đông reo hò.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/3/3b/Wands06.jpg"},
+
+  {id:28,name:"7 of Wands",name_vi:"7 Đũa",number:7,suit:"wands",arcana:"minor",keywords:"Bảo vệ, kiên trì, đứng lên, phòng thủ",element:"Fire",planet:"Mars",
+   upright:{general:"Bảo vệ thành quả, đứng lên chống lại thử thách. Cần kiên trì và dũng cảm.",love:"Bảo vệ mối quan hệ, chống lại sự cám dỗ. Cần trung thành.",career:"Bảo vệ vị trí, chống lại đối thủ. Cần chiến đấu.",finance:"Bảo vệ tài sản, chống lại rủi ro. Cần cẩn thận.",health:"Chống lại bệnh tật, kiên trì điều trị. Cần quyết tâm.",spirituality:"Bảo vệ niềm tin, chống lại nghi ngờ. Cần kiên định."},
+   reversed:{general:"Bỏ cuộc, không chống đỡ nổi. Cần tìm sự giúp đỡ.",love:"Không bảo vệ được mối quan hệ, bỏ cuộc. Cần suy nghĩ lại.",career:"Thua trong cạnh tranh, mất vị trí. Cần đánh giá lại.",finance:"Mất tài sản, không bảo vệ được. Cần luật sư.",health:"Bỏ cuộc điều trị, bệnh nặng thêm. Cần động viên.",spirituality:"Mất niềm tin, bỏ cuộc tu tập. Cần tìm lại động lực."},
+   symbol:"Một người đứng trên đỉnh đồi cầm đũa chống lại sáu đũa từ dưới lên.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/e/e4/Wands07.jpg"},
+
+  {id:29,name:"8 of Wands",name_vi:"8 Đũa",number:8,suit:"wands",arcana:"minor",keywords:"Tốc độ, hành động, tin tức, di chuyển",element:"Fire",planet:"Mercury",
+   upright:{general:"Mọi thứ diễn ra nhanh chóng, tin tức tốt đến. Cần hành động ngay.",love:"Tình yêu phát triển nhanh, tin nhắn bất ngờ. Có thể yêu xa.",career:"Dự án tiến triển nhanh, cơ hội đột ngột. Cần nắm bắt.",finance:"Tiền bạc đến nhanh, đầu tư sinh lợi nhanh. Cần quyết đoán.",health:"Hồi phục nhanh, cần duy trì. Chú ý hệ thần kinh.",spirituality:"Giác ngộ đột ngột, thông điệp tâm linh. Cần lắng nghe."},
+   reversed:{general:"Chậm trễ, tin xấu, thiếu hành động. Cần kiên nhẫn.",love:"Tình yêu phát triển chậm, tin nhắn không đến. Cần chờ đợi.",career:"Dự án trì hoãn, cơ hội bị bỏ lỡ. Cần đẩy nhanh.",finance:"Tiền bạc chậm đến, đầu tư không sinh lợi. Cần kiên nhẫn.",health:"Hồi phục chậm, cần kiên trì. Chú ý hệ thần kinh.",spirituality:"Thông điệp tâm linh chưa rõ. Cần kiên nhẫn."},
+   symbol:"Tám cây đũa bay xuyên không trung, rừng cây và sông phía dưới.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/6/6b/Wands08.jpg"},
+
+  {id:30,name:"9 of Wands",name_vi:"9 Đũa",number:9,suit:"wands",arcana:"minor",keywords:"Kiên trì, phòng thủ, kiệt sức, can đảm",element:"Fire",planet:"Moon",
+   upright:{general:"Kiên trì đến cùng, phòng thủ cuối cùng. Đã kiệt sức nhưng không bỏ cuộc.",love:"Mối quan hệ trải qua nhiều thử thách nhưng vẫn bền. Cần kiên trì.",career:"Dự án giai đoạn cuối, cần nỗ lực thêm chút nữa. Đừng bỏ cuộc.",finance:"Bảo vệ tài sản cuối cùng, cần kiên trì. Tranh chấp sắp kết thúc.",health:"Kiệt sức nhưng đang hồi phục. Cần nghỉ ngơi. Chú ý mắt.",spirituality:"Kiên trì tu tập dù khó khăn. Sắp đạt được mục tiêu."},
+   reversed:{general:"Bỏ cuộc, kiệt sức hoàn toàn. Cần nghỉ ngơi.",love:"Mối quan hệ kiệt sức, không còn sức chiến đấu. Cần buông bỏ.",career:"Bỏ cuộc giữa chừng, dự án thất bại. Cần đánh giá lại.",finance:"Mất tài sản, không còn gì để bảo vệ. Cần tái cấu trúc.",health:"Kiệt sức nghiêm trọng, cần nghỉ dưỡng. Chú ý mắt.",spirituality:"Bỏ cuộc tu tập, mất niềm tin. Cần tìm lại động lực."},
+   symbol:"Một người đàn ông bị thương đứng dựa vào đũa, tám cây đũa phía sau như hàng rào.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/e/e7/Wands09.jpg"},
+
+  {id:31,name:"10 of Wands",name_vi:"10 Đũa",number:10,suit:"wands",arcana:"minor",keywords:"Gánh nặng, trách nhiệm, kiệt sức, áp lực",element:"Fire",planet:"Saturn",
+   upright:{general:"Gánh nặng quá lớn, trách nhiệm nhiều. Cần chia sẻ và buông bỏ bớt.",love:"Gánh nặng trong mối quan hệ, một bên quá vất vả. Cần san sẻ.",career:"Quá tải công việc, áp lực cao. Cần phân công lại.",finance:"Nợ nần nhiều, gánh nặng tài chính. Cần giảm chi tiêu.",health:"Kiệt sức do làm việc quá sức. Cần nghỉ ngơi. Chú ý lưng.",spirituality:"Gánh nặng tâm linh, quá nhiều trách nhiệm. Cần buông bỏ."},
+   reversed:{general:"Buông bỏ gánh nặng, giảm áp lực. Cần biết nói không.",love:"Giảm gánh nặng trong mối quan hệ, cân bằng lại. Cần giao tiếp.",career:"Giảm tải công việc, tìm sự cân bằng. Cần từ chối.",finance:"Trả nợ, giảm gánh nặng tài chính. Cần tiết kiệm.",health:"Phục hồi sau kiệt sức, cần nghỉ ngơi. Chú ý lưng.",spirituality:"Buông bỏ trách nhiệm tâm linh không cần thiết. Cần nhẹ nhàng."},
+   symbol:"Một người đang cõng mườI cây đũa, cúi đầu vì nặng, nhà cửa phía xa.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/0/0b/Wands10.jpg"},
+
+  {id:32,name:"Page of Wands",name_vi:"Sứ Giả Đũa",number:11,suit:"wands",arcana:"minor",keywords:"Khám phá, nhiệt huyết, tin tức, sáng tạo",element:"Fire",planet:"",
+   upright:{general:"Tin tức tốt đến, nhiệt huyết khám phá. Đây là thời điểm của sự tò mò.",love:"Tình yêu mới đầy nhiệt huyết, tin nhắn bất ngờ. Có thể gặp người trẻ trung.",career:"Cơ hội mới, dự án sáng tạo. Cần hành động.",finance:"Tin tức tài chính tốt, cơ hội đầu tư mới. Cần nắm bắt.",health:"Năng lượng trẻ trung, sức khỏe tốt. Chú ý tai.",spirituality:"Khám phá tâm linh mới, nhiệt huyết tu tập. Cần kiên trì."},
+   reversed:{general:"Tin xấu, thiếu kiên nhẫn, nhiệt huyết nguội lạnh. Cần bình tĩnh.",love:"Tình yêu nông cạn, thiếu cam kết. Cần suy nghĩ.",career:"Dự án không thành, thiếu kinh nghiệm. Cần học hỏi.",finance:"Tin tức tài chính xấu, đầu tư thất bại. Cần thận trọng.",health:"Năng lượng thấp, thiếu động lực. Cần nghỉ ngơi.",spirituality:"Thiếu kiên nhẫn tu tập, nản lòng. Cần động viên."},
+   symbol:"Một chàng trai trẻ cầm đũa, nhìn lên đám mây, sa mạc phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/6/6a/Wands11.jpg"},
+
+  {id:33,name:"Knight of Wands",name_vi:"Hiệp Sĩ Đũa",number:12,suit:"wands",arcana:"minor",keywords:"Hành động, phiêu lưu, quyết đoán, nhiệt tình",element:"Fire",planet:"",
+   upright:{general:"Hành động mạnh mẽ, phiêu lưu, quyết đoán. Đây là thời điểm của sự dũng cảm.",love:"Tình yêu đầy phiêu lưu, đối phương nhiệt tình. Có thể yêu nhanh.",career:"Dự án tiến triển nhanh, hành động quyết đoán. Cần tốc độ.",finance:"Đầu tư mạo hiểm, tiền bạc đến nhanh. Cần kiểm soát.",health:"Năng lượng dồi dào, thích hợp thể thao. Chú ý tai nạn.",spirituality:"Hành trình tâm linh đầy phiêu lưu. Cần kiên định."},
+   reversed:{general:"Hành động bốc đồng, thiếu kiên nhẫn, nóng nảy. Cần bình tĩnh.",love:"Tình yêu bốc đồng, không chung thủy. Cần suy nghĩ.",career:"Dự án thất bại do vội vàng, bị sa thải. Cần kiên nhẫn.",finance:"Mất tiền do đầu tư liều lĩnh. Cần thận trọng.",health:"Tai nạn do bốc đồng, chấn thương. Cần chú ý.",spirituality:"Tu tập bốc đồng, thiếu sâu sắc. Cần kiên trì."},
+   symbol:"Một hiệp sĩ cưỡi ngựa vàng, mặc giáp, cầm đũa, sa mạc phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/1/16/Wands12.jpg"},
+
+  {id:34,name:"Queen of Wands",name_vi:"Nữ Hoàng Đũa",number:13,suit:"wands",arcana:"minor",keywords:"Tự tin, quyến rũ, độc lập, sáng tạo, nhiệt tình",element:"Fire",planet:"",
+   upright:{general:"Tự tin, quyến rũ, độc lập. Đây là năng lượng của người phụ nữ mạnh mẽ.",love:"Tình yêu đầy tự tin, đối phương quyến rũ. Có thể gặp người độc lập.",career:"Lãnh đạo bằng sự quyến rũ, sáng tạo. Được đồng nghiệp yêu mến.",finance:"Tài chính độc lập, đầu tư thông minh. Có thể kinh doanh riêng.",health:"Sức khỏe tốt, năng lượng dồi dào. Chú ý tim.",spirituality:"Tâm linh độc lập, tự tin trên con đường tu tập. Cần khiêm tốn."},
+   reversed:{general:"Tự tin thái quá, kiểm soát, ghen tuông. Cần nhượng bộ.",love:"Ghen tuông, kiểm soát đối phương. Cần tin tưởng.",career:"Lãnh đạo độc đoán, đồng nghiệp phản đối. Cần lắng nghe.",finance:"Chi tiêu quá mức, nợ nần. Cần kiểm soát.",health:"Sức khỏe giảm do căng thẳng. Chú ý tim.",spirituality:"Tự cao tâm linh, không chịu học hỏi. Cần khiêm tốn."},
+   symbol:"Một người phụ nữ ngồi trên ngai, cầm đũa, mèo đen bên cạnh, hoa hướng dương phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/0/0d/Wands13.jpg"},
+
+  {id:35,name:"King of Wands",name_vi:"Vua Đũa",number:14,suit:"wands",arcana:"minor",keywords:"Lãnh đạo, tầm nhìn, quyết đoán, tham vọng",element:"Fire",planet:"",
+   upright:{general:"Lãnh đạo bằng tầm nhìn, quyết đoán, tham vọng. Đây là người chỉ huy tài ba.",love:"Tình yêu của người lãnh đạo, đối phương có tầm nhìn. Có thể gặp người thành đạt.",career:"Thăng tiến cao, lãnh đạo dự án lớn. Sự nghiệp vững chắc.",finance:"Tài chính vững chắc, đầu tư dài hạn thành công. Có thể mở công ty.",health:"Sức khỏe tốt, năng lượng lãnh đạo. Chú ý tim.",spirituality:"Lãnh đạo tâm linh, có tầm nhìn giác ngộ. Cần khiêm tốn."},
+   reversed:{general:"Độc đoán, tham vọng quá mức, kiểm soát. Cần lắng nghe.",love:"Độc đoán trong tình yêu, tham vọng che lấp cảm xúc. Cần nhượng bộ.",career:"Lãnh đạo độc đoán, nhân viên bỏ việc. Cần thay đổi.",finance:"Tham vọng tài chính quá mức, đầu tư liều lĩnh. Cần thận trọng.",health:"Sức khỏe giảm do áp lực lãnh đạo. Chú ý tim.",spirituality:"Lãnh đạo tâm linh độc đoán, tạo giáo phái. Cần tỉnh táo."},
+   symbol:"Một người đàn ông ngồi trên ngai, cầm đũa, mặc áo choàng hoa, sư tử phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/c/ce/Wands14.jpg"},
+
+  // CUPS (Water) - 14 cards
+  {id:36,name:"Ace of Cups",name_vi:"Át Cốc",number:1,suit:"cups",arcana:"minor",keywords:"Tình yêu, cảm xúc, trực giác, sáng tạo",element:"Water",planet:"",
+   upright:{general:"Nguồn cảm xúc dâng trào, tình yêu mới, trực giác mở rộng. Đây là sự khởi đầu của cảm xúc sâu sắc.",love:"Tình yêu đích thực đến, cảm xúc mãnh liệt. Có thể gặp soulmate.",career:"Công việc đam mê, sáng tạo từ trái tim. Cần theo đuổi.",finance:"Tiền bạc đến từ cảm xúc tích cực. Có thể nhận quà.",health:"Sức khỏe tinh thần tốt, cảm xúc cân bằng. Chú ý hệ tiết niệu.",spirituality:"Khai mở trái tim, kết nối tâm linh sâu sắc. Thiền về tình yêu."},
+   reversed:{general:"Cảm xúc bị kìm nén, tình yêu không thể bày tỏ. Cần mở lòng.",love:"Tình yêu bị từ chối, cảm xúc không được đáp lại. Cần buông bỏ.",career:"Thiếu đam mê công việc, làm việc vô cảm. Cần tìm lại cảm hứng.",finance:"Mất tiền do cảm xúc tiêu cực. Cần kiểm soát.",health:"Trầm cảm, cảm xúc bế tắc. Cần tìm sự giúp đỡ.",spirituality:"Trái tim đóng kín, mất kết nối tâm linh. Cần mở lòng."},
+   symbol:"Một bàn tay từ đám mây cầm cốc tràn nước, bồ câu trắng thả hoa xuống, năm dòng nước chảy ra.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/3/36/Cups01.jpg"},
+
+  {id:37,name:"2 of Cups",name_vi:"2 Cốc",number:2,suit:"cups",arcana:"minor",keywords:"Hòa hợp, đối tác, tình yêu, kết nối",element:"Water",planet:"Venus",
+   upright:{general:"Sự hòa hợp tuyệt vờI, kết nối tâm hồn, đối tác lý tưởng. Đây là tình yêu đích thực.",love:"Tình yêu sâu sắc, kết nối tâm hồn. Có thể kết hôn hoặc cam kết.",career:"Hợp tác kinh doanh tốt, đối tác đáng tin. Cần trân trọng.",finance:"Tài chính ổn định nhờ hợp tác. Có thể đầu tư chung.",health:"Sức khỏe tốt nhờ tình yêu. Chú ý hệ tiết niệu.",spirituality:"Kết nối tâm linh với đối tác, hòa hợp Âm Dương."},
+   reversed:{general:"Mất hòa hợp, xung đột, chia rẽ. Cần hòa giải.",love:"Mối quan hệ rạn nứt, không còn kết nối. Có thể chia tay.",career:"Mâu thuẫn đối tác, hợp đồng bị hủy. Cần đàm phán.",finance:"Mất tiền do tranh chấp đối tác. Cần luật sư.",health:"Sức khỏe giảm do căng thẳng tình cảm. Cần thư giãn.",spirituality:"Mất kết nối tâm linh với đối tác. Cần tìm lại."},
+   symbol:"Hai người trao đổi cốc, trên đầu là caduceus của Hermes, sư tử có cánh ở giữa.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/f/f8/Cups02.jpg"},
+
+  {id:38,name:"3 of Cups",name_vi:"3 Cốc",number:3,suit:"cups",arcana:"minor",keywords:"Vui vẻ, kỷ niệm, tình bạn, cộng đồng",element:"Water",planet:"Mercury",
+   upright:{general:"Vui vẻ, kỷ niệm, tình bạn thân thiết. Đây là thời điểm của sự đoàn tụ.",love:"Tình bạn phát triển thành tình yêu, vui vẻ bên nhau. Có thể gặp qua bạn bè.",career:"Môi trường làm việc vui vẻ, đồng nghiệp thân thiết. Có thể tiệc tùng.",finance:"Tiền bạc đến từ bạn bè, đầu tư nhóm. Hãy tận hưởng.",health:"Sức khỏe tốt nhờ vui vẻ. Chú ý gan.",spirituality:"Cộng đồng tâm linh vui vẻ, lễ hội. Hòa hợp."},
+   reversed:{general:"Cô đơn trong đám đông, bạn bè giả tạo. Cần chọn lọc.",love:"Tình yêu giả tạo, bị bạn bè phản bội. Cần cẩn thận.",career:"Đồng nghiệp hai mặt, môi trường độc hại. Cần đề phòng.",finance:"Mất tiền do bạn bè lừa đảo. Cần cẩn thận.",health:"Sức khỏe giảm do tiệc tùng quá mức. Cần điều độ.",spirituality:"Cộng đồng tâm linh giả tạo. Cần tỉnh táo."},
+   symbol:"Ba người phụ nữ nâng cốc chúc mừng, vòng hoa hoa quả, lúa mì và nho xung quanh.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/7/7a/Cups03.jpg"},
+
+  {id:39,name:"4 of Cups",name_vi:"4 Cốc",number:4,suit:"cups",arcana:"minor",keywords:"Chán nản, thờ ơ, suy ngẫm, bỏ lỡ",element:"Water",planet:"Moon",
+   upright:{general:"Chán nản, thờ ơ, suy ngẫm. Có thể đang bỏ lỡ cơ hội. Cần mở mắt.",love:"Chán nản trong tình yêu, không thấy hạnh phúc. Cần đánh giá lại.",career:"Chán công việc, bỏ lỡ cơ hội. Cần thay đổi.",finance:"Thờ ơ với tiền bạc, bỏ lỡ cơ hội đầu tư. Cần tỉnh táo.",health:"Chán nản, mất động lực sống. Cần tìm sự giúp đỡ.",spirituality:"Chán nản tâm linh, mất kết nối. Cần tìm lại đam mê."},
+   reversed:{general:"Tỉnh táo, nhận ra cơ hội, hành động. Cần mở lòng.",love:"Nhận ra tình yêu đang có, trân trọng đối phương. Cần hành động.",career:"Nhận ra cơ hội, hành động quyết đoán. Cần nắm bắt.",finance:"Nhận ra cơ hội đầu tư, hành động. Cần quyết đoán.",health:"Tìm lại động lực sống, cải thiện sức khỏe. Cần kiên trì.",spirituality:"Tìm lại đam mê tâm linh, kết nối trở lại. Cần mở lòng."},
+   symbol:"Một người ngồi dưới cây, tay chống cằm, ba cốc trước mặt, một bàn tay từ mây đưa cốc thứ tư.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/3/35/Cups04.jpg"},
+
+  {id:40,name:"5 of Cups",name_vi:"5 Cốc",number:5,suit:"cups",arcana:"minor",keywords:"Mất mát, hối tiếc, buồn bã, chữa lành",element:"Water",planet:"Mars",
+   upright:{general:"Mất mát, hối tiếc, buồn bã. Nhưng vẫn còn hy vọng. Cần nhìn về phía trước.",love:"Chia tay, mất mát tình yêu. Nhưng vẫn còn cơ hội mới. Cần chữa lành.",career:"Thất bại, mất việc. Nhưng vẫn còn cơ hội khác. Cần đứng dậy.",finance:"Mất tiền, đầu tư thất bại. Nhưng vẫn còn tài sản. Cần tiết kiệm.",health:"Buồn bã, trầm cảm. Cần tìm sự giúp đỡ. Chú ý hệ tiết niệu.",spirituality:"Mất niềm tin, hối tiếc quá khứ. Cần buông bỏ và tiến lên."},
+   reversed:{general:"Vượt qua mất mát, tìm lại hy vọng. Cần tha thứ cho bản thân.",love:"Vượt qua chia tay, mở lòng với tình yêu mới. Cần chữa lành.",career:"Tìm lại công việc mới sau thất bại. Cần lạc quan.",finance:"Hồi phục tài chính sau mất mát. Cần kiên trì.",health:"Hồi phục tinh thần, vượt qua trầm cảm. Cần kiên trì.",spirituality:"Tìm lại niềm tin, vượt qua hối tiếc. Cần buông bỏ."},
+   symbol:"Một người đứng trước năm cốc, ba cốc đổ, hai cốc còn nguyên, cầu vồng phía xa.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/d/d7/Cups05.jpg"},
+
+  {id:41,name:"6 of Cups",name_vi:"6 Cốc",number:6,suit:"cups",arcana:"minor",keywords:"Kỷ niệm, quá khứ, trẻ thơ, lòng tốt",element:"Water",planet:"Sun",
+   upright:{general:"Kỷ niệm đẹp, quá khứ tươi sáng, lòng tốt. Đây là thời điểm của sự ngây thơ.",love:"Tình yêu từ quá khứ, gặp lại người cũ. Có thể tình đầu.",career:"Công việc liên quan đến quá khứ, được cố vấn. Có thể làm việc với người cũ.",finance:"Tiền bạc từ quá khứ, thừa kế. Có thể nhận quà từ gia đình.",health:"Sức khỏe tốt nhờ kỷ niệm vui. Chú ý trẻ em.",spirituality:"Kết nối với kiếp trước, kỷ niệm tâm linh. Thiền về quá khứ."},
+   reversed:{general:"Bám víu quá khứ, không chịu lớn. Cần buông bỏ.",love:"Bám víu tình cũ, không chịu tiến lên. Cần buông bỏ.",career:"Không chịu thay đổi, bám víu công việc cũ. Cần đổi mới.",finance:"Mất tiền do bám víu quá khứ. Cần linh hoạt.",health:"Bệnh tâm lý do bám víu quá khứ. Cần chữa lành.",spirituality:"Bám víu kiếp trước, không sống hiện tại. Cần buông bỏ."},
+   symbol:"Hai đứa trẻ trao đổi cốc hoa, sáu cốc đầy hoa phía sau, lâu đài xa xưa.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/1/17/Cups06.jpg"},
+
+  {id:42,name:"7 of Cups",name_vi:"7 Cốc",number:7,suit:"cups",arcana:"minor",keywords:"Ảo tưởng, lựa chọn, mơ mộng, cám dỗ",element:"Water",planet:"Venus",
+   upright:{general:"Nhiều lựa chọn, ảo tưởng, mơ mộng. Cần tỉnh táo để chọn đúng.",love:"Nhiều người theo đuổi, cần chọn đúng. Có thể bị cám dỗ.",career:"Nhiều cơ hội, cần đánh giá kỹ. Tránh ảo tưởng.",finance:"Nhiều lựa chọn đầu tư, cần thận trọng. Tránh mơ mộng.",health:"Nhiều phương pháp điều trị, cần chọn đúng. Tránh lang băm.",spirituality:"Nhiều con đường tâm linh, cần chọn đúng. Tránh ảo tưởng."},
+   reversed:{general:"Tỉnh táo, nhận ra sự thật, quyết định rõ ràng. Cần hành động.",love:"Nhận ra tình yêu thực sự, bỏ ảo tưởng. Cần chân thật.",career:"Quyết định nghề nghiệp rõ ràng, bỏ ảo tưởng. Cần thực tế.",finance:"Quyết định đầu tư rõ ràng, bỏ mơ mộng. Cần thực tế.",health:"Chọn phương pháp điều trị đúng, bỏ lang băm. Cần bác sĩ.",spirituality:"Chọn con đường tâm linh đúng, bỏ ảo tưởng. Cần thầy hướng dẫn."},
+   symbol:"Một người đứng trước bảy cốc chứa đầy ảo ảnh: rắn, lâu đài, châu báu, vòng nguyệt quế, rồng, mặt người, đốm sáng.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/a/ae/Cups07.jpg"},
+
+  {id:43,name:"8 of Cups",name_vi:"8 Cốc",number:8,suit:"cups",arcana:"minor",keywords:"Buông bỏ, rồi đi, tìm kiếm, thay đổi",element:"Water",planet:"Saturn",
+   upright:{general:"Buông bỏ những gì không còn phù hợp, rồi đi tìm ý nghĩa mới. Cần dũng cảm.",love:"Rồi bỏ mối quan hệ không còn ý nghĩa, tìm tình yêu mới. Cần dũng cảm.",career:"Rồi bỏ công việc cũ, tìm đam mê mới. Cần quyết đoán.",finance:"Rồi bỏ đầu tư cũ, tìm cơ hội mới. Cần cắt lỗ.",health:"Rồi bỏ lối sống cũ, tìm phương pháp mới. Cần quyết tâm.",spirituality:"Rồi bỏ tín ngưỡng cũ, tìm con đường mới. Cần dũng cảm."},
+   reversed:{general:"Không dám buông bỏ, bám víu quá khứ. Cần dũng cảm.",love:"Không dám chia tay dù không còn hạnh phúc. Cần quyết đoán.",career:"Không dám nghỉ việc dù không còn đam mê. Cần dũng cảm.",finance:"Không dám cắt lỗ, bám víu đầu tư thua lỗ. Cần quyết đoán.",health:"Không dám thay đổi lối sống. Cần quyết tâm.",spirituality:"Không dám thay đổi tín ngưỡng. Cần dũng cảm."},
+   symbol:"Một người rồi bỏ tám cốc xếp thành hàng, cầm gậy đi về phía núi cao, mặt trăng phía trên.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/6/60/Cups08.jpg"},
+
+  {id:44,name:"9 of Cups",name_vi:"9 Cốc",number:9,suit:"cups",arcana:"minor",keywords:"Hài lòng, ước nguyện, hạnh phúc, viên mãn",element:"Water",planet:"Jupiter",
+   upright:{general:"Hài lòng, ước nguyện thành hiện thực, hạnh phúc viên mãn. Đây là lá bài của sự thỏa mãn.",love:"Tình yêu viên mãn, ước nguyện tình cảm thành hiện thực. Có thể cầu hôn.",career:"Sự nghiệp thành công, ước mơ nghề nghiệp thành hiện thực. Được công nhận.",finance:"Tài chính viên mãn, ước nguyện tiền bạc thành hiện thực. Có thể mua nhà.",health:"Sức khỏe tốt, cơ thể hài lòng. Chú ý gan.",spirituality:"Ước nguyện tâm linh thành hiện thực, giác ngộ. Hãy cảm ơn vũ trụ."},
+   reversed:{general:"Chưa hài lòng, ước nguyện chưa thành. Cần kiên nhẫn.",love:"Tình yêu chưa viên mãn, ước nguyện chưa thành. Cần kiên nhẫn.",career:"Sự nghiệp chưa đạt mục tiêu, ước mơ chưa thành. Cần cố gắng.",finance:"Tài chính chưa như ý, ước nguyện chưa thành. Cần kiên nhẫn.",health:"Sức khỏe chưa hoàn hảo, cần điều trị thêm. Chú ý gan.",spirituality:"Ước nguyện tâm linh chưa thành, cần tu tập thêm. Cần kiên nhẫn."},
+   symbol:"Một người đàn ông ngồi trước chín cốc xếp thành hàng, tay khoanh ngực, mặt hài lòng.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/2/24/Cups09.jpg"},
+
+  {id:45,name:"10 of Cups",name_vi:"10 Cốc",number:10,suit:"cups",arcana:"minor",keywords:"Gia đình, hạnh phúc, hòa hợp, hoàn hảo",element:"Water",planet:"Mars",
+   upright:{general:"Gia đình hạnh phúc, hòa hợp hoàn hảo. Đây là lá bài của sự viên mãn tối đa.",love:"Hôn nhân hạnh phúc, gia đình hòa thuận. Có thể có con.",career:"Công việc ổn định, cân bằng gia đình và sự nghiệp. Được gia đình ủng hộ.",finance:"Tài chính ổn định, gia đình hỗ trợ. Có thể mua nhà cho gia đình.",health:"Sức khỏe tốt nhờ gia đình hạnh phúc. Chú ý hệ tiết niệu.",spirituality:"Gia đình tâm linh, cộng đồng hòa hợp. Hạnh phúc tâm linh."},
+   reversed:{general:"Gia đình xung đột, hạnh phúc giả tạo. Cần hòa giải.",love:"Hôn nhân rạn nứt, gia đình không hòa thuận. Cần đối thoại.",career:"Công việc ảnh hưởng gia đình, mất cân bằng. Cần sắp xếp.",finance:"Tranh chấp tài sản gia đình. Cần luật sư.",health:"Sức khỏe giảm do căng thẳng gia đình. Cần thư giãn.",spirituality:"Xung đột trong cộng đồng tâm linh. Cần hòa giải."},
+   symbol:"Một gia đình đứng dưới cầu vồng, mườI cốc xếp thành cung, nhà cửa xanh tươi.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/8/84/Cups10.jpg"},
+
+  {id:46,name:"Page of Cups",name_vi:"Sứ Giả Cốc",number:11,suit:"cups",arcana:"minor",keywords:"Tin tức, cảm xúc mới, sáng tạo, trực giác",element:"Water",planet:"",
+   upright:{general:"Tin tức về cảm xúc, cảm xúc mới đến. Đây là thời điểm của sự ngây thơ tình cảm.",love:"Tin nhắn tình cảm, tình yêu mới đầy ngây thơ. Có thể được tỏ tình.",career:"Cơ hội công việc sáng tạo, tin tức tốt. Cần nắm bắt.",finance:"Tin tức tài chính tốt, có thể nhận quà. Cần vui mừng.",health:"Cảm xúc tích cực, sức khỏe tinh thần tốt. Chú ý hệ tiết niệu.",spirituality:"Thông điệp tâm linh từ trực giác, giấc mơ. Cần lắng nghe."},
+   reversed:{general:"Tin xấu về cảm xúc, cảm xúc tiêu cực. Cần bình tĩnh.",love:"Tin nhắn làm tổn thương, tình yêu bị từ chối. Cần chữa lành.",career:"Tin tức xấu về công việc, dự án thất bại. Cần đối mặt.",finance:"Tin tức tài chính xấu, mất tiền. Cần kiên nhẫn.",health:"Cảm xúc tiêu cực, trầm cảm nhẹ. Cần tìm người trò chuyện.",spirituality:"Thông điệp tâm linh tiêu cực, cần thanh lọc. Tránh ảo giác."},
+   symbol:"Một chàng trai trẻ cầm cốc, nhìn vào cá nhảy ra từ cốc, biển cả phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/a/ad/Cups11.jpg"},
+
+  {id:47,name:"Knight of Cups",name_vi:"Hiệp Sĩ Cốc",number:12,suit:"cups",arcana:"minor",keywords:"Lãng mạn, cầu hôn, theo đuổi, ước mơ",element:"Water",planet:"",
+   upright:{general:"Lãng mạn, theo đuổi ước mơ, cầu hôn. Đây là hiệp sĩ của tình yêu.",love:"Tình yêu lãng mạn, được cầu hôn. Có thể gặp người lãng mạn.",career:"Công việc đam mê, theo đuổi ước mơ nghề nghiệp. Cần kiên trì.",finance:"Đầu tư theo cảm xúc, tiền bạc đến từ nghệ thuật. Cần cân bằng.",health:"Sức khỏe tốt nhờ cảm xúc tích cực. Chú ý hệ tiết niệu.",spirituality:"Hành trình tâm linh lãng mạn, theo đuổi giác ngộ. Cần kiên trì."},
+   reversed:{general:"Lãng mạn ảo tưởng, theo đuổi không thực tế. Cần tỉnh táo.",love:"Tình yêu ảo tưởng, bị lừa dối tình cảm. Cần cẩn thận.",career:"Theo đuổi ước mơ không thực tế, thất bại. Cần thực tế hơn.",finance:"Đầu tư theo cảm xúc tiêu cực, mất tiền. Cần lý trí.",health:"Sức khỏe giảm do cảm xúc tiêu cực. Cần cân bằng.",spirituality:"Theo đuổi giác ngộ ảo tưởng, bị lừa. Cần tỉnh táo."},
+   symbol:"Một hiệp sĩ cưỡi ngựa trắng, cầm cốc, mũ có cánh, sa mạc phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/f/fa/Cups12.jpg"},
+
+  {id:48,name:"Queen of Cups",name_vi:"Nữ Hoàng Cốc",number:13,suit:"cups",arcana:"minor",keywords:"Trực giác, đồng cảm, chữa lành, tình yêu vô điều kiện",element:"Water",planet:"",
+   upright:{general:"Trực giác sâu sắc, đồng cảm, chữa lành. Đây là nữ hoàng của cảm xúc.",love:"Tình yêu sâu sắc, đồng cảm, chữa lành. Có thể gặp người nhạy cảm.",career:"Nghề nghiệp chữa lành, tư vấn, nghệ thuật. Được tin tưởng.",finance:"Tài chính ổn định nhờ trực giác. Có thể đầu tư theo linh cảm.",health:"Sức khỏe tốt nhờ cảm xúc cân bằng. Chú ý hệ tiết niệu.",spirituality:"Trực giác tâm linh mạnh mẽ, chữa lành tâm linh. Thiền về nước."},
+   reversed:{general:"Quá nhạy cảm, cảm xúc tràn lan, thiếu ranh giới. Cần kiểm soát.",love:"Quá nhạy cảm trong tình yêu, bị tổn thương dễ dàng. Cần mạnh mẽ.",career:"Cảm xúc ảnh hưởng công việc, thiếu khách quan. Cần lý trí.",finance:"Mất tiền do cảm xúc, cho vay không lấy lại. Cần cứng rắn.",health:"Sức khỏe giảm do cảm xúc tiêu cực. Cần cân bằng.",spirituality:"Trực giác tâm linh bị ảo giác, quá nhạy cảm. Cần tỉnh táo."},
+   symbol:"Một người phụ nữ ngồi trên ngai bên bờ biển, cầm cốc khắm hình thiên thần, chân đặt trên cá.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/6/62/Cups13.jpg"},
+
+  {id:49,name:"King of Cups",name_vi:"Vua Cốc",number:14,suit:"cups",arcana:"minor",keywords:"Kiểm soát cảm xúc, khôn ngoan, bao dung, lãnh đạo",element:"Water",planet:"",
+   upright:{general:"Kiểm soát cảm xúc hoàn hảo, khôn ngoan, bao dung. Đây là vua của cảm xúc.",love:"Tình yêu trưởng thành, kiểm soát cảm xúc tốt. Có thể gặp người điềm đạm.",career:"Lãnh đạo bằng sự khôn ngoan, được tôn trọng. Có thể làm cố vấn.",finance:"Tài chính ổn định nhờ quyết định khôn ngoan. Có thể đầu tư dài hạn.",health:"Sức khỏe tốt nhờ cảm xúc cân bằng. Chú ý hệ tiết niệu.",spirituality:"Lãnh đạo tâm linh bằng sự khôn ngoan, bao dung. Thiền về biển cả."},
+   reversed:{general:"Kiểm soát cảm xúc quá mức, lạnh lùng, thao túng. Cần mở lòng.",love:"Lạnh lùng trong tình yêu, thao túng cảm xúc. Cần chân thành.",career:"Lãnh đạo thao túng, lợi dụng cảm xúc nhân viên. Cần đối mặt.",finance:"Thao túng tài chính, lừa đảo cảm xúc. Cần cẩn thận.",health:"Sức khỏe giảm do kìm nén cảm xúc. Cần thể hiện.",spirituality:"Lãnh đạo tâm linh thao túng, lợi dụng tín đồ. Cần tỉnh táo."},
+   symbol:"Một người đàn ông ngồi trên ngai giữa biển cả, cầm cốc và quyền trượng, tàu thuyền phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/0/04/Cups14.jpg"},
+
+  // SWORDS (Air) - 14 cards
+  {id:50,name:"Ace of Swords",name_vi:"Át Kiếm",number:1,suit:"swords",arcana:"minor",keywords:"Sự thật, clarity, ý chí, chiến thắng",element:"Air",planet:"",
+   upright:{general:"Sự thật được phơi bày, clarity tư tưởng, ý chí sắt đá. Đây là sức mạnh của trí tuệ.",love:"Sự thật trong tình yêu được phơi bày, clarity cảm xúc. Cần thành thật.",career:"Quyết định sáng suốt, chiến thắng bằng trí tuệ. Có thể thắng kiện.",finance:"Quyết định tài chính sáng suốt, đầu tư thông minh. Cần lý trí.",health:"Chẩn đoán chính xác, điều trị hiệu quả. Chú ý đầu, phổi.",spirituality:"Giác ngộ bằng trí tuệ, clarity tâm linh. Thiền về sự thật."},
+   reversed:{general:"Sự thật bị che giấu, confusion, ý chí yếu đuối. Cần clarity.",love:"Dối trá trong tình yêu, confusion cảm xúc. Cần thành thật.",career:"Quyết định sai lầm, thua kiện. Cần tư vấn.",finance:"Quyết định tài chính sai lầm, mất tiền. Cần lý trí.",health:"Chẩn đoán sai, điều trị không hiệu quả. Cần bác sĩ khác.",spirituality:"Ảo tưởng tâm linh, confusion. Cần tỉnh táo."},
+   symbol:"Một bàn tay từ đám mây cầm thanh kiếm sáng, vương miện lá nguyệt quế trên đầu kiếm.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/1/1a/Swords01.jpg"},
+
+  {id:51,name:"2 of Swords",name_vi:"2 Kiếm",number:2,suit:"swords",arcana:"minor",keywords:"Bế tắc, lựa chọn khó, bất động, trì hoãn",element:"Air",planet:"Moon",
+   upright:{general:"Bế tắc, không thể quyết định, trì hoãn. Cần thông tin để lựa chọn.",love:"Không thể quyết định trong tình yêu, bế tắc. Cần thời gian.",career:"Không thể quyết định công việc, trì hoãn. Cần thông tin.",finance:"Không thể quyết định đầu tư, bế tắc tài chính. Cần tư vấn.",health:"Không thể quyết định điều trị, trì hoãn. Cần bác sĩ.",spirituality:"Bế tắc tâm linh, không thể chọn con đường. Cần thiền định."},
+   reversed:{general:"Quyết định được đưa ra, bế tắc được giải quyết. Cần hành động.",love:"Quyết định trong tình yêu, chấm dứt bế tắc. Cần dũng cảm.",career:"Quyết định công việc, bế tắc được giải quyết. Cần hành động.",finance:"Quyết định đầu tư, bế tắc tài chính được giải quyết. Cần quyết đoán.",health:"Quyết định điều trị, bế tắc sức khỏe được giải quyết. Cần tin tưởng.",spirituality:"Chọn con đường tâm linh, bế tắc được giải quyết. Cần dũng cảm."},
+   symbol:"Một người phụ nữ bịt mắt ngồi trên ghế đá, hai tay cầm hai thanh kiếm chéo, biển đêm phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/9/9e/Swords02.jpg"},
+
+  {id:52,name:"3 of Swords",name_vi:"3 Kiếm",number:3,suit:"swords",arcana:"minor",keywords:"Đau đớn, mất mát, chia ly, tan vỡ",element:"Air",planet:"Saturn",
+   upright:{general:"Đau đớn tâm lý, mất mát, chia ly. Đây là thời điểm của sự tan vỡ. Cần chữa lành.",love:"Chia tay, đau đớn tình cảm, phản bội. Cần thời gian chữa lành.",career:"Mất việc, thất bại, bị phản bội. Cần đứng dậy.",finance:"Mất tiền, đầu tư thất bại. Cần tiết kiệm.",health:"Đau tim, stress nặng, trầm cảm. Cần tìm sự giúp đỡ.",spirituality:"Đau đớn tâm linh, mất niềm tin. Cần chữa lành."},
+   reversed:{general:"Vượt qua đau đớn, chữa lành, tha thứ. Cần buông bỏ.",love:"Vượt qua chia tay, chữa lành vết thương. Cần thời gian.",career:"Vượt qua thất bại, tìm công việc mới. Cần lạc quan.",finance:"Hồi phục tài chính sau mất mát. Cần kiên trì.",health:"Hồi phục sau trầm cảm, chữa lành tâm lý. Cần kiên trì.",spirituality:"Vượt qua đau đớn tâm linh, tìm lại niềm tin. Cần buông bỏ."},
+   symbol:"Một trái tim đỏ bị ba thanh kiếm đâm xuyên, mây đen và mưa phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/0/02/Swords03.jpg"},
+
+  {id:53,name:"4 of Swords",name_vi:"4 Kiếm",number:4,suit:"swords",arcana:"minor",keywords:"Nghỉ ngơi, phục hồi, suy ngẫm, tĩnh lặng",element:"Air",planet:"Jupiter",
+   upright:{general:"Nghỉ ngơi, phục hồi, suy ngẫm. Đây là thời điểm cần tĩnh lặng.",love:"Tạm nghỉ trong mối quan hệ, suy ngẫm. Cần không gian.",career:"Nghỉ phép, phục hồi sau căng thẳng. Cần nghỉ ngơi.",finance:"Tạm dừng chi tiêu, tiết kiệm. Cần phục hồi tài chính.",health:"Nghỉ ngơi để phục hồi, phẫu thuật. Cần kiên nhẫn.",spirituality:"Tĩnh lặng tâm linh, nghỉ ngơi tinh thần. Thiền định sâu."},
+   reversed:{general:"Không chịu nghỉ ngơi, làm việc quá sức. Cần dừng lại.",love:"Không cho đối phương không gian, quá bám dính. Cần buông lỏng.",career:"Làm việc quá sức, kiệt sức. Cần nghỉ ngơi.",finance:"Chi tiêu không kiểm soát, không tiết kiệm. Cần kỷ luật.",health:"Không nghỉ ngơi, bệnh nặng thêm. Cần dừng lại.",spirituality:"Không chịu tĩnh lặng, tâm linh hỗn loạn. Cần thiền định."},
+   symbol:"Một hiệp sĩ nằm trong nhà thờ, tay đặt trên ngực, ba thanh kiếm treo trên tường, một thanh dưới người.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/b/bf/Swords04.jpg"},
+
+  {id:54,name:"5 of Swords",name_vi:"5 Kiếm",number:5,suit:"swords",arcana:"minor",keywords:"Chiến thắng rỗng, xung đột, phản bội, thất bại",element:"Air",planet:"Venus",
+   upright:{general:"Chiến thắng rỗng, xung đột, phản bội. Có thể thắng trận nhưng thua tình.",love:"Xung đột trong tình yêu, chiến thắng nhưng mất đối phương. Cần hòa giải.",career:"Thắng trong tranh chấp nhưng mất đồng nghiệp. Cần đánh giá.",finance:"Thắng tranh chấp tài chính nhưng mất bạn bè. Cần cân nhắc.",health:"Sức khỏe giảm do xung đột. Cần thư giãn.",spirituality:"Chiến thắng tâm linh rỗng tuếch. Cần khiêm tốn."},
+   reversed:{general:"Hòa giải, buông bỏ xung đột, chấp nhận thua. Cần bao dung.",love:"Hòa giải sau xung đột, buông bỏ ganh đua. Cần tha thứ.",career:"Hòa giải với đồng nghiệp, buông bỏ tranh chấp. Cần hợp tác.",finance:"Hòa giải tranh chấp tài chính, buông bỏ. Cần thỏa hiệp.",health:"Sức khỏe cải thiện sau khi buông bỏ xung đột. Cần thư giãn.",spirituality:"Buông bỏ ganh đua tâm linh, hòa hợp. Cần khiêm tốn."},
+   symbol:"Một người đàn ông cầm ba kiếm, nhìn hai người khác rồi đi, hai kiếm rơi trên đất.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/2/23/Swords05.jpg"},
+
+  {id:55,name:"6 of Swords",name_vi:"6 Kiếm",number:6,suit:"swords",arcana:"minor",keywords:"Chuyển tiếp, rồi đi, chữa lành, hy vọng",element:"Air",planet:"Mercury",
+   upright:{general:"Chuyển tiếp, rồi đi khỏi khó khăn, chữa lành. Đây là hành trình đến nơi tốt hơn.",love:"Rồi bỏ mối quan hệ độc hại, tìm bình yên. Cần dũng cảm.",career:"Chuyển công việc, rồi khỏi môi trường độc hại. Cần quyết đoán.",finance:"Rồi bỏ đầu tư thua lỗ, tìm cơ hội mới. Cần cắt lỗ.",health:"Chuyển phương pháp điều trị, tìm bác sĩ mới. Cần kiên trì.",spirituality:"Chuyển con đường tâm linh, rồi khỏi giáo phái cũ. Cần dũng cảm."},
+   reversed:{general:"Không dám rồi đi, bám víu khó khăn. Cần dũng cảm.",love:"Không dám rồi bỏ mối quan hệ độc hại. Cần quyết đoán.",career:"Không dám chuyển việc dù không hạnh phúc. Cần dũng cảm.",finance:"Không dám cắt lỗ, bám víu đầu tư thua lỗ. Cần quyết đoán.",health:"Không dám thay đổi phương pháp điều trị. Cần tin tưởng.",spirituality:"Không dám rồi bỏ giáo phái cũ. Cần dũng cảm."},
+   symbol:"Một người chèo thuyền chở hai người và sáu kiếm qua sông, bờ bên kia xanh tươi hơn.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/2/29/Swords06.jpg"},
+
+  {id:56,name:"7 of Swords",name_vi:"7 Kiếm",number:7,suit:"swords",arcana:"minor",keywords:"Lừa dối, chiến lược, trộm cắp, bí mật",element:"Air",planet:"Moon",
+   upright:{general:"Lừa dối, chiến lược bí mật, trộm cắp. Cần cẩn thận với người xung quanh.",love:"Bí mật trong tình yêu, ngoại tình. Cần điều tra.",career:"Đồng nghiệp không thành thật, bị lừa. Cần cẩn thận.",finance:"Bị lừa đảo tài chính, mất tiền. Cần kiểm tra.",health:"Bệnh ẩn giấu, cần khám kỹ. Chú ý hệ thần kinh.",spirituality:"Bị lừa tâm linh, giáo phái lừa đảo. Cần tỉnh táo."},
+   reversed:{general:"Bí mật bị phơi bày, lừa dối bị phát hiện. Cần thành thật.",love:"Bí mật tình yêu bị phát hiện, ngoại tình lộ ra. Cần đối mặt.",career:"Lừa đảo bị phát hiện, đồng nghiệp bị lộ. Cần minh bạch.",finance:"Lừa đảo tài chính bị phát hiện, có thể lấy lại tiền. Cần luật sư.",health:"Bệnh ẩn giấu được phát hiện, có thể điều trị. Cần bác sĩ.",spirituality:"Lừa đảo tâm linh bị phơi bày. Cần rồi bỏ."},
+   symbol:"Một người đàn ông lén mang đi năm thanh kiếm, nhìn lại hai thanh còn lại, doanh trại phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/3/34/Swords07.jpg"},
+
+  {id:57,name:"8 of Swords",name_vi:"8 Kiếm",number:8,suit:"swords",arcana:"minor",keywords:"Tù túng, hạn chế, sợ hãi, bế tắc",element:"Air",planet:"Jupiter",
+   upright:{general:"Cảm giác tù túng, bị hạn chế, sợ hãi. Nhưng ràng buộc chỉ là ảo giác. Cần dũng cảm.",love:"Cảm giác bị giam cầm trong tình yêu, sợ chia tay. Cần dũng cảm.",career:"Cảm giác bị giam cầm trong công việc, sợ thay đổi. Cần dũng cảm.",finance:"Cảm giác bị giam cầm trong nợ nần, sợ phá sản. Cần tư vấn.",health:"Cảm giác bị giam cầm trong bệnh tật, sợ điều trị. Cần tin tưởng.",spirituality:"Cảm giác bị giam cầm trong tín ngưỡng, sợ rồi bỏ. Cần dũng cảm."},
+   reversed:{general:"Giải thoát, vượt qua sợ hãi, tự do. Cần dũng cảm.",love:"Giải thoát khỏi mối quan hệ độc hại, tự do. Cần dũng cảm.",career:"Giải thoát khỏi công việc độc hại, tự do. Cần dũng cảm.",finance:"Giải thoát khỏi nợ nần, tự do tài chính. Cần quyết đoán.",health:"Giải thoát khỏi bệnh tật, hồi phục. Cần tin tưởng.",spirituality:"Giải thoát khỏi tín ngưỡng giam cầm, tự do. Cần dũng cảm."},
+   symbol:"Một người phụ nữ bịt mắt, tay bị trói, đứng giữa tám thanh kiếm cắm xung quanh, lâu đài xa xăm.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/a/a7/Swords08.jpg"},
+
+  {id:58,name:"9 of Swords",name_vi:"9 Kiếm",number:9,suit:"swords",arcana:"minor",keywords:"Lo âu, ác mộng, tội lỗi, đau khổ tinh thần",element:"Air",planet:"Mars",
+   upright:{general:"Lo âu tột độ, ác mộng, tội lỗi. Đây là thời điểm của đau khổ tinh thần. Cần tìm sự giúp đỡ.",love:"Lo âu trong tình yêu, ác mộng về mối quan hệ. Cần trò chuyện.",career:"Lo âu về công việc, sợ thất bại. Cần tìm sự giúp đỡ.",finance:"Lo âu về tiền bạc, sợ phá sản. Cần tư vấn tài chính.",health:"Mất ngủ, lo âu, trầm cảm nặng. Cần bác sĩ tâm lý.",spirituality:"Tội lỗi tâm linh, ác mộng tâm linh. Cần sám hối."},
+   reversed:{general:"Vượt qua lo âu, tìm lại bình yên. Cần kiên trì.",love:"Vượt qua lo âu tình cảm, tìm lại bình yên. Cần thời gian.",career:"Vượt qua lo âu công việc, tìm lại tự tin. Cần kiên trì.",finance:"Vượt qua lo âu tài chính, tìm lại ổn định. Cần kiên trì.",health:"Vượt qua trầm cảm, tìm lại giấc ngủ. Cần kiên trì.",spirituality:"Vượt qua tội lỗi tâm linh, tìm lại bình yên. Cần sám hối."},
+   symbol:"Một người ngồi trên giường, ôm đầu đau đớn, chín thanh kiếm treo trên tường phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/2/2f/Swords09.jpg"},
+
+  {id:59,name:"10 of Swords",name_vi:"10 Kiếm",number:10,suit:"swords",arcana:"minor",keywords:"Kết thúc đau đớn, phản bội, thất bại, giải thoát",element:"Air",planet:"Sun",
+   upright:{general:"Kết thúc đau đớn, phản bội, thất bại. Nhưng đây là điểm thấp nhất, sau đó sẽ lên. Cần chấp nhận.",love:"Chia tay đau đớn, phản bội tình cảm. Cần chữa lành.",career:"Mất việc, dự án phá sản, bị phản bội. Cần đứng dậy.",finance:"Mất tiền hoàn toàn, phá sản. Cần tái cấu trúc.",health:"Bệnh nặng, cần phẫu thuật. Cần kiên trì.",spirituality:"Mất niềm tin hoàn toàn, giáo phái sụp đổ. Cần tìm lại."},
+   reversed:{general:"Hồi sinh sau thất bại, tìm lại hy vọng. Cần kiên trì.",love:"Hồi sinh sau chia tay, tìm tình yêu mới. Cần thời gian.",career:"Tìm công việc mới sau khi mất việc. Cần lạc quan.",finance:"Hồi phục tài chính sau phá sản. Cần kiên trì.",health:"Hồi phục sau bệnh nặng. Cần kiên trì.",spirituality:"Tìm lại niềm tin sau khi giáo phái sụp đổ. Cần kiên trì."},
+   symbol:"Một người nằm sấp trên đất, mườI thanh kiếm cắm trên lưng, bình minh phía xa.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/d/d4/Swords10.jpg"},
+
+  {id:60,name:"Page of Swords",name_vi:"Sứ Giả Kiếm",number:11,suit:"swords",arcana:"minor",keywords:"Tò mò, tin tức, sự thật, cảnh giác",element:"Air",planet:"",
+   upright:{general:"Tò mò, tin tức quan trọng, sự thật được phơi bày. Cần cảnh giác.",love:"Tin tức về tình yêu, sự thật được phơi bày. Cần lắng nghe.",career:"Tin tức quan trọng về công việc, cần cảnh giác. Có thể có biến động.",finance:"Tin tức tài chính quan trọng, cần kiểm tra. Có thể có rủi ro.",health:"Chẩn đoán mới, cần cảnh giác. Chú ý hô hấp.",spirituality:"Thông điệp tâm linh quan trọng, cần lắng nghe. Có thể có cảnh báo."},
+   reversed:{general:"Tin đồn, nói xấu, sự thật bị bóp méo. Cần kiểm chứng.",love:"Tin đồn về tình yêu, bị nói xấu. Cần đối mặt.",career:"Tin đồn nơi làm việc, bị nói xấu. Cần minh bạch.",finance:"Tin đồn tài chính, bị lừa. Cần kiểm chứng.",health:"Chẩn đoán sai, tin đồn về bệnh. Cần bác sĩ khác.",spirituality:"Tin đồn tâm linh, bị lừa. Cần kiểm chứng."},
+   symbol:"Một chàng trai trẻ cầm kiếm, nhìn lên đám mây, gió thổi tóc, chim bay phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/4/4c/Swords11.jpg"},
+
+  {id:61,name:"Knight of Swords",name_vi:"Hiệp Sĩ Kiếm",number:12,suit:"swords",arcana:"minor",keywords:"Hành động nhanh, quyết đoán, tham vọng, bốc đồng",element:"Air",planet:"",
+   upright:{general:"Hành động nhanh, quyết đoán, tham vọng. Đây là hiệp sĩ của trí tuệ.",love:"Tình yêu đến nhanh, quyết đoán theo đuổi. Có thể yêu nhanh.",career:"Dự án tiến triển nhanh, quyết đoán. Cần tốc độ.",finance:"Đầu tư nhanh, quyết đoán. Cần kiểm soát.",health:"Hồi phục nhanh, cần duy trì. Chú ý tai nạn.",spirituality:"Hành trình tâm linh nhanh, quyết đoán. Cần kiên định."},
+   reversed:{general:"Hành động bốc đồng, thiếu suy nghĩ, hung hăng. Cần bình tĩnh.",love:"Tình yêu bốc đồng, hung hăng. Cần suy nghĩ.",career:"Dự án thất bại do vội vàng, bị sa thải. Cần kiên nhẫn.",finance:"Mất tiền do đầu tư vội vàng. Cần thận trọng.",health:"Tai nạn do bốc đồng, chấn thương. Cần chú ý.",spirituality:"Tu tập bốc đồng, thiếu sâu sắc. Cần kiên trì."},
+   symbol:"Một hiệp sĩ cưỡi ngựa trắng phi nhanh, cầm kiếm giơ cao, mây và gió phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/b/b0/Swords12.jpg"},
+
+  {id:62,name:"Queen of Swords",name_vi:"Nữ Hoàng Kiếm",number:13,suit:"swords",arcana:"minor",keywords:"Độc lập, khách quan, rõ ràng, trí tuệ",element:"Air",planet:"",
+   upright:{general:"Độc lập, khách quan, rõ ràng. Đây là nữ hoàng của trí tuệ.",love:"Tình yêu độc lập, khách quan. Có thể gặp người trí tuệ.",career:"Lãnh đạo bằng trí tuệ, khách quan. Được tôn trọng.",finance:"Tài chính độc lập, quyết định sáng suốt. Có thể đầu tư thông minh.",health:"Sức khỏe tốt nhờ lý trí. Chú ý hô hấp.",spirituality:"Lãnh đạo tâm linh bằng trí tuệ, khách quan. Thiền về sự thật."},
+   reversed:{general:"Lạnh lùng, khắc nghiệt, thiếu cảm xúc. Cần mở lòng.",love:"Lạnh lùng trong tình yêu, thiếu cảm xúc. Cần ấm áp hơn.",career:"Lãnh đạo khắc nghiệt, nhân viên sợ hãi. Cần nhân hậu.",finance:"Quyết định tài chính khắc nghiệt, mất bạn bè. Cần cân nhắc.",health:"Sức khỏe giảm do kìm nén cảm xúc. Cần thể hiện.",spirituality:"Lãnh đạo tâm linh khắc nghiệt, thiếu từ bi. Cần mở lòng."},
+   symbol:"Một người phụ nữ ngồi trên ngai trên đỉnh núi, cầm kiếm, mây bay qua, chim đậu trên tay.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/d/d4/Swords13.jpg"},
+
+  {id:63,name:"King of Swords",name_vi:"Vua Kiếm",number:14,suit:"swords",arcana:"minor",keywords:"Lãnh đạo trí tuệ, công lý, khách quan, quyền lực",element:"Air",planet:"",
+   upright:{general:"Lãnh đạo bằng trí tuệ, công lý, khách quan. Đây là vua của sự thật.",love:"Tình yêu trưởng thành, công bằng. Có thể gặp người trí tuệ.",career:"Lãnh đạo công lý, được tôn trọng. Có thể làm luật sư, thẩm phán.",finance:"Tài chính công bằng, đầu tư khách quan. Có thể thắng kiện.",health:"Sức khỏe tốt nhờ lý trí. Chú ý hô hấp.",spirituality:"Lãnh đạo tâm linh bằng công lý, sự thật. Thiền về chân lý."},
+   reversed:{general:"Độc đoán, lạm dụng quyền lực, thao túng. Cần khiêm tốn.",love:"Độc đoán trong tình yêu, thao túng. Cần chân thành.",career:"Lãnh đạo độc đoán, lạm dụng quyền lực. Cần đối mặt.",finance:"Thao túng tài chính, lừa đảo. Cần cẩn thận.",health:"Sức khỏe giảm do áp lực quyền lực. Cần thư giãn.",spirituality:"Lãnh đạo tâm linh độc đoán, lạm dụng quyền lực. Cần tỉnh táo."},
+   symbol:"Một người đàn ông ngồi trên ngai, cầm kiếm, mặc áo choàng xanh, chim đại bàng phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/3/33/Swords14.jpg"},
+
+  // PENTACLES (Earth) - 14 cards
+  {id:64,name:"Ace of Pentacles",name_vi:"Át Đồng Tiền",number:1,suit:"pentacles",arcana:"minor",keywords:"Cơ hội, thịnh vượng, vật chất, khởi đầu tài chính",element:"Earth",planet:"",
+   upright:{general:"Cơ hội tài chính mới, thịnh vượng, vật chất. Đây là khởi đầu của sự giàu có.",love:"Tình yêu ổn định, có cơ sở vật chất. Có thể gặp người đáng tin.",career:"Cơ hội công việc mới, dự án sinh lợi. Cần nắm bắt.",finance:"Cơ hội đầu tư mới, tiền bạc đến. Cần quyết đoán.",health:"Sức khỏe tốt, cơ thể khỏe mạnh. Chú ý da, xương.",spirituality:"Kết nối tâm linh với đất, thịnh vượng tâm linh. Thiền trong thiên nhiên."},
+   reversed:{general:"Cơ hội bị bỏ lỡ, thiếu thịnh vượng. Cần hành động.",love:"Tình yêu thiếu ổn định, không có cơ sở. Cần xây dựng.",career:"Cơ hội công việc bị bỏ lỡ. Cần nắm bắt.",finance:"Cơ hội đầu tư bị bỏ lỡ, mất tiền. Cần quyết đoán.",health:"Sức khỏe giảm, cần chú ý. Chú ý da, xương.",spirituality:"Mất kết nối với đất, tâm linh thiếu ổn định. Cần thiền."},
+   symbol:"Một bàn tay từ đám mây cầm đồng tiền vàng, vườn hoa hồng và cây leo xung quanh, cổng vòm phía xa.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/f/fd/Pents01.jpg"},
+
+  {id:65,name:"2 of Pentacles",name_vi:"2 Đồng Tiền",number:2,suit:"pentacles",arcana:"minor",keywords:"Cân bằng, linh hoạt, thay đổi, thích ứng",element:"Earth",planet:"Jupiter",
+   upright:{general:"Cân bằng nhiều việc, linh hoạt, thích ứng. Đây là nghệ thuật của sự cân bằng.",love:"Cân bằng nhiều mối quan hệ, linh hoạt. Cần trung thực.",career:"Cân bằng nhiều dự án, linh hoạt. Cần tổ chức.",finance:"Cân bằng thu chi, linh hoạt tài chính. Cần kế hoạch.",health:"Cân bằng sức khỏe, linh hoạt. Chú ý cột sống.",spirituality:"Cân bằng nhiều truyền thống, linh hoạt tâm linh. Cần hòa hợp."},
+   reversed:{general:"Mất cân bằng, quá tải, không linh hoạt. Cần ưu tiên.",love:"Mất cân bằng mối quan hệ, quá tải. Cần chọn lọc.",career:"Quá tải công việc, mất cân bằng. Cần từ chối.",finance:"Mất cân bằng tài chính, nợ nần. Cần kế hoạch.",health:"Mất cân bằng sức khỏe, kiệt sức. Cần nghỉ ngơi.",spirituality:"Mất cân bằng tâm linh, quá tải. Cần đơn giản hóa."},
+   symbol:"Một người đàn ông tung hai đồng tiền trên dây, sóng biển phía sau, tàu thuyền lênh đênh.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/9/9f/Pents02.jpg"},
+
+  {id:66,name:"3 of Pentacles",name_vi:"3 Đồng Tiền",number:3,suit:"pentacles",arcana:"minor",keywords:"Hợp tác, kỹ năng, học hỏi, thành tựu",element:"Earth",planet:"Mars",
+   upright:{general:"Hợp tác tốt, kỹ năng được công nhận, học hỏi. Đây là thành tựu của sự chăm chỉ.",love:"Mối quan hệ phát triển qua hợp tác, học hỏi lẫn nhau. Cần trân trọng.",career:"Hợp tác thành công, kỹ năng được công nhận. Có thể thăng tiến.",finance:"Hợp tác đầu tư thành công, sinh lợi. Cần tiếp tục.",health:"Sức khỏe cải thiện nhờ hợp tác điều trị. Chú ý cột sống.",spirituality:"Hợp tác tâm linh, học hỏi từ thầy. Cần khiêm tốn."},
+   reversed:{general:"Thiếu hợp tác, kỹ năng bị phủ nhận, cãi vã. Cần lắng nghe.",love:"Thiếu hợp tác trong mối quan hệ, cãi vã. Cần hòa giải.",career:"Thiếu hợp tác, kỹ năng bị phủ nhận. Cần cải thiện.",finance:"Hợp tác đầu tư thất bại, tranh chấp. Cần luật sư.",health:"Sức khỏe giảm do thiếu hợp tác điều trị. Cần tuân thủ.",spirituality:"Thiếu hợp tác tâm linh, cãi vã. Cần bao dung."},
+   symbol:"Một người thợ đang điêu khắc trong nhà thờ, hai người khác quan sát và đánh giá, ba đồng tiền trên tường.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/4/42/Pents03.jpg"},
+
+  {id:67,name:"4 of Pentacles",name_vi:"4 Đồng Tiền",number:4,suit:"pentacles",arcana:"minor",keywords:"Bảo vệ, kiểm soát, keo kiệt, ổn định",element:"Earth",planet:"Sun",
+   upright:{general:"Bảo vệ tài sản, kiểm soát, ổn định. Cần cân bằng giữa giữ và cho.",love:"Bảo vệ mối quan hệ, kiểm soát. Có thể keo kiệt tình cảm. Cần mở lòng.",career:"Bảo vệ vị trí, kiểm soát công việc. Có thể keo kiệt thông tin. Cần chia sẻ.",finance:"Bảo vệ tài sản, tiết kiệm. Có thể keo kiệt quá mức. Cần cân bằng.",health:"Bảo vệ sức khỏe, kiểm soát chế độ. Chú ý da, xương.",spirituality:"Bảo vệ niềm tin, kiểm soát tâm linh. Cần chia sẻ."},
+   reversed:{general:"Buông bỏ kiểm soát, chi tiêu, cho đi. Cần linh hoạt.",love:"Buông bỏ kiểm soát, cho đi tình cảm. Cần tin tưởng.",career:"Buông bỏ kiểm soát, chia sẻ công việc. Cần hợp tác.",finance:"Buông bỏ keo kiệt, chi tiêu, cho đi. Cần linh hoạt.",health:"Buông bỏ kiểm soát, thư giãn. Cần nghỉ ngơi.",spirituality:"Buông bỏ kiểm soát tâm linh, chia sẻ. Cần mở lòng."},
+   symbol:"Một người ngồi trên ghế, ôm chặt bốn đồng tiền, chân đạp lên hai đồng, thành phố phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/3/35/Pents04.jpg"},
+
+  {id:68,name:"5 of Pentacles",name_vi:"5 Đồng Tiền",number:5,suit:"pentacles",arcana:"minor",keywords:"Khó khăn, mất mát, cô đơn, cần giúp đỡ",element:"Earth",planet:"Mercury",
+   upright:{general:"Khó khăn tài chính, mất mát, cô đơn. Nhưng giúp đỡ đang ở gần. Cần mở lòng.",love:"Khó khăn trong tình yêu, cảm thấy cô đơn. Cần tìm sự giúp đỡ.",career:"Khó khăn công việc, mất việc. Cần tìm sự giúp đỡ.",finance:"Khó khăn tài chính, nợ nần. Cần tìm sự giúp đỡ.",health:"Bệnh tật, cô đơn. Cần tìm bác sĩ, người thân.",spirituality:"Khó khăn tâm linh, cô đơn. Cần tìm cộng đồng."},
+   reversed:{general:"Vượt qua khó khăn, tìm lại ổn định. Cần kiên trì.",love:"Vượt qua khó khăn tình cảm, tìm lại hạnh phúc. Cần kiên trì.",career:"Vượt qua khó khăn công việc, tìm lại ổn định. Cần kiên trì.",finance:"Vượt qua khó khăn tài chính, trả nợ. Cần kiên trì.",health:"Hồi phục sau bệnh tật, tìm lại sức khỏe. Cần kiên trì.",spirituality:"Vượt qua khó khăn tâm linh, tìm lại niềm tin. Cần kiên trì."},
+   symbol:"Hai người nghèo khổ đi trong tuyết, một người què, nhà thờ sáng đèn phía sau với năm đồng tiền trên cửa sổ.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/9/96/Pents05.jpg"},
+
+  {id:69,name:"6 of Pentacles",name_vi:"6 Đồng Tiền",number:6,suit:"pentacles",arcana:"minor",keywords:"Cho và nhận, công bằng, từ thiện, cân bằng",element:"Earth",planet:"Moon",
+   upright:{general:"Cho và nhận, công bằng, từ thiện. Đây là sự cân bằng của vật chất.",love:"Cho và nhận tình cảm cân bằng. Có thể giúp đỡ đối phương.",career:"Công bằng nơi làm việc, được đánh giá đúng. Có thể được thưởng.",finance:"Cho và nhận tiền bạc cân bằng. Có thể làm từ thiện.",health:"Sức khỏe cân bằng, cho và nhận năng lượng. Chú ý cột sống.",spirituality:"Cho và nhận tâm linh cân bằng. Cần từ thiện."},
+   reversed:{general:"Mất cân bằng cho và nhận, bóc lột, nợ nần. Cần công bằng.",love:"Mất cân bằng tình cảm, một bên cho quá nhiều. Cần công bằng.",career:"Bóc lột nơi làm việc, không được đánh giá đúng. Cần đấu tranh.",finance:"Cho quá nhiều hoặc nhận quá nhiều. Cần cân bằng.",health:"Sức khỏe mất cân bằng. Cần điều chỉnh.",spirituality:"Mất cân bằng tâm linh, bóc lột. Cần công bằng."},
+   symbol:"Một người giàu có đứng cầm cân, cho tiền hai người nghèo quỳ dưới chân, sáu đồng tiền xung quanh.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/a/a6/Pents06.jpg"},
+
+  {id:70,name:"7 of Pentacles",name_vi:"7 Đồng Tiền",number:7,suit:"pentacles",arcana:"minor",keywords:"Kiên nhẫn, đánh giá, chờ đợi, nỗ lực",element:"Earth",planet:"Saturn",
+   upright:{general:"Kiên nhẫn chờ đợi kết quả, đánh giá nỗ lực. Đây là thời điểm của sự chờ đợi.",love:"Kiên nhẫn chờ đợi mối quan hệ phát triển. Cần đánh giá.",career:"Kiên nhẫn chờ đợi dự án kết quả. Cần đánh giá.",finance:"Kiên nhẫn chờ đợi đầu tư sinh lợi. Cần đánh giá.",health:"Kiên nhẫn chờ đợi điều trị kết quả. Cần kiên trì.",spirituality:"Kiên nhẫn chờ đợi giác ngộ. Cần tu tập."},
+   reversed:{general:"Thiếu kiên nhẫn, bỏ cuộc, nỗ lực vô ích. Cần kiên trì.",love:"Thiếu kiên nhẫn trong tình yêu, bỏ cuộc. Cần cố gắng.",career:"Thiếu kiên nhẫn công việc, bỏ dở. Cần kiên trì.",finance:"Thiếu kiên nhẫn đầu tư, rút vốn sớm. Cần kiên trì.",health:"Thiếu kiên nhẫn điều trị, bỏ cuộc. Cần kiên trì.",spirituality:"Thiếu kiên nhẫn tu tập, nản lòng. Cần kiên trì."},
+   symbol:"Một người đàn ông đứng dựa vào cuốc, nhìn bụi cây có bảy đồng tiền, vẻ mặt suy tư.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/6/6a/Pents07.jpg"},
+
+  {id:71,name:"8 of Pentacles",name_vi:"8 Đồng Tiền",number:8,suit:"pentacles",arcana:"minor",keywords:"Chăm chỉ, kỹ năng, học hỏi, hoàn thiện",element:"Earth",planet:"Sun",
+   upright:{general:"Chăm chỉ học hỏi, hoàn thiện kỹ năng. Đây là thời điểm của sự rèn luyện.",love:"Chăm chỉ xây dựng mối quan hệ, học hỏi lẫn nhau. Cần kiên trì.",career:"Chăm chỉ làm việc, hoàn thiện kỹ năng. Có thể được thăng tiến.",finance:"Chăm chỉ kiếm tiền, tích lũy. Cần kiên trì.",health:"Chăm chỉ chăm sóc sức khỏe, tập luyện. Cần kiên trì.",spirituality:"Chăm chỉ tu tập, hoàn thiện tâm linh. Cần kiên trì."},
+   reversed:{general:"Lười biếng, thiếu kỹ năng, làm việc qua loa. Cần cố gắng.",love:"Lười biếng trong mối quan hệ, thiếu nỗ lực. Cần cố gắng.",career:"Lười biếng công việc, thiếu kỹ năng. Cần học hỏi.",finance:"Lười biếng kiếm tiền, thiếu kế hoạch. Cần cố gắng.",health:"Lười biếng chăm sóc sức khỏe. Cần tập luyện.",spirituality:"Lười biếng tu tập, thiếu nỗ lực. Cần cố gắng."},
+   symbol:"Một người thợ đang đục đẽo đồng tiền thứ tám, bảy đồng tiền hoàn thiện treo trên tường, thành phố phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/4/49/Pents08.jpg"},
+
+  {id:72,name:"9 of Pentacles",name_vi:"9 Đồng Tiền",number:9,suit:"pentacles",arcana:"minor",keywords:"Độc lập, sang trọng, tự tin, hưởng thụ",element:"Earth",planet:"Venus",
+   upright:{general:"Độc lập tài chính, sang trọng, tự tin. Đây là thành quả của sự chăm chỉ.",love:"Tình yêu độc lập, tự tin. Có thể gặp người thành đạt.",career:"Sự nghiệp độc lập, thành công. Có thể làm chủ.",finance:"Tài chính độc lập, sang trọng. Có thể mua nhà, xe.",health:"Sức khỏe tốt, cơ thể đẹp. Chú ý da.",spirituality:"Tâm linh độc lập, tự tin. Cần khiêm tốn."},
+   reversed:{general:"Phụ thuộc, thiếu tự tin, sang trọng giả tạo. Cần độc lập.",love:"Phụ thuộc tình cảm, thiếu tự tin. Cần độc lập.",career:"Phụ thuộc công việc, thiếu tự tin. Cần học hỏi.",finance:"Phụ thuộc tài chính, nợ nần. Cần kiếm tiền.",health:"Sức khỏe giảm do lười vận động. Cần tập luyện.",spirituality:"Phụ thuộc tâm linh, thiếu tự tin. Cần độc lập."},
+   symbol:"Một người phụ nữ sang trọng đứng trong vườn nho, chim phượng hoàng đậu trên tay, chín đồng tiền xung quanh.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/f/f0/Pents09.jpg"},
+
+  {id:73,name:"10 of Pentacles",name_vi:"10 Đồng Tiền",number:10,suit:"pentacles",arcana:"minor",keywords:"Gia đình, thừa kế, thịnh vượng, truyền thống",element:"Earth",planet:"Mercury",
+   upright:{general:"Gia đình thịnh vượng, thừa kế, truyền thống. Đây là sự viên mãn vật chất.",love:"Tình yêu gia đình, hôn nhân bền vững. Có thể có con.",career:"Sự nghiệp gia đình, thừa kế doanh nghiệp. Cần trân trọng.",finance:"Tài chính gia đình, thừa kế, đầu tư dài hạn. Có thể mua nhà.",health:"Sức khỏe gia đình, di truyền tốt. Chú ý xương khớp.",spirituality:"Truyền thống tâm linh gia đình, thừa kế. Cần trân trọng."},
+   reversed:{general:"Gia đình xung đột, mất thừa kế, truyền thống phá vỡ. Cần hòa giải.",love:"Gia đình phản đối tình yêu, xung đột. Cần hòa giải.",career:"Xung đột gia đình trong công việc, mất thừa kế. Cần luật sư.",finance:"Mất thừa kế, tranh chấp tài sản gia đình. Cần luật sư.",health:"Bệnh di truyền, sức khỏe gia đình giảm. Cần khám.",spirituality:"Phá vỡ truyền thống tâm linh gia đình. Cần cân nhắc."},
+   symbol:"Một gia đình ba thế hệ trong lâu đài, chó chạy quanh, mườI đồng tiền xếp thành cây gia đình.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/4/42/Pents10.jpg"},
+
+  {id:74,name:"Page of Pentacles",name_vi:"Sứ Giả Đồng Tiền",number:11,suit:"pentacles",arcana:"minor",keywords:"Học hỏi, cơ hội, thực tế, khởi đầu",element:"Earth",planet:"",
+   upright:{general:"Học hỏi kỹ năng mới, cơ hội thực tế. Đây là khởi đầu của sự chăm chỉ.",love:"Học hỏi về tình yêu, cơ hội thực tế. Cần kiên nhẫn.",career:"Học hỏi công việc mới, cơ hội thực tập. Cần nắm bắt.",finance:"Học hỏi quản lý tài chính, cơ hội đầu tư nhỏ. Cần kiên nhẫn.",health:"Học hỏi chăm sóc sức khỏe, cơ hội cải thiện. Cần kiên trì.",spirituality:"Học hỏi tâm linh, cơ hội thực hành. Cần kiên nhẫn."},
+   reversed:{general:"Thiếu thực tế, cơ hội bị bỏ lỡ, lười học. Cần cố gắng.",love:"Thiếu thực tế trong tình yêu, cơ hội bị bỏ lỡ. Cần cố gắng.",career:"Thiếu thực tế công việc, cơ hội bị bỏ lỡ. Cần học hỏi.",finance:"Thiếu thực tế tài chính, cơ hội bị bỏ lỡ. Cần cố gắng.",health:"Thiếu thực tế chăm sóc sức khỏe. Cần học hỏi.",spirituality:"Thiếu thực tế tu tập, cơ hội bị bỏ lỡ. Cần cố gắng."},
+   symbol:"Một chàng trai trẻ đứng trong vườn, cầm đồng tiền, nhìn lên cây, núi phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/e/ec/Pents11.jpg"},
+
+  {id:75,name:"Knight of Pentacles",name_vi:"Hiệp Sĩ Đồng Tiền",number:12,suit:"pentacles",arcana:"minor",keywords:"Chăm chỉ, kiên trì, trách nhiệm, thực tế",element:"Earth",planet:"",
+   upright:{general:"Chăm chỉ, kiên trì, trách nhiệm. Đây là hiệp sĩ của sự chăm chỉ.",love:"Tình yêu chăm chỉ, kiên trì. Có thể gặp người đáng tin.",career:"Chăm chỉ làm việc, kiên trì. Có thể được thăng tiến.",finance:"Chăm chỉ kiếm tiền, kiên trì. Cần tiếp tục.",health:"Chăm chỉ chăm sóc sức khỏe, kiên trì. Cần tiếp tục.",spirituality:"Chăm chỉ tu tập, kiên trì. Cần tiếp tục."},
+   reversed:{general:"Chậm chạp, cứng nhắc, thiếu linh hoạt. Cần linh hoạt.",love:"Chậm chạp trong tình yêu, cứng nhắc. Cần linh hoạt.",career:"Chậm chạp công việc, cứng nhắc. Cần linh hoạt.",finance:"Chậm chạp kiếm tiền, cứng nhắc. Cần linh hoạt.",health:"Chậm chạp chăm sóc sức khỏe, cứng nhắc. Cần linh hoạt.",spirituality:"Chậm chạp tu tập, cứng nhắc. Cần linh hoạt."},
+   symbol:"Một hiệp sĩ cưỡi ngựa đen chậm rãi, cầm đồng tiền, ruộng đồng phía sau.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/d/d5/Pents12.jpg"},
+
+  {id:76,name:"Queen of Pentacles",name_vi:"Nữ Hoàng Đồng Tiền",number:13,suit:"pentacles",arcana:"minor",keywords:"Nuôi dưỡng, thực tế, sang trọng, chăm sóc",element:"Earth",planet:"",
+   upright:{general:"Nuôi dưỡng, thực tế, sang trọng. Đây là nữ hoàng của vật chất.",love:"Tình yêu nuôi dưỡng, thực tế. Có thể gặp người chu đáo.",career:"Lãnh đạo bằng sự chăm sóc, thực tế. Được yêu mến.",finance:"Tài chính nuôi dưỡng, đầu tư thực tế. Có thể kinh doanh.",health:"Sức khỏe tốt nhờ chăm sóc. Chú ý da, xương.",spirituality:"Nuôi dưỡng tâm linh, thực hành thực tế. Thiền trong vườn."},
+   reversed:{general:"Keo kiệt, tham lam, thiếu chăm sóc. Cần chia sẻ.",love:"Keo kiệt tình cảm, tham lam. Cần chia sẻ.",career:"Keo kiệt thông tin, tham lam. Cần chia sẻ.",finance:"Keo kiệt tiền bạc, tham lam. Cần chia sẻ.",health:"Keo kiệt chăm sóc sức khỏe. Cần đầu tư.",spirituality:"Keo kiệt tâm linh, tham lam. Cần chia sẻ."},
+   symbol:"Một người phụ nữ ngồi trên ngai trong vườn, cầm đồng tiền, thỏ đậu trên chân, cây cối xanh tươi.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/8/88/Pents13.jpg"},
+
+  {id:77,name:"King of Pentacles",name_vi:"Vua Đồng Tiền",number:14,suit:"pentacles",arcana:"minor",keywords:"Thịnh vượng, lãnh đạo, ổn định, thực tế",element:"Earth",planet:"",
+   upright:{general:"Thịnh vượng, lãnh đạo, ổn định. Đây là vua của vật chất.",love:"Tình yêu ổn định, thịnh vượng. Có thể gặp người thành đạt.",career:"Lãnh đạo thịnh vượng, ổn định. Có thể làm chủ doanh nghiệp.",finance:"Tài chính thịnh vượng, ổn định. Có thể đầu tư lớn.",health:"Sức khỏe tốt, cơ thể khỏe mạnh. Chú ý da, xương.",spirituality:"Lãnh đạo tâm linh thịnh vượng, ổn định. Thiền về đất."},
+   reversed:{general:"Tham lam, bóc lột, thiếu ổn định. Cần cân bằng.",love:"Tham lam trong tình yêu, bóc lột. Cần cân bằng.",career:"Tham lam công việc, bóc lột nhân viên. Cần cân bằng.",finance:"Tham lam tiền bạc, đầu tư rủi ro. Cần cân bằng.",health:"Tham lam ăn uống, sức khỏe giảm. Cần cân bằng.",spirituality:"Tham lam tâm linh, bóc lột tín đồ. Cần cân bằng."},
+   symbol:"Một người đàn ông ngồi trên ngai trong vườn, cầm đồng tiền và quyền trượng, bò đực phía sau, lâu đài xa xăm.",
+   imageUrl:"https://upload.wikimedia.org/wikipedia/commons/1/1c/Pents14.jpg"}
+];
+
+// ===== SPREAD CONFIGURATIONS =====
+const SPREADS = {
+  one: {
+    name: "Một Lá",
+    name_en: "One Card",
+    count: 1,
+    positions: ["LờI khuyên từ vũ trụ"],
+    layout: "one"
+  },
+  three: {
+    name: "Ba Lá",
+    name_en: "Three Card Spread",
+    count: 3,
+    positions: ["Quá khứ", "Hiện tại", "Tương lai"],
+    layout: "three"
+  },
+  celtic: {
+    name: "Celtic Cross",
+    name_en: "Celtic Cross",
+    count: 10,
+    positions: [
+      "Hiện tại", "Thử thách", "Quá khứ", "Tương lai gần",
+      "Mục tiêu", "Nền tảng", "Bản thân", "Môi trường",
+      "Hy vọng/Sợ hãi", "Kết quả"
+    ],
+    layout: "celtic"
+  },
+  relationship: {
+    name: "Tình Yêu",
+    name_en: "Relationship Spread",
+    count: 5,
+    positions: [
+      "Bạn", "Đối phương", "Mối quan hệ",
+      "Thử thách", "Tiềm năng"
+    ],
+    layout: "relationship"
+  },
+  career: {
+    name: "Sự Nghiệp",
+    name_en: "Career Spread",
+    count: 5,
+    positions: [
+      "Hiện tại", "Điểm mạnh", "Thử thách",
+      "Hành động", "Kết quả"
+    ],
+    layout: "career"
+  },
+  horseshoe: {
+    name: "Horseshoe",
+    name_en: "Horseshoe Spread",
+    count: 7,
+    positions: [
+      "Quá khứ", "Hiện tại", "Ẩn giấu",
+      "LờI khuyên", "Ngưởi xung quanh", "Thử thách", "Kết quả"
+    ],
+    layout: "horseshoe"
+  }
+};
+
+const TOPICS = {
+  general: "Tổng Quan",
+  love: "Tình Yêu",
+  career: "Sự Nghiệp",
+  finance: "Tài Chính",
+  health: "Sức Khỏe",
+  spirituality: "Tâm Linh"
+};
+
+// ===== STATE =====
+let currentSpread = 'one';
+let currentTopic = 'general';
+let currentReading = null;
+let particlesEnabled = true;
+
+// ===== UTILITIES =====
+function shuffleArray(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function getCardImage(card, reversed) {
+  const rotStyle = reversed ? 'transform:rotate(180deg);' : '';
+  return `<img src="${card.imageUrl}" alt="${card.name_vi}" 
+    style="width:100%;height:100%;object-fit:cover;border-radius:8px;${rotStyle}"
+    loading="lazy"
+    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+  <div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;background:linear-gradient(145deg,#1e1e32,#0c0c1a);border-radius:8px;">
+    <span style="color:var(--accent-gold);font-size:24px;opacity:0.5;">✦</span>
+  </div>`;
+}
+// ===== UI FUNCTIONS =====
+function selectSpread(el) {
+  document.querySelectorAll('.spread-card').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  currentSpread = el.dataset.spread;
+}
+
+function selectTopic(el) {
+  document.querySelectorAll('.topic-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  currentTopic = el.dataset.topic;
+}
+
+function showView(view) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+
+  document.getElementById('homeView').classList.add('hidden');
+  document.getElementById('historyView').classList.add('hidden');
+  document.getElementById('favoritesView').classList.add('hidden');
+  document.getElementById('deckView').classList.add('hidden');
+  document.getElementById('settingsView').classList.add('hidden');
+  document.getElementById('readingView').classList.remove('active');
+
+  if (view === 'home') {
+    document.getElementById('homeView').classList.remove('hidden');
+  } else if (view === 'history') {
+    document.getElementById('historyView').classList.remove('hidden');
+    renderHistory();
+  } else if (view === 'favorites') {
+    document.getElementById('favoritesView').classList.remove('hidden');
+    renderFavorites();
+  } else if (view === 'deck') {
+    document.getElementById('deckView').classList.remove('hidden');
+    renderDeck();
+  } else if (view === 'settings') {
+    document.getElementById('settingsView').classList.remove('hidden');
+  }
+}
+
+function showSettings() {
+  document.getElementById('homeView').classList.add('hidden');
+  document.getElementById('historyView').classList.add('hidden');
+  document.getElementById('favoritesView').classList.add('hidden');
+  document.getElementById('deckView').classList.add('hidden');
+  document.getElementById('readingView').classList.remove('active');
+  document.getElementById('settingsView').classList.remove('hidden');
+}
+
+// ===== READING FUNCTIONS =====
+function startReading() {
+  const question = document.getElementById('questionInput').value.trim();
+  const spread = SPREADS[currentSpread];
+
+  document.getElementById('shuffleOverlay').classList.add('active');
+  document.getElementById('drawBtn').disabled = true;
+
+  setTimeout(() => {
+    const shuffled = shuffleArray(TAROT_DECK);
+    const drawn = shuffled.slice(0, spread.count).map((card, i) => ({
+      ...card,
+      position: i,
+      positionName: spread.positions[i],
+      reversed: Math.random() < 0.15,
+      spreadType: currentSpread
+    }));
+
+    currentReading = {
+      id: Date.now(),
+      date: new Date().toLocaleString('vi-VN'),
+      spread: currentSpread,
+      topic: currentTopic,
+      question: question,
+      cards: drawn
+    };
+
+    renderReading();
+    document.getElementById('shuffleOverlay').classList.remove('active');
+    document.getElementById('drawBtn').disabled = false;
+
+    document.getElementById('homeView').classList.add('hidden');
+    document.getElementById('readingView').classList.add('active');
+
+    // Auto flip cards with delay
+    drawn.forEach((card, i) => {
+      setTimeout(() => {
+        const el = document.getElementById(`card-${i}`);
+        if (el) el.classList.add('flipped');
+      }, 300 + i * 400);
+    });
+  }, 2500);
+}
+
+function renderReading() {
+  const spread = SPREADS[currentReading.spread];
+  const topicLabel = TOPICS[currentReading.topic];
+
+  document.getElementById('readingTitle').textContent = spread.name.toUpperCase();
+  document.getElementById('readingTopic').textContent = `Chủ đề: ${topicLabel}`;
+  document.getElementById('readingQuestion').textContent = currentReading.question ? `"${currentReading.question}"` : 'Không có câu hỏi cụ thể';
+
+  const layout = document.getElementById('spreadLayout');
+  layout.className = 'spread-layout';
+  if (spread.layout === 'celtic') layout.classList.add('celtic-cross-layout');
+  else if (spread.layout === 'horseshoe') layout.classList.add('horseshoe-layout');
+  else if (spread.layout === 'relationship') layout.classList.add('relationship-layout');
+  else if (spread.layout === 'career') layout.classList.add('career-layout');
+
+  layout.innerHTML = currentReading.cards.map((card, i) => `
+    <div class="card-slot animate-in" style="animation-delay:${i*0.1}s">
+      <div class="slot-label">${card.positionName}</div>
+      <div class="tarot-card" id="card-${i}" onclick="showCardDetail(${i})">
+        <div class="tarot-card-inner">
+          <div class="tarot-card-back"></div>
+          <div class="tarot-card-front">
+            <div class="card-image-area">
+              ${getCardImage(card, card.reversed)}
+            </div>
+            <div class="card-name-area">
+              <div class="cn-name">${card.name_vi}${card.reversed ? ' (Ngược)' : ''}</div>
+              <div class="cn-name-vi">${card.name}</div>
+            </div>
+            ${card.reversed ? '<div class="card-reversed-badge">NGƯỢC</div>' : ''}
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // Generate interpretation
+  generateInterpretation();
+}
+
+// ===== DEEP INTERPRETATION ENGINE =====
+
+const ELEMENT_MEANINGS = {
+  Fire: { name: "Lửa", nature: "năng lượng, đam mê, hành động, ý chí", excess: "bốc đồng, nóng nảy, kiệt sức", lack: "thiếu động lực, trì trệ, lạnh nhạt" },
+  Water: { name: "Nước", nature: "cảm xúc, trực giác, tiềm thức, liên kết", excess: "quá nhạy cảm, bám víu, ảo tưởng", lack: "khô cằn cảm xúc, thiếu đồng cảm, cứng nhắc" },
+  Air: { name: "Khí", nature: "trí tuệ, giao tiếp, sự thật, ý tưởng", excess: "lý trí quá mức, lạnh lùng, nghi ngờ", lack: "thiếu clarity, confusion, khó diễn đạt" },
+  Earth: { name: "Đất", nature: "vật chất, thực tế, ổn định, cơ thể", excess: "bảo thủ, tham lam, cứng nhắc", lack: "bất ổn, thiếu thực tế, bay bổng" }
+};
+
+const PLANET_INFLUENCES = {
+  "Sun": "bản ngã, ý thức, sức sống, thành công",
+  "Moon": "tiềm thức, cảm xúc, chu kỳ, trực giác",
+  "Mercury": "giao tiếp, trí tuệ, thương lượng, di chuyển",
+  "Venus": "tình yêu, vẻ đẹp, giá trị, hòa hợp",
+  "Mars": "hành động, chiến đấu, dục vọng, can đảm",
+  "Jupiter": "may mắn, mở rộng, tri thức, tín ngưỡng",
+  "Saturn": "kỷ luật, bài học, giới hạn, trách nhiệm",
+  "Uranus": "đổi mới, độc lập, giải phóng, bất ngờ",
+  "Neptune": "mơ mộng, tâm linh, ảo giác, đồng cảm",
+  "Pluto": "chuyển đổi, quyền lực sâu, tái sinh, nghiệp",
+  "": "không có hành tinh chủ quản cụ thể"
+};
+
+function analyzeEnergy(cards) {
+  const total = cards.length;
+  const majorCount = cards.filter(c => c.arcana === 'major').length;
+  const minorCount = total - majorCount;
+  const reversedCount = cards.filter(c => c.reversed).length;
+  const uprightCount = total - reversedCount;
+
+  // Element analysis
+  const elements = {};
+  cards.forEach(c => { elements[c.element] = (elements[c.element] || 0) + 1; });
+
+  // Planet analysis
+  const planets = {};
+  cards.forEach(c => { if (c.planet) planets[c.planet] = (planets[c.planet] || 0) + 1; });
+
+  // Suit analysis for minors
+  const suits = {};
+  cards.filter(c => c.suit).forEach(c => { suits[c.suit] = (suits[c.suit] || 0) + 1; });
+
+  return { total, majorCount, minorCount, reversedCount, uprightCount, elements, planets, suits };
+}
+
+function getElementBalance(elements, total) {
+  const result = [];
+  const allElements = ['Fire', 'Water', 'Air', 'Earth'];
+  allElements.forEach(el => {
+    const count = elements[el] || 0;
+    const ratio = count / total;
+    if (ratio >= 0.4) result.push(`${ELEMENT_MEANINGS[el].name} chiếm ưu thế — năng lượng ${ELEMENT_MEANINGS[el].nature} đang dâng cao. Cảnh giác: ${ELEMENT_MEANINGS[el].excess}.`);
+    else if (ratio === 0) result.push(`Thiếu vắng ${ELEMENT_MEANINGS[el].name} — ${ELEMENT_MEANINGS[el].lack}.`);
+  });
+  return result;
+}
+
+function getPlanetaryInfluence(planets) {
+  const entries = Object.entries(planets).sort((a,b) => b[1] - a[1]);
+  if (entries.length === 0) return "Không có hành tinh nổi trội.";
+  const [planet, count] = entries[0];
+  return `Năng lượng ${planet} (${PLANET_INFLUENCES[planet] || ''}) hiện diện mạnh mẽ${count > 1 ? ' (' + count + ' lần)' : ''}, chi phối bầu không khí của trải bài.`;
+}
+
+function getSuitInfluence(suits, total) {
+  const entries = Object.entries(suits).sort((a,b) => b[1] - a[1]);
+  if (entries.length === 0) return "";
+  const suitNames = { wands: "Đũa (Hành động/Đam mê)", cups: "Cốc (Cảm xúc/Quan hệ)", swords: "Kiếm (Trí tuệ/Xung đột)", pentacles: "Đồng Tiền (Vật chất/Công việc)" };
+  const [suit, count] = entries[0];
+  const ratio = count / total;
+  if (ratio >= 0.5) return `Bộ ${suitNames[suit] || suit} chiếm đa số — trọng tâm hiện tại đang đặt vào lĩnh vực này.`;
+  return "";
+}
+
+function getArcanaAnalysis(majorCount, minorCount, total) {
+  const majorRatio = majorCount / total;
+  if (majorRatio >= 0.6) return `Major Arcana chiếm ${Math.round(majorRatio*100)}% — đây là giai đoạn mang tính số phận, bài học linh hồn, những thay đổi không thể tránh khỏi. Năng lượng vũ trụ đang can thiệp sâu vào hành trình của bạn.`;
+  if (majorRatio >= 0.3) return `Có sự pha trộn giữa Major và Minor Arcana — vừa có ảnh hưởng từ số phận, vừa có khả năng tự quyết định qua hành động hàng ngày.`;
+  return `Chủ yếu là Minor Arcana — tình huống này phụ thuộc nhiều vào lựa chọn và hành động thực tế của bạn hơn là định mệnh.`;
+}
+
+function getReversedAnalysis(reversedCount, total) {
+  const ratio = reversedCount / total;
+  if (ratio === 0) return "Tất cả lá bài đều xuôi — năng lượng đang chảy tự nhiên, không bị cản trở. Hãy tận dụng đà này.";
+  if (ratio <= 0.2) return `Ít lá ngược — phần lớn năng lượng đang thuận chiều, chỉ có khía cạnh nhỏ cần điều chỉnh.`;
+  if (ratio <= 0.5) return `Có lá ngược xen kẽ — năng lượng đang va chạm, có những khía cạnh bị kìm nén hoặc chưa được nhận ra. Đây là lờI nhắc nhở cần nhìn sâu hơn.`;
+  return `Nhiều lá ngược — năng lượng bị chặn nghiêm trọng, có thể do kháng cự nội tâm, ngoại cảnh bất lợi, hoặc bạn đang ở giai đoạn cần buông bỏ và tái cấu trúc.`;
+}
+
+function synthesizeCards(cards, topic) {
+  // Tìm các mối quan hệ giữa các lá bài
+  const pairs = [];
+  for (let i = 0; i < cards.length - 1; i++) {
+    const a = cards[i], b = cards[i+1];
+    // Kiểm tra cùng nguyên tố
+    if (a.element === b.element) {
+      pairs.push(`<b>${a.name_vi}</b> và <b>${b.name_vi}</b> cùng nguyên tố ${ELEMENT_MEANINGS[a.element].name} — năng lượng này được khuếch đại, tạo thành dòng chảy liên tục giữa vị trí "${a.positionName}" và "${b.positionName}".`);
+    }
+    // Kiểm tra đối lập nguyên tố (Fire-Water, Air-Earth)
+    const opposites = { Fire: 'Water', Water: 'Fire', Air: 'Earth', Earth: 'Air' };
+    if (opposites[a.element] === b.element) {
+      pairs.push(`<b>${a.name_vi}</b> (nguyên tố ${ELEMENT_MEANINGS[a.element].name}) đối lập với <b>${b.name_vi}</b> (nguyên tố ${ELEMENT_MEANINGS[b.element].name}) — sự căng thẳng giữa "${a.positionName}" và "${b.positionName}" đòi hỏi sự hòa giải và cân bằng.`);
+    }
+    // Kiểm tra cùng số
+    if (a.number === b.number && a.id !== b.id) {
+      pairs.push(`<b>${a.name_vi}</b> và <b>${b.name_vi}</b> cùng số ${a.number} — sự đồng điệu về mặt số học, nhấn mạnh bài học của con số này trong bối cảnh ${topic === 'love' ? 'tình yêu' : topic === 'career' ? 'sự nghiệp' : 'cuộc sống'}.`);
+    }
+  }
+  return pairs;
+}
+
+function getPositionDeepMeaning(spreadType, positionIndex, positionName) {
+  const deepMeanings = {
+    one: { 0: "Lá duy nhất này là gương phản chiếu trực tiếp năng lượng hiện tại của bạn. Nó không phải câu trả lờI đơn giản mà là hình ảnh tổng thể của tâm trạng và tiềm năng." },
+    three: {
+      0: "Quá khứ: Nền tảng đã đúc kết, những gì đã xảy ra và để lại dấu ấn. Không phải để hối tiếc mà để hiểu rỗng mình đến từ đâu.",
+      1: "Hiện tại: Trung tâm của vấn đề, năng lượng đang diễn ra ngay lúc này. Đây là điểm bạn đang đứng, nơi mọi quyết định được đúc kết.",
+      2: "Tương lai: Hướng đi tự nhiên nếu duy trì quỹ đạo hiện tại. Không phải định mệnh tuyệt đối mà là kết quả của nhân quả đang hình thành."
+    },
+    celtic: {
+      0: "Vị trí 1 — Hiện tại: Tình huống cốt lõi, trái tim của vấn đề. Đây là năng lượng bao trùm cuộc sống bạn ngay lúc này.",
+      1: "Vị trí 2 — Thử thách: Vật cản ngay trước mặt, có thể là nội tâm hoặc ngoại cảnh. Lá này chồng lên vị trí 1, cho thấy áp lực đang tác động.",
+      2: "Vị trí 3 — Quá khứ: Nền tảng đã qua, những sự kiện hoặc quyết định dẫn đến hiện tại. Có thể là nguồn gốc của vấn đề hoặc của sức mạnh.",
+      3: "Vị trí 4 — Tương lai gần: Những gì sắp xảy ra trong chu kỳ ngắn hạn, thường là vài tuần tới. Năng lượng đang hình thành.",
+      4: "Vị trí 5 — Mục tiêu/Mong muốn: Điều bạn thực sự muốn đạt được, có thể khác với điều bạn nghĩ mình muốn. Tiềm thức lộ ra ở đây.",
+      5: "Vị trí 6 — Nền tảng/Quá khứ xa: Những yếu tố sâu xa, tiềm ẩn, có thể từ thờI thơ ấu hoặc tiền kiếp, tạo nên phản ứng hiện tại của bạn.",
+      6: "Vị trí 7 — Bản thân: Thái độ và cảm nhận của bạn về tình huống. Cách bạn nhìn nhận bản thân trong bối cảnh này.",
+      7: "Vị trí 8 — Môi trường: Ảnh hưởng từ ngưởi xung quanh, xã hội, hoàn cảnh khách quan. Những gì bạn không kiểm soát được.",
+      8: "Vị trí 9 — Hy vọng/Sợ hãi: Mong muốn sâu thẳm hoặc nỗi sợ tiềm ẩn đang thúc đẩy hoặc cản trở bạn. Thường là cả hai cùng lúc.",
+      9: "Vị trí 10 — Kết quả: Kết cục tiềm năng nếu duy trì quỹ đạo hiện tại. Có thể thay đổi bằng hành động và nhận thức mới."
+    },
+    relationship: {
+      0: "Vị trí 1 — Bạn: Năng lượng bạn mang vào mối quan hệ, cách bạn cảm nhận và hành xử. Đây là góc nhìn từ phía bạn.",
+      1: "Vị trí 2 — Đối phương: Năng lượng đối phương mang vào, cách họ cảm nhận và hành xử. Có thể khác biệt với những gì bạn nghĩ.",
+      2: "Vị trí 3 — Mối quan hệ: Bản chất của kết nối giữa hai ngưởi, năng lượng chung được tạo ra khi hai bên gặp nhau.",
+      3: "Vị trí 4 — Thử thách: Vật cản lớn nhất đang đe dọa hoặc làm suy yếu mối quan hệ. Có thể là nội tâm hoặc ngoại cảnh.",
+      4: "Vị trí 5 — Tiềm năng: Hướng đi tự nhiên của mối quan hệ nếu cả hai cùng nỗ lực. Khả năng cao nhất mà kết nối này có thể đạt được."
+    },
+    career: {
+      0: "Vị trí 1 — Hiện tại: Tình trạng công việc/sự nghiệp ngay lúc này. Năng lượng bao trùm lĩnh vực này trong đờI bạn.",
+      1: "Vị trí 2 — Điểm mạnh: Tài năng, kỹ năng hoặc nguồn lực nội tại bạn có thể tận dụng để tiến xa hơn.",
+      2: "Vị trí 3 — Thử thách: Vật cản, khó khăn hoặc yếu điểm cần vượt qua. Có thể là thiếu sót cần bù đắp hoặc rào cản bên ngoài.",
+      3: "Vị trí 4 — Hành động: Bước đi cụ thể bạn nên thực hiện. Không phải lờI khuyên chung chung mà là hành động thực tế.",
+      4: "Vị trí 5 — Kết quả: Kết cục tiềm năng nếu thực hiện hành động được chỉ ra. Hình ảnh tương lai của sự nghiệp."
+    },
+    horseshoe: {
+      0: "Vị trí 1 — Quá khứ: Những sự kiện, quyết định hoặc năng lượng đã dẫn bạn đến đây. Nền tảng không thể thay đổi nhưng có thể học hỏi.",
+      1: "Vị trí 2 — Hiện tại: Tình huống hiện tại, trung tâm của vấn đề. Điểm bạn đang đứng trên con đường vận mệnh.",
+      2: "Vị trí 3 — Ẩn giấu: Những yếu tố chưa được nhìn thấy, bí mật, tiềm thức hoặc thông tin còn thiếu. Điều bạn cần khám phá.",
+      3: "Vị trí 4 — LờI khuyên: Hướng dẫn từ trực giác/vũ trụ về cách xử lý tình huống. Không phải mệnh lệnh mà là ánh sáng soi đường.",
+      4: "Vị trí 5 — Ngưởi xung quanh: Ảnh hưởng từ gia đình, bạn bè, đồng nghiệp hoặc đối thủ. Những ngưởi tác động đến quyết định của bạn.",
+      5: "Vị trí 6 — Thử thách: Vật cản lớn nhất phía trước. Có thể là nỗi sợ, thói quen, hoàn cảnh hoặc ngưởi cụ thể.",
+      6: "Vị trí 7 — Kết quả: Kết cục tiềm năng nếu vượt qua thử thách bằng lờI khuyên đã cho. Tương lai có thể đạt được."
+    }
+  };
+  const spreadMeanings = deepMeanings[spreadType] || {};
+  return spreadMeanings[positionIndex] || `Vị trí "${positionName}" mang năng lượng riêng biệt trong trải bài này.`;
+}
+
+function getTopicDeepAdvice(topic, cards) {
+  const advice = {
+    general: "Hãy đứng vững giữa dòng chảy của sự kiện. Tarot cho thấy bức tranh toàn cảnh — bạn là ngưởi chọn cách phản ứng. Đừng vội vàng kết luận; hãy để thông điệp ngấm dần trong vài ngày.",
+    love: "Tình yêu không phải trận chiến để thắng thua mà là vườn hoa cần chăm sóc. Những lá bài này phản ánh năng lượng cảm xúc đang chảy giữa hai ngưởi — hoặc giữa bạn và chính mình. Hãy tự hỏi: bạn đang yêu với trái tim mở rộng hay với nỗi sợ?",
+    career: "Sự nghiệp là con đường dài, không phải đích đến. Những lá bài này cho thấy nơi bạn đang đứng trên bản đồ nghề nghiệp — có thể cần kiên nhẫn, có thể cần dũng cảm thay đổi. Hãy lắng nghe không chờI lý trí mà cả trực giác về đam mê.",
+    finance: "Tiền bạc là năng lượng vật chất hóa — nó đến và đi theo quy luật. Trải bài này cho thấy dòng chảy tài chính hiện tại: nơi nào cần thắt chặt, nơi nào có thể đầu tư, và nơi nào cần buông bỏ. Đừng để nỗi sợ chi phối quyết định.",
+    health: "Cơ thể là ngôi đền của linh hồn. Những lá bài này phản ánh năng lượng sinh lý và tinh thần — chúng có thể chỉ ra vùng cần chú ý, nhưng không thay thế chẩn đoán y khoa. Hãy kết hợp trực giác với khoa học.",
+    spirituality: "Hành trình tâm linh không có đích đến — mỗi bước chính là giác ngộ. Trải bài này phản ánh nơi bạn đang đứng trên con đường đó: có thể cần kiên nhẫn, có thể cần buông bỏ, hoặc có thể đang rất gần với một bước đột phá."
+  };
+  return advice[topic] || advice.general;
+}
+
+function generateInterpretation() {
+  const topic = currentReading.topic;
+  const cards = currentReading.cards;
+  const spread = SPREADS[currentReading.spread];
+  const energy = analyzeEnergy(cards);
+
+  let html = '';
+
+  // ===== PHẦN 1: PHÂN TÍCH NĂNG LƯỢNG TỔNG THỂ =====
+  html += `<div style="margin-bottom:24px;">`;
+  html += `<div class="interpretation-title" style="font-size:13px;margin-bottom:12px;">🔮 PHÂN TÍCH NĂNG LƯỢNG TỔNG THỂ</div>`;
+
+  // Arcana
+  html += `<p><b>1. Bản chất trải bài:</b> ${getArcanaAnalysis(energy.majorCount, energy.minorCount, energy.total)}</p>`;
+
+  // Reversed
+  html += `<p><b>2. Dòng chảy năng lượng:</b> ${getReversedAnalysis(energy.reversedCount, energy.total)}</p>`;
+
+  // Elements
+  const elemBalance = getElementBalance(energy.elements, energy.total);
+  if (elemBalance.length > 0) {
+    html += `<p><b>3. Cân bằng nguyên tố:</b></p>`;
+    elemBalance.forEach(e => { html += `<div class="detail-text" style="margin-bottom:6px;">${e}</div>`; });
+  }
+
+  // Planets
+  const planetText = getPlanetaryInfluence(energy.planets);
+  if (planetText) html += `<p><b>4. Ảnh hưởng hành tinh:</b> ${planetText}</p>`;
+
+  // Suits
+  const suitText = getSuitInfluence(energy.suits, energy.total);
+  if (suitText) html += `<p><b>5. Trọng tâm bộ bài:</b> ${suitText}</p>`;
+
+  html += `</div>`;
+
+  // ===== PHẦN 2: TỔNG HỢP LIÊN KẾT =====
+  const synthesis = synthesizeCards(cards, topic);
+  if (synthesis.length > 0) {
+    html += `<div style="margin-bottom:24px;">`;
+    html += `<div class="interpretation-title" style="font-size:13px;margin-bottom:12px;">⚡ TỔNG HỢP LIÊN KẾT</div>`;
+    synthesis.forEach(s => { html += `<p>${s}</p>`; });
+    html += `</div>`;
+  }
+
+  // ===== PHẦN 3: LUẬN GIẢI TỪNG VỊ TRÍ =====
+  html += `<div style="margin-bottom:24px;">`;
+  html += `<div class="interpretation-title" style="font-size:13px;margin-bottom:12px;">📜 LUẬN GIẢI CHI TIẾT TỪNG VỊ TRÍ</div>`;
+
+  cards.forEach((card, i) => {
+    const meaning = card.reversed ? card.reversed[topic] : card.upright[topic];
+    const generalMeaning = card.reversed ? card.reversed.general : card.upright.general;
+    const orientation = card.reversed ? 'ngược' : 'xuôi';
+    const positionDeep = getPositionDeepMeaning(currentReading.spread, i, card.positionName);
+
+    html += `<div style="background:var(--bg-secondary);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px;">`;
+    html += `<div style="font-family:var(--font-display);font-size:13px;color:var(--accent-gold);letter-spacing:1px;margin-bottom:8px;">`;
+    html += `${i+1}. ${card.positionName} — ${card.name_vi} <span style="opacity:0.6;font-size:11px;">(${orientation})</span>`;
+    html += `</div>`;
+
+    html += `<div style="font-size:12px;color:var(--text-muted);margin-bottom:10px;font-style:italic;border-left:2px solid var(--accent-gold);padding-left:10px;">`;
+    html += positionDeep;
+    html += `</div>`;
+
+    html += `<div style="font-size:14px;color:var(--text-secondary);line-height:1.7;margin-bottom:10px;">`;
+    html += `<b>Ý nghĩa chủ đề ${TOPICS[topic]}:</b> ${meaning}`;
+    html += `</div>`;
+
+    html += `<div style="font-size:13px;color:var(--text-muted);line-height:1.6;border-top:1px solid var(--border);padding-top:10px;">`;
+    html += `<b>Năng lượng tổng quát:</b> ${generalMeaning}`;
+    html += `<br><span style="font-size:11px;opacity:0.7;">Nguyên tố: ${card.element}${card.planet ? ' | Hành tinh: ' + card.planet : ''} | Từ khóa: ${card.keywords}</span>`;
+    html += `</div>`;
+
+    html += `</div>`;
+  });
+  html += `</div>`;
+
+  // ===== PHẦN 4: THÔNG ĐIỆP TỔNG HỢP =====
+  html += `<div style="margin-bottom:24px;">`;
+  html += `<div class="interpretation-title" style="font-size:13px;margin-bottom:12px;">🌟 THÔNG ĐIỆP TỔNG HỢP</div>`;
+
+  const firstCard = cards[0];
+  const lastCard = cards[cards.length - 1];
+  const middleCard = cards.length > 2 ? cards[Math.floor(cards.length/2)] : null;
+
+  html += `<p><b>Khởi đầu:</b> <b>${firstCard.name_vi}</b> ở vị trí "${firstCard.positionName}" đặt nền móng cho toàn bộ trải bài. ${firstCard.reversed ? 'Năng lượng bị chặn ở đây cho thấy bạn đang bước đi từ một điểm cần giải phóng.' : 'Năng lượng thuận chiều cho thấy khởi đầu có sức mạnh và rõ ràng.'} ${firstCard.reversed ? firstCard.reversed[topic] : firstCard.upright[topic]}</p>`;
+
+  if (middleCard) {
+    html += `<p><b>Trung tâm:</b> <b>${middleCard.name_vi}</b> ở vị trí "${middleCard.positionName}" là trái tim của vấn đề. Đây là điểm xoay chuyển — nơi quyết định được đúc kết. ${middleCard.reversed ? middleCard.reversed[topic] : middleCard.upright[topic]}</p>`;
+  }
+
+  html += `<p><b>Hướng đi:</b> <b>${lastCard.name_vi}</b> ở vị trí "${lastCard.positionName}" cho thấy kết quả tiềm năng. ${lastCard.reversed ? 'Lá ngược ở đây là lờI cảnh báo: nếu không điều chỉnh, dòng chảy này sẽ dẫn đến kết cục cần tránh. Hãy xem đây là cơ hội thay đổi.' : 'Lá xuôi cho thấy hướng đi tự nhiên đang mở ra, nhưng vẫn cần hành động có ý thức để đạt được.'} ${lastCard.reversed ? lastCard.reversed[topic] : lastCard.upright[topic]}</p>`;
+
+  // Narrative flow
+  if (cards.length >= 3) {
+    html += `<p><b>Dòng chảy câu chuyện:</b> Từ <b>${firstCard.name_vi}</b> qua <b>${middleCard ? middleCard.name_vi : cards[1].name_vi}</b> đến <b>${lastCard.name_vi}</b>, ta thấy một cung bậc năng lượng: `;
+    const flowDesc = cards.map(c => c.name_vi).join(' → ');
+    html += `${flowDesc}. `;
+
+    // Check for progression
+    const hasDeath = cards.some(c => c.name === "Death");
+    const hasTower = cards.some(c => c.name === "The Tower");
+    const hasStar = cards.some(c => c.name === "The Star");
+    const hasSun = cards.some(c => c.name === "The Sun");
+    const hasWorld = cards.some(c => c.name === "The World");
+
+    if (hasDeath && !hasStar && !hasSun) html += `Có sự hiện diện của <b>Cái Chết</b> — một giai đoạn đang kết thúc. Điều này có thể đau đớn nhưng cần thiết cho sự tái sinh.`;
+    else if (hasTower && !hasStar) html += `Có <b>Tháp Đổ</b> — sự thật phũ phàng đang đến. Đừng chống cự, hãy để những gì giả tạo sụp đổ để xây dựng lại vững chắc hơn.`;
+    else if (hasStar && (hasDeath || hasTower)) html += `Sau bão táp là <b>Ngôi Sao</b> — đây là câu chuyện của sự chữa lành. Dù có khó khăn, hy vọng vẫn tồn tại.`;
+    else if (hasSun || hasWorld) html += `Kết thúc bằng năng lượng tích cực mạnh mẽ — đây là dấu hiệu của sự viên mãn và thành tựu sau quá trình.`;
+    else html += `Dòng chảy này cho thấy sự chuyển động liên tục — không có điểm dừng tuyệt đối, chỉ có sự biến đổi.`;
+    html += `</p>`;
+  }
+
+  html += `</div>`;
+
+  // ===== PHẦN 5: LỜI KHUYÊN CHUYÊN SÂU =====
+  html += `<div style="margin-bottom:24px;">`;
+  html += `<div class="interpretation-title" style="font-size:13px;margin-bottom:12px;">💎 LỜI KHUYÊN CHUYÊN SÂU</div>`;
+  html += `<p style="font-style:italic;border-left:3px solid var(--accent-gold);padding-left:16px;color:var(--text-secondary);">${getTopicDeepAdvice(topic, cards)}</p>`;
+
+  // Specific actionable advice based on cards
+  html += `<p><b>Hành động cụ thể:</b></p>`;
+  const actionableCards = cards.filter(c => !c.reversed && (c.name === "The Magician" || c.name === "The Chariot" || c.name === "Strength" || c.name === "Ace of Wands" || c.name === "Ace of Swords" || c.name === "Knight of Wands" || c.name === "Knight of Swords"));
+  const cautionCards = cards.filter(c => c.reversed && (c.name === "The Devil" || c.name === "The Tower" || c.name === "Ten of Swords" || c.name === "Five of Cups" || c.name === "Three of Swords"));
+
+  if (actionableCards.length > 0) {
+    html += `<p>✦ <b>Nắm bắt cơ hội:</b> Có ${actionableCards.length} lá bài cho thấy năng lượng hành động mạnh mẽ (${actionableCards.map(c => c.name_vi).join(', ')}). Đây không phải lúc do dự — hãy bước đi với sự tự tin và quyết đoán.</p>`;
+  }
+  if (cautionCards.length > 0) {
+    html += `<p>⚠ <b>Thận trọng:</b> Có ${cautionCards.length} lá ngược cảnh báo (${cautionCards.map(c => c.name_vi).join(', ')}). Đừng bỏ qua dấu hiệu này — hãy chậm lại, đánh giá kỹ trước khi tiến.</p>`;
+  }
+  if (actionableCards.length === 0 && cautionCards.length === 0) {
+    html += `<p>✦ Năng lượng trải bài đang ở trạng thái cân bằng. Hành động tốt nhất lúc này là <b>quan sát và lắng nghe</b> — đừng ép buộc dòng chảy. Hãy ghi chép lại cảm nhận và xem lại sau một tuần.</p>`;
+  }
+
+  // Time guidance
+  const hasEightOfWands = cards.some(c => c.name === "8 of Wands");
+  const hasTwoOfPentacles = cards.some(c => c.name === "2 of Pentacles");
+  const hasSevenOfPentacles = cards.some(c => c.name === "7 of Pentacles");
+  const hasHangedMan = cards.some(c => c.name === "The Hanged Man");
+
+  html += `<p><b>ThờI điểm:</b> `;
+  if (hasEightOfWands) html += `Mọi thứ sẽ diễn ra <b>rất nhanh</b> — trong vài ngày tới. Hãy sẵn sàng.`;
+  else if (hasHangedMan) html += `Đây là thờI điểm của <b>sự chờ đợi có ý nghĩa</b>. Đừng vội vàng — hãy để sự việc chín muồi.`;
+  else if (hasSevenOfPentacles) html += `Cần <b>kiên nhẫn dài hạn</b> — kết quả sẽ đến sau thờI gian đầu tư nghiêm túc.`;
+  else if (hasTwoOfPentacles) html += `Bạn đang trong giai đoạn <b>cân bằng nhiều việc</b> — hãy linh hoạt và đừng để một việc ảnh hưởng việc khác.`;
+  else html += `ThờI điểm chính xác phụ thuộc vào hành động của bạn. Tarot không đo thờI gian tuyến tính mà đo <b>chu kỳ năng lượng</b>.`;
+  html += `</p>`;
+
+  html += `</div>`;
+
+  // ===== PHẦN 6: LỜI KẾT =====
+  html += `<div style="text-align:center;padding:20px;border-top:1px solid var(--border);margin-top:20px;">`;
+  html += `<p style="font-size:13px;color:var(--text-muted);font-style:italic;">"Tarot không tiên tri tương lai — nó soi sáng hiện tại để bạn tự tạo tương lai. Mỗi lá bài là một gương phản chiếu, mỗi trải bài là một cuộc đối thoại với chính mình."</p>`;
+  html += `<p style="font-size:12px;color:var(--accent-gold);margin-top:10px;">✦ Namaste ✦</p>`;
+  html += `</div>`;
+
+  document.getElementById('interpretationContent').innerHTML = html;
+}
+
+// Override showCardDetail to also show position context
+const _originalShowCardDetail = showCardDetail;
+showCardDetail = function(index) {
+  const card = currentReading.cards[index];
+  const modal = document.getElementById('cardDetailModal');
+  const body = document.getElementById('modalBody');
+
+  document.getElementById('modalTitle').textContent = `${card.positionName} — ${card.name_vi} (${card.name})`;
+
+  let html = '';
+  html += `<div class="detail-card-visual">${getCardImage(card, card.reversed)}</div>`;
+
+  html += `<div class="detail-section"><div class="detail-section-title">Vị Trí Trong Trải Bài</div><div class="detail-text" style="font-style:italic;">${getPositionDeepMeaning(currentReading.spread, index, card.positionName)}</div></div>`;
+
+  html += `<div class="detail-section"><div class="detail-section-title">Biểu Tượng</div><div class="detail-text">${card.symbol}</div></div>`;
+  html += `<div class="detail-section"><div class="detail-section-title">Từ Khóa</div><div class="detail-tags">${card.keywords.split(',').map(k => `<span class="detail-tag">${k.trim()}</span>`).join('')}</div></div>`;
+  html += `<div class="detail-section"><div class="detail-section-title">Nguyên Tố & Hành Tinh</div><div class="detail-text">Nguyên tố: <b>${card.element}</b> — ${ELEMENT_MEANINGS[card.element].nature}${card.planet ? '<br>Hành tinh: <b>' + card.planet + '</b> — ' + PLANET_INFLUENCES[card.planet] : ''}</div></div>`;
+
+  const topic = currentReading.topic;
+  html += `<div class="detail-section"><div class="detail-section-title">Ý Nghĩa Xuôi</div>`;
+  Object.entries(card.upright).forEach(([key, val]) => {
+    html += `<div class="detail-text"><b>${TOPICS[key] || key}:</b> ${val}</div>`;
+  });
+  html += `</div>`;
+
+  html += `<div class="detail-section"><div class="detail-section-title">Ý Nghĩa Ngược</div>`;
+  Object.entries(card.reversed).forEach(([key, val]) => {
+    html += `<div class="detail-text"><b>${TOPICS[key] || key}:</b> ${val}</div>`;
+  });
+  html += `</div>`;
+
+  body.innerHTML = html;
+  modal.classList.add('active');
+};
+
+// Also update showDeckCardDetail to include element meanings
+const _originalShowDeckCardDetail = showDeckCardDetail;
+showDeckCardDetail = function(cardId) {
+  const card = TAROT_DECK.find(c => c.id === cardId);
+  if (!card) return;
+  const modal = document.getElementById('cardDetailModal');
+  const body = document.getElementById('modalBody');
+
+  document.getElementById('modalTitle').textContent = `${card.name_vi} — ${card.name}`;
+
+  let html = '';
+  html += `<div class="detail-card-visual">${getCardImage(card, false)}</div>`;
+  html += `<div class="detail-section"><div class="detail-section-title">Biểu Tượng</div><div class="detail-text">${card.symbol}</div></div>`;
+  html += `<div class="detail-section"><div class="detail-section-title">Từ Khóa</div><div class="detail-tags">${card.keywords.split(',').map(k => `<span class="detail-tag">${k.trim()}</span>`).join('')}</div></div>`;
+  html += `<div class="detail-section"><div class="detail-section-title">Nguyên Tố & Hành Tinh</div><div class="detail-text">Nguyên tố: <b>${card.element}</b> — ${ELEMENT_MEANINGS[card.element].nature}${card.planet ? '<br>Hành tinh: <b>' + card.planet + '</b> — ' + PLANET_INFLUENCES[card.planet] : ''}</div></div>`;
+
+  html += `<div class="detail-section"><div class="detail-section-title">Ý Nghĩa Xuôi</div>`;
+  Object.entries(card.upright).forEach(([key, val]) => {
+    html += `<div class="detail-text"><b>${TOPICS[key] || key}:</b> ${val}</div>`;
+  });
+  html += `</div>`;
+
+  html += `<div class="detail-section"><div class="detail-section-title">Ý Nghĩa Ngược</div>`;
+  Object.entries(card.reversed).forEach(([key, val]) => {
+    html += `<div class="detail-text"><b>${TOPICS[key] || key}:</b> ${val}</div>`;
+  });
+  html += `</div>`;
+
+  html += `<div style="text-align:center;margin-top:20px;"><button class="draw-btn" onclick="addToFavorites(${card.id})">⭐ Thêm vào Yêu thích</button></div>`;
+
+  body.innerHTML = html;
+  modal.classList.add('active');
+};
+function showCardDetail(index) {
+  const card = currentReading.cards[index];
+  const modal = document.getElementById('cardDetailModal');
+  const body = document.getElementById('modalBody');
+
+  document.getElementById('modalTitle').textContent = `${card.name_vi} — ${card.name}`;
+
+  let html = '';
+  html += `<div class="detail-card-visual">${getCardImage(card, card.reversed)}</div>`;
+
+  html += `<div class="detail-section"><div class="detail-section-title">Biểu Tượng</div><div class="detail-text">${card.symbol}</div></div>`;
+  html += `<div class="detail-section"><div class="detail-section-title">Từ Khóa</div><div class="detail-tags">${card.keywords.split(',').map(k => `<span class="detail-tag">${k.trim()}</span>`).join('')}</div></div>`;
+  html += `<div class="detail-section"><div class="detail-section-title">Nguyên Tố & Hành Tinh</div><div class="detail-text">Nguyên tố: <b>${card.element}</b>${card.planet ? ` | Hành tinh: <b>${card.planet}</b>` : ''}</div></div>`;
+
+  html += `<div class="detail-section"><div class="detail-section-title">Ý Nghĩa Xuôi</div>`;
+  Object.entries(card.upright).forEach(([key, val]) => {
+    html += `<div class="detail-text"><b>${TOPICS[key] || key}:</b> ${val}</div>`;
+  });
+  html += `</div>`;
+
+  html += `<div class="detail-section"><div class="detail-section-title">Ý Nghĩa Ngược</div>`;
+  Object.entries(card.reversed).forEach(([key, val]) => {
+    html += `<div class="detail-text"><b>${TOPICS[key] || key}:</b> ${val}</div>`;
+  });
+  html += `</div>`;
+
+  body.innerHTML = html;
+  modal.classList.add('active');
+}
+
+function closeCardDetail() {
+  document.getElementById('cardDetailModal').classList.remove('active');
+}
+
+function resetReading() {
+  document.getElementById('readingView').classList.remove('active');
+  document.getElementById('homeView').classList.remove('hidden');
+  currentReading = null;
+}
+
+function saveReading() {
+  if (!currentReading) return;
+  const history = JSON.parse(localStorage.getItem('tarot_history') || '[]');
+  history.unshift(currentReading);
+  if (history.length > 50) history.pop();
+  localStorage.setItem('tarot_history', JSON.stringify(history));
+  alert('Đã lưu vào lịch sử!');
+}
+
+function shareReading() {
+  if (!currentReading) return;
+  const text = generateShareText();
+  if (navigator.share) {
+    navigator.share({ title: 'Mystic Tarot Reading', text: text });
+  } else {
+    navigator.clipboard.writeText(text).then(() => alert('Đã sao chép vào clipboard!'));
+  }
+}
+
+function generateShareText() {
+  const spread = SPREADS[currentReading.spread];
+  let text = `✦ MYSTIC TAROT ✦\n`;
+  text += `Trải bài: ${spread.name}\n`;
+  text += `Chủ đề: ${TOPICS[currentReading.topic]}\n`;
+  if (currentReading.question) text += `Câu hỏi: ${currentReading.question}\n`;
+  text += `\nKết quả:\n`;
+  currentReading.cards.forEach((card, i) => {
+    text += `${i+1}. ${card.positionName}: ${card.name_vi}${card.reversed ? ' (Ngược)' : ''}\n`;
+  });
+  text += `\nLờI khuyên: Hãy lắng nghe trực giác của bạn. ✦`;
+  return text;
+}
+
+// ===== HISTORY & FAVORITES =====
+function renderHistory() {
+  const history = JSON.parse(localStorage.getItem('tarot_history') || '[]');
+  const container = document.getElementById('historyList');
+  if (history.length === 0) {
+    container.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:40px;">Chưa có lịch sử nào</p>';
+    return;
+  }
+  container.innerHTML = history.map((reading, idx) => {
+    const spread = SPREADS[reading.spread];
+    return `
+      <div class="history-item" onclick="loadHistoryReading(${idx})">
+        <div class="history-item-icon">🃏</div>
+        <div class="history-item-info">
+          <div class="history-item-title">${spread.name} — ${TOPICS[reading.topic]}</div>
+          <div class="history-item-meta">${reading.date} • ${reading.cards.length} lá</div>
+        </div>
+        <button class="history-item-action" onclick="event.stopPropagation();deleteHistory(${idx})">🗑</button>
+      </div>
+    `;
+  }).join('');
+}
+
+function loadHistoryReading(idx) {
+  const history = JSON.parse(localStorage.getItem('tarot_history') || '[]');
+  currentReading = history[idx];
+  renderReading();
+  document.getElementById('historyView').classList.add('hidden');
+  document.getElementById('readingView').classList.add('active');
+}
+
+function deleteHistory(idx) {
+  const history = JSON.parse(localStorage.getItem('tarot_history') || '[]');
+  history.splice(idx, 1);
+  localStorage.setItem('tarot_history', JSON.stringify(history));
+  renderHistory();
+}
+
+function renderFavorites() {
+  const favorites = JSON.parse(localStorage.getItem('tarot_favorites') || '[]');
+  const container = document.getElementById('favoritesList');
+  if (favorites.length === 0) {
+    container.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:40px;">Chưa có yêu thích nào</p>';
+    return;
+  }
+  container.innerHTML = favorites.map((fav, idx) => `
+    <div class="favorite-item">
+      <div class="favorite-item-icon">⭐</div>
+      <div class="favorite-item-info">
+        <div class="favorite-item-title">${fav.name_vi} — ${fav.name}</div>
+        <div class="favorite-item-meta">${fav.keywords}</div>
+      </div>
+      <button class="favorite-item-action" onclick="removeFavorite(${idx})">✕</button>
+    </div>
+  `).join('');
+}
+
+function removeFavorite(idx) {
+  const favorites = JSON.parse(localStorage.getItem('tarot_favorites') || '[]');
+  favorites.splice(idx, 1);
+  localStorage.setItem('tarot_favorites', JSON.stringify(favorites));
+  renderFavorites();
+}
+
+// ===== DECK BROWSER =====
+function renderDeck() {
+  const grid = document.getElementById('deckGrid');
+  grid.innerHTML = TAROT_DECK.map(card => `
+    <div class="deck-card" onclick="showDeckCardDetail(${card.id})">
+      ${getCardImage(card, false)}
+      <div class="deck-card-name">${card.name_vi}</div>
+      <div class="deck-card-name-vi">${card.name}</div>
+    </div>
+  `).join('');
+}
+
+function showDeckCardDetail(cardId) {
+  const card = TAROT_DECK.find(c => c.id === cardId);
+  if (!card) return;
+  const modal = document.getElementById('cardDetailModal');
+  const body = document.getElementById('modalBody');
+
+  document.getElementById('modalTitle').textContent = `${card.name_vi} — ${card.name}`;
+
+  let html = '';
+  html += `<div class="detail-card-visual">${getCardImage(card, false)}</div>`;
+  html += `<div class="detail-section"><div class="detail-section-title">Biểu Tượng</div><div class="detail-text">${card.symbol}</div></div>`;
+  html += `<div class="detail-section"><div class="detail-section-title">Từ Khóa</div><div class="detail-tags">${card.keywords.split(',').map(k => `<span class="detail-tag">${k.trim()}</span>`).join('')}</div></div>`;
+  html += `<div class="detail-section"><div class="detail-section-title">Nguyên Tố & Hành Tinh</div><div class="detail-text">Nguyên tố: <b>${card.element}</b>${card.planet ? ` | Hành tinh: <b>${card.planet}</b>` : ''}</div></div>`;
+
+  html += `<div class="detail-section"><div class="detail-section-title">Ý Nghĩa Xuôi</div>`;
+  Object.entries(card.upright).forEach(([key, val]) => {
+    html += `<div class="detail-text"><b>${TOPICS[key] || key}:</b> ${val}</div>`;
+  });
+  html += `</div>`;
+
+  html += `<div class="detail-section"><div class="detail-section-title">Ý Nghĩa Ngược</div>`;
+  Object.entries(card.reversed).forEach(([key, val]) => {
+    html += `<div class="detail-text"><b>${TOPICS[key] || key}:</b> ${val}</div>`;
+  });
+  html += `</div>`;
+
+  html += `<div style="text-align:center;margin-top:20px;"><button class="draw-btn" onclick="addToFavorites(${card.id})">⭐ Thêm vào Yêu thích</button></div>`;
+
+  body.innerHTML = html;
+  modal.classList.add('active');
+}
+
+function addToFavorites(cardId) {
+  const card = TAROT_DECK.find(c => c.id === cardId);
+  if (!card) return;
+  const favorites = JSON.parse(localStorage.getItem('tarot_favorites') || '[]');
+  if (!favorites.find(f => f.id === cardId)) {
+    favorites.push({ id: card.id, name: card.name, name_vi: card.name_vi, keywords: card.keywords });
+    localStorage.setItem('tarot_favorites', JSON.stringify(favorites));
+    alert('Đã thêm vào yêu thích!');
+  } else {
+    alert('Lá bài này đã có trong yêu thích!');
+  }
+}
+
+// ===== SETTINGS =====
+function toggleParticles() {
+  particlesEnabled = !particlesEnabled;
+  document.getElementById('particleToggle').textContent = particlesEnabled ? 'Bật' : 'Tắt';
+  document.getElementById('particles-canvas').style.display = particlesEnabled ? 'block' : 'none';
+}
+
+function clearHistory() {
+  if (confirm('Bạn có chắc muốn xóa toàn bộ lịch sử?')) {
+    localStorage.removeItem('tarot_history');
+    alert('Đã xóa lịch sử!');
+  }
+}
+
+// ===== PARTICLES =====
+(function initParticles() {
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Particle {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 2 + 0.5;
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.speedY = (Math.random() - 0.5) * 0.3;
+      this.opacity = Math.random() * 0.5 + 0.1;
+      this.color = Math.random() > 0.5 ? '212,175,55' : '123,44,191';
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${this.color},${this.opacity})`;
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < 60; i++) particles.push(new Particle());
+
+  function animate() {
+    if (!particlesEnabled) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('Mystic Tarot initialized');
+  loadSettings();
+});
+
+
+// ===== CUSTOMIZATION SYSTEM (ADDON) =====
+let _theme = 'gold';
+let _fontDisplay = 'Cinzel';
+let _fontBody = 'Cormorant Garamond';
+let _fontSize = 16;
+
+function loadSettings() {
+  try {
+    var saved = localStorage.getItem('mystic_settings');
+    if (saved) {
+      var s = JSON.parse(saved);
+      if (s.theme) _theme = s.theme;
+      if (s.fontDisplay) _fontDisplay = s.fontDisplay;
+      if (s.fontBody) _fontBody = s.fontBody;
+      if (s.fontSize) _fontSize = s.fontSize;
+    }
+    applyTheme(_theme);
+    document.documentElement.style.setProperty('--font-display', '"' + _fontDisplay + '", "Georgia", serif');
+    document.documentElement.style.setProperty('--font-body', '"' + _fontBody + '", "Georgia", serif');
+    document.documentElement.style.setProperty('--font-zoom', _fontSize / 16);
+    var tEl = document.querySelector('.theme-option[data-theme="' + _theme + '"]');
+    if (tEl) { document.querySelectorAll('.theme-option').forEach(function(e){e.classList.remove('active');}); tEl.classList.add('active'); }
+    var fd = document.getElementById('fontDisplaySelect'); if (fd) fd.value = _fontDisplay;
+    var fb = document.getElementById('fontBodySelect'); if (fb) fb.value = _fontBody;
+    var fs = document.getElementById('fontSizeSlider'); if (fs) fs.value = _fontSize;
+    var fv = document.getElementById('fontSizeValue'); if (fv) fv.textContent = _fontSize + 'px';
+  } catch(e) { console.error('loadSettings error:', e); }
+}
+
+function saveSettings() {
+  try {
+    localStorage.setItem('mystic_settings', JSON.stringify({
+      theme: _theme, fontDisplay: _fontDisplay, fontBody: _fontBody, fontSize: _fontSize
+    }));
+  } catch(e) { console.error('saveSettings error:', e); }
+}
+
+function setTheme(theme, el) {
+  _theme = theme;
+  applyTheme(theme);
+  if (el) { document.querySelectorAll('.theme-option').forEach(function(e){e.classList.remove('active');}); el.classList.add('active'); }
+  saveSettings();
+}
+
+function applyTheme(theme) {
+  if (theme === 'gold') { document.documentElement.removeAttribute('data-theme'); }
+  else { document.documentElement.setAttribute('data-theme', theme); }
+}
+
+function updateFont() {
+  var fd = document.getElementById('fontDisplaySelect');
+  var fb = document.getElementById('fontBodySelect');
+  if (fd) _fontDisplay = fd.value;
+  if (fb) _fontBody = fb.value;
+  document.documentElement.style.setProperty('--font-display', '"' + _fontDisplay + '", "Georgia", serif');
+  document.documentElement.style.setProperty('--font-body', '"' + _fontBody + '", "Georgia", serif');
+  saveSettings();
+}
+
+function updateFontSize(val) {
+  _fontSize = parseInt(val);
+  document.documentElement.style.setProperty('--font-zoom', val / 16);
+  var fv = document.getElementById('fontSizeValue');
+  if (fv) fv.textContent = val + 'px';
+  saveSettings();
+}
+
+</script>
+</body>
+</html>
